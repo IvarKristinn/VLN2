@@ -1,4 +1,13 @@
-﻿@{
+﻿@model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
+
+<div>
+    @foreach(var book in @Model)
+    {
+        <p>@book.Title</p>
+    }
+</div>
+
+<!--@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -104,3 +113,4 @@
         </ul>
     </div>
 </div>
+-->
