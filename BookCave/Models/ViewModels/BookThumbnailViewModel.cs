@@ -2,11 +2,11 @@ namespace BookCave.Models.ViewModels
 {
     public class BookThumbnailViewModel
     {
-        private int _id { get; set; }
-        public string title { get; set; }
-        public string auothor { get; set; }
-        public string imageLink { get; set; }
-        public int price { get; set; }
-        public int userRatingAvg { get; set; }
+        private int Id { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string ImageLink { get; set; }
+        public int Price { get; set; }
+        public int UserRatingAvg { get; set; }
     }
 }
