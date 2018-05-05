@@ -21,7 +21,9 @@ namespace BookCave.Repositories
                         {
                             Title = b.Title,
                             Author = b.Author,
-                            Price = b.Price
+                            Price = b.Price,
+                            ImageLink = b.ImageLink,
+                            UserRatingAvg = b.UserRatingAvg
                         }).ToList();
             return books;
         }
