@@ -8,21 +8,24 @@ namespace BookCave.Repositories
     public class BookRepo
     {
         private DataContext _db;
+
         public BookRepo()
         {
             _db = new DataContext();
         }
+
         public List<BookThumbnailViewModel> GetBooksByTitle()
         {
-            var books =   (from b in _db.Books
-                            select new BookThumbnailViewModel
-                            {
-                                Title = b.Title,
-                                Author = b.Author,
-                                Price = b.Price
-                            }).ToList();
+            var books = (from b in _db.Books
+                         select new BookThumbnailViewModel
+                        {
+                            Title = b.Title,
+                            Author = b.Author,
+                            Price = b.Price
+                        }).ToList();
             return books;
         }
+
         public BookDetailsViewModel GetBookDetailsById(int id)
         {
         var book = (from b in _db.Books
