@@ -19,6 +19,7 @@ namespace BookCave.Repositories
             var books = (from b in _db.Books
                          select new BookThumbnailViewModel
                         {
+                            Id = b.Id,
                             Title = b.Title,
                             Author = b.Author,
                             Price = b.Price,

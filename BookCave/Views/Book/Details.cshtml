@@ -1,3 +1,10 @@
 @model BookCave.Models.ViewModels.BookDetailsViewModel
+
+<img src="@Model.ImageLink" class="img-thumbnail" alt="book-thumbnail">
 <h1>@Model.Title</h1> 
-<p>Author: @Model.Author</p>
+<h2>Author: @Model.Author</h2>
+<p>Price: @Model.Price $</br>
+Genre: @Model.Genre</p>
+
+<h2>Description:</h2>
+<p>@Model.Description</p>

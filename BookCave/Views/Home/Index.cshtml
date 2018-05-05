@@ -3,13 +3,16 @@
 <div>
     @foreach(var book in @Model)
     {
-        <div class="container">
-            <img src="@book.ImageLink" class="img-thumbnail" alt="book-thumbnail">
-            <p>@book.Title </p>
-            <p>@book.Author</p>
-            <p>@book.Price</p>
-            <p>@book.UserRatingAvg</p>
-        </div>
+        <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
+            <div class="container">
+                <img src="@book.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+                <p>@book.Title </p>
+                <p>@book.Author</p>
+                <p>@book.Price</p>
+                <p>@book.UserRatingAvg</p>
+            </div>
+        </a>
+
     }
 </div>
 
