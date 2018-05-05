@@ -16,5 +16,10 @@ namespace BookCave.Services
             var books = _bookRepo.GetBooksByTitle();
             return books;
         }
+        public BookDetailsViewModel GetBookDetailsById(int id)
+        {
+            var book = _bookRepo.GetBookDetailsById(id);
+            return book;
+        }
     }
 }

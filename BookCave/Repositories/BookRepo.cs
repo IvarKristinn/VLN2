@@ -23,5 +23,22 @@ namespace BookCave.Repositories
                             }).ToList();
             return books;
         }
+        public BookDetailsViewModel GetBookDetailsById(int id)
+        {
+        var book = (from b in _db.Books
+                    where b.Id == id
+                    select new BookDetailsViewModel
+                    {
+                        Title = b.Title,
+                        Author = b.Author,
+                        Description = b.Description,
+                        ImageLink = b.ImageLink,
+                        Genre = b.Genre,
+                        UserRatingAvg = b.UserRatingAvg,
+                        NumberOfUserRatings = b.NumberOfUserRating,
+                        Price = b.Price
+                    }).SingleOrDefault();
+        return book;
+        }
     }
 }
