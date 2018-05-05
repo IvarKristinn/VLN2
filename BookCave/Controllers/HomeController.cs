@@ -6,22 +6,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCave.Controllers
 {
     public class HomeController : Controller
     {
         private BookService _bookService;
+
         public HomeController()
         {
             _bookService = new BookService();
         }
+
         public IActionResult Index()
         {
             var books = _bookService.GetBooksByTitle();
             return View(books);
         }
 
+        [Authorize]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
