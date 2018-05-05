@@ -17,7 +17,9 @@ namespace BookCave.Repositories
             var books =   (from b in _db.Books
                             select new BookThumbnailViewModel
                             {
-                                Title = b.Title
+                                Title = b.Title,
+                                Author = b.Author,
+                                Price = b.Price
                             }).ToList();
             return books;
         }
