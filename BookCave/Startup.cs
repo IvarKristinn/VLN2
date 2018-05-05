@@ -35,6 +35,8 @@ namespace BookCave
                 config.User.RequireUniqueEmail = true;
 
                 config.Password.RequiredLength = 8;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequireUppercase = false;
             });
 
             services.ConfigureApplicationCookie(options => {
