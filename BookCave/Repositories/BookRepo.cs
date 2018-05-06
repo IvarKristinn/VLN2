@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
 using System.Linq;
+using BookCave.Data.EntityModels;
 
 namespace BookCave.Repositories
 {
@@ -46,6 +47,11 @@ namespace BookCave.Repositories
                         Price = b.Price
                     }).SingleOrDefault();
         return book;
+        }
+
+        public List<CartItem> GetCartItems(string id)
+        {
+            var cartItems
         }
     }
 }
