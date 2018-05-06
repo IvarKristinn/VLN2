@@ -13,7 +13,7 @@ namespace BookCave.Services
             _tempRepo = new BookRepo();
         }
 
-        public List<CartItem> GetCartItems(string id)
+        public List<BookDetailsViewModel> GetCartItems(string id)
         {
             var cartItems = _tempRepo.GetCartItems(id);
             return cartItems;

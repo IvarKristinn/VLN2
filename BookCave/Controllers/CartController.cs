@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BookCave.Controllers
 {
@@ -18,10 +19,11 @@ namespace BookCave.Controllers
         {
             _cartService = new CartService();
         }
-        public IActionResult CartView(string id)
+        public IActionResult CartView()
         {
-            var ThisCartsItems = _cartService.GetCartItems(id);
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var ThisCartsItems = _cartService.GetCartItems(userId);
+            return View(ThisCartsItems);
         }
         
         public void AddToCart(int id)

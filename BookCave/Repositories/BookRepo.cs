@@ -49,9 +49,24 @@ namespace BookCave.Repositories
         return book;
         }
 
-        public List<CartItem> GetCartItems(string id)
+        public List<BookDetailsViewModel> GetCartItems(string id)
         {
-            var cartItems
+            var cartItems = (from c in _db.ShoppingCartItems
+                             join b in _db.Books on c.BookId equals b.Id
+                             where c.CartId == id
+                             select new BookDetailsViewModel
+                             {
+                                 Id = b.Id,
+                                 Title = b.Title,
+                                 Author = b.Author,
+                                 Description = b.Description,
+                                 ImageLink = b.ImageLink,
+                                 Genre = b.Genre,
+                                 UserRatingAvg = b.UserRatingAvg,
+                                 NumberOfUserRatings = b.NumberOfUserRating,
+                                 Price = b.Price
+                             }).ToList();
+            return cartItems;
         }
     }
 }
