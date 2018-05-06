@@ -1,0 +1,21 @@
+@model List<BookCave.Models.ViewModels.BookDetailsViewModel>
+
+<h1>Cart:</h1>
+@if(!(Model == null))
+{
+    @foreach(var book in @Model)
+    {
+        <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
+            <div class="container">
+                <span>@book.Title </span>
+                <span>@book.Author</span>
+                <span>@book.Price</span>
+                <span>@book.UserRatingAvg</span>
+            </div>
+        </a>
+    }
+}
+else
+{
+    <h2>Cart is empty</h2>
+}

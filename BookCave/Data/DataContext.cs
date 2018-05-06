@@ -6,6 +6,7 @@ namespace BookCave.Data
     public class DataContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
+        public DbSet<CartItem> ShoppingCartItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

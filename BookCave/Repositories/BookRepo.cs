@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
 using System.Linq;
+using BookCave.Data.EntityModels;
 
 
 namespace BookCave.Repositories
@@ -65,6 +66,24 @@ namespace BookCave.Repositories
                             }).ToList();
             return searchBooks;
             
+        public List<BookDetailsViewModel> GetCartItems(string id)
+        {
+            var cartItems = (from c in _db.ShoppingCartItems
+                             join b in _db.Books on c.BookId equals b.Id
+                             where c.CartId == id
+                             select new BookDetailsViewModel
+                             {
+                                 Id = b.Id,
+                                 Title = b.Title,
+                                 Author = b.Author,
+                                 Description = b.Description,
+                                 ImageLink = b.ImageLink,
+                                 Genre = b.Genre,
+                                 UserRatingAvg = b.UserRatingAvg,
+                                 NumberOfUserRatings = b.NumberOfUserRating,
+                                 Price = b.Price
+                             }).ToList();
+            return cartItems;
         }
     }
 }
