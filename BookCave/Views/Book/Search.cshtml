@@ -1,4 +1,4 @@
-﻿@model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
+@model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
 
 
 
@@ -105,15 +105,15 @@
   </div>
 </div>
 
-    @foreach(var book in @Model)
+    @foreach(var searchBook in @Model)
     {
-        <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
+        <a asp-controller="Book" asp-action="Details" asp-route-id="@searchBook.Id">
             <div class="container">
-                <img src="@book.ImageLink" class="img-thumbnail" alt="book-thumbnail">
-                <p>@book.Title </p>
-                <p>@book.Author</p>
-                <p>@book.Price</p>
-                <p>@book.UserRatingAvg</p>
+                <img src="@searchBook.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+                <p>@searchBook.Title </p>
+                <p>@searchBook.Author</p>
+                <p>@searchBook.Price</p>
+                <p>@searchBook.UserRatingAvg</p>
             </div>
         </a>
     }

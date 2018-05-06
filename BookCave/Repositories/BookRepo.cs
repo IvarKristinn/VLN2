@@ -3,6 +3,7 @@ using BookCave.Data;
 using BookCave.Models.ViewModels;
 using System.Linq;
 
+
 namespace BookCave.Repositories
 {
     public class BookRepo
@@ -46,6 +47,24 @@ namespace BookCave.Repositories
                         Price = b.Price
                     }).SingleOrDefault();
         return book;
+        }
+
+        ////what the hell 
+        public List<BookThumbnailViewModel> GetSearchString(string search)
+        {
+                var searchBooks = (from b in _db.Books
+                                  where b.Title.ToLower().Contains(search.ToLower())
+                                  select new BookThumbnailViewModel
+                                    {
+                                        Id = b.Id,
+                                        Title = b.Genre,
+                                        Author = b.Author,
+                                        ImageLink = b.ImageLink,
+                                        Price = b.Price,
+                                        UserRatingAvg = b.UserRatingAvg
+                            }).ToList();
+            return searchBooks;
+            
         }
     }
 }

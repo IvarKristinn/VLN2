@@ -21,5 +21,13 @@ namespace BookCave.Services
             var book = _bookRepo.GetBookDetailsById(id);
             return book;
         }
+
+        ////what the hell 
+
+        public List<BookThumbnailViewModel>  GetSearchString(string search)
+        {
+            var searchBooks = _bookRepo.GetSearchString(search);
+            return searchBooks;
+        }
     }
 }
