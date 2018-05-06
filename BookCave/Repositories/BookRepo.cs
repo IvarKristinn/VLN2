@@ -65,6 +65,7 @@ namespace BookCave.Repositories
                                         UserRatingAvg = b.UserRatingAvg
                             }).ToList();
             return searchBooks;
+        }
             
         public List<BookDetailsViewModel> GetCartItems(string id)
         {
