@@ -27,6 +27,16 @@ namespace BookCave.Controllers
             return View("NotFound");
         }
 
+        public IActionResult Genre(string genre)
+        {
+            var bookByGenre = _bookService.getByGenre(genre);
+            if(bookByGenre != null)
+            {
+                return View(bookByGenre);
+            }
+            return View("NotFound");
+        }
+
 
         ////what the hell 
         public IActionResult Search(string search)

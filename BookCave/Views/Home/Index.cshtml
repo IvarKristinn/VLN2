@@ -45,11 +45,11 @@
      <button type="button" class="btn btn-primary">Affordable books</button>
      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre<span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Dark Fantasy</a></li>
-            <li><a href="#">Epic Fantasy</a></li>
-            <li><a href="#">Heroic Fantasy</a></li>
-            <li><a href="#">High Fantasy</a></li>
-            <li><a href="#">Urban Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Dark Fantasy">Dark Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Epic Fantasy">Epic Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Heroic Fantasy">Heroic Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="High Fantasy">High Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Urban Fantasy">Urban Fantasy</a></li>
         </ul>
 </div>
 

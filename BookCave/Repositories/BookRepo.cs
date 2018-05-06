@@ -50,6 +50,22 @@ namespace BookCave.Repositories
         return book;
         }
 
+        public List<BookThumbnailViewModel> getByGenre(string genre)
+        {
+            var bookByGenre = (from b in _db.Books
+                                    where b.Genre == genre
+                                    select new BookThumbnailViewModel
+                                    {
+                                       Id = b.Id,
+                                        Title = b.Genre,
+                                        Author = b.Author,
+                                        ImageLink = b.ImageLink,
+                                        Price = b.Price,
+                                        UserRatingAvg = b.UserRatingAvg
+                                    }).ToList();    
+             return bookByGenre;                          
+        }
+
         ////what the hell 
         public List<BookThumbnailViewModel> GetSearchString(string search)
         {

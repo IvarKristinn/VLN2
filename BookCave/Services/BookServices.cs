@@ -29,5 +29,11 @@ namespace BookCave.Services
             var searchBooks = _bookRepo.GetSearchString(search);
             return searchBooks;
         }
+
+        public List<BookThumbnailViewModel> getByGenre(string genre)
+        {
+            var bookByGenre = _bookRepo.getByGenre(genre);
+            return bookByGenre;
+        }
     }
 }
