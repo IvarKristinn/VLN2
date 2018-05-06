@@ -29,7 +29,7 @@ namespace BookCave.Controllers
 
         public IActionResult Genre(string genre)
         {
-            var bookByGenre = _bookService.getByGenre(genre);
+            var bookByGenre = _bookService.GetByGenre(genre);
             if(bookByGenre != null)
             {
                 return View(bookByGenre);
