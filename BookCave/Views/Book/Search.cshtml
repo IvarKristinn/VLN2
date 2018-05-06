@@ -1,109 +1,20 @@
 @model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
 
 
-
-<div class="list-group">
-    <h1> Our books! </h1>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">Dark Fantasy</h4>
-        <p class="list-group-item-text">Who wants to walk on the darker side? That’s where dark fantasy books come in.</p>
-    </a>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">Epic Fantasy</h4>
-        <p class="list-group-item-text">Epic Fantasy is commonly cosidered to be the same genre as High Fantasy, since they share many of the same elements, but Epic Fantasy takes the story even farther, in a bigger and more epic way. </p>
-    </a>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">Heroic Fantasy</h4>
-        <p class="list-group-item-text"> If you like to read about heroes in imaginary lands, then Heroic Fantasy books are for you!</p>
-    </a>
-    <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">High Fantasy</h4>
-    <p class="list-group-item-text">The main core of High Fantasy books are about a world other than ours. But it may have a nominal connection with present day Earth, such as being our remote past or future, sounds interesting right?</p>
-    </a>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">Urban Fantasy</h4>
-        <p class="list-group-item-text">Urban Fantasy books are for those who love to read about supernatural and/or magical things in the real world. </p>
-    </a>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">All books</h4>
-        <p class="list-group-item-text">Don't know what book you are looking for? just look at them all!</p>
-    </a>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">Highest rated books</h4>
-        <p class="list-group-item-text">See which books our readers like the most!</p>
-    </a>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">Affordable books</h4>
-        <p class="list-group-item-text">Buy books on a really good price!</p>
-    </a>
-</div>
-
-
 <div class="btn-group-vertical">
     <button type="button" class="btn btn-primary">All books</button>
      <button type="button" class="btn btn-primary">Highest rated books</button>
      <button type="button" class="btn btn-primary">Affordable books</button>
      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre<span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Dark Fantasy</a></li>
-            <li><a href="#">Epic Fantasy</a></li>
-            <li><a href="#">Heroic Fantasy</a></li>
-            <li><a href="#">High Fantasy</a></li>
-            <li><a href="#">Urban Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Dark Fantasy">Dark Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Epic Fantasy">Epic Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Heroic Fantasy">Heroic Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="High Fantasy">High Fantasy</a></li>
+            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Urban Fantasy">Urban Fantasy</a></li>
         </ul>
 </div>
 
-
-<div class="btn-group-vertical">
-    <button type="button" class="btn btn-primary">All books</button>
-     <button type="button" class="btn btn-primary">Highest rated books</button>
-     <button type="button" class="btn btn-primary">Affordable books</button>
-     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre<span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Dark Fantasy</h4>
-                    <p class="list-group-item-text">Who wants to walk on the darker side? That’s where dark fantasy books come in.</p>
-                </a></li>   
-                <li><a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Epic Fantasy</h4>
-                    <p class="list-group-item-text">Epic Fantasy is commonly cosidered to be the same genre as High Fantasy, since they share many of the same elements, but Epic Fantasy takes the story even farther, in a bigger and more epic way. </p>
-                </a></li>
-                <li><a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Heroic Fantasy</h4>
-                    <p class="list-group-item-text"> If you like to read about heroes in imaginary lands, then Heroic Fantasy books are for you!</p>
-                </a></li>
-                <li><a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">High Fantasy</h4>
-                    <p class="list-group-item-text">The main core of High Fantasy books are about a world other than ours. But it may have a nominal connection with present day Earth, such as being our remote past or future, sounds interesting right?</p>
-                </a></li>
-                <li><a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Urban Fantasy</h4>
-                    <p class="list-group-item-text">Urban Fantasy books are for those who love to read about supernatural and/or magical things in the real world. </p>
-                </a></li>
-        </ul>
-</div>
-
-
-<div class="panel-group">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse1">Genre</a>
-      </h4>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse">
-      <ul class="list-group">
-        <li class="list-group-item">Dark Fantasy</li>
-        <li class="list-group-item">Epic Fantasy</li>
-        <li class="list-group-item">Heroic Fantasy</li>
-        <li class="list-group-item">High Fantasy</li>
-        <li class="list-group-item">Urban Fantasy</li>
-         <li class="list-group-item">All books</li>
-        <li class="list-group-item">Highest rated books</li>
-        <li class="list-group-item">Affordable books</li>
-      </ul>
-  </div>
-</div>
 
     @foreach(var searchBook in @Model)
     {
