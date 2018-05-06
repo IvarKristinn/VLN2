@@ -35,6 +35,7 @@ namespace BookCave.Repositories
                     where b.Id == id
                     select new BookDetailsViewModel
                     {
+                        Id = b.Id,
                         Title = b.Title,
                         Author = b.Author,
                         Description = b.Description,

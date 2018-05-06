@@ -1,10 +1,16 @@
 @model BookCave.Models.ViewModels.BookDetailsViewModel
 
-<img src="@Model.ImageLink" class="img-thumbnail" alt="book-thumbnail">
-<h1>@Model.Title</h1> 
-<h2>Author: @Model.Author</h2>
-<p>Price: @Model.Price $</br>
-Genre: @Model.Genre</p>
+<div class="container">
+    <img src="@Model.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+    <h1>@Model.Title</h1> 
+    <h2>Author: @Model.Author</h2>
+    <p>Price: @Model.Price $</br>
+    Genre: @Model.Genre</p>
 
-<h2>Description:</h2>
-<p>@Model.Description</p>
+    <h2>Description:</h2>
+    <p>@Model.Description</p>
+    <p>@Model.Id</p>
+    <button type="button" class="btn">Add to Cart</button>
+</div>
+
+
