@@ -1,5 +1,10 @@
 @model BookCave.Models.ViewModels.BookDetailsViewModel
 
+@using Microsoft.AspNetCore.Identity
+@using BookCave.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
 <div class="container">
     <img src="@Model.ImageLink" class="img-thumbnail" alt="book-thumbnail">
     <h1>@Model.Title</h1> 
@@ -13,6 +18,36 @@
     <h3>@Model.Id</h3>
 
     <a class="btn btn-default" asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">Add to Cart</a>
+
+
+    <div>
+        @if(SignInManager.IsSignedIn(User))
+        {
+            <div>
+                <fieldset>
+                    <Legend>Review</Legend>
+                    <form asp-controller="Book" asp-action="Review">
+                        <textarea name="review" id="review" cols="70" rows="10" placeholder="Write a review" maxlength="360"></textarea>
+                        <br><br>
+                        <label>Rating: </label>
+                        <select name="rating">
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                        <br><br>
+                        <input type="submit">
+                    </form>
+                </fieldset>
+            </div>
+        }
+        else
+        {
+            <p><a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary">Sign in to leave a review</a></p>
+        }
+    </div>
 </div>
 
 
