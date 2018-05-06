@@ -29,7 +29,7 @@ namespace BookCave.Controllers
 
         public IActionResult Genre(string genre)
         {
-            var bookByGenre = _bookService.getByGenre(genre);
+            var bookByGenre = _bookService.GetByGenre(genre);
             if(bookByGenre != null)
             {
                 return View(bookByGenre);
@@ -48,6 +48,16 @@ namespace BookCave.Controllers
             }
             return View("NotFound");
 
+        }
+
+        [HttpPost]
+        public IActionResult Review(int rating, string review)
+        {
+            //Create a new database for comments (Id, BookId, UserId, UserReview)
+            //send review into that database as new review
+            //Add rating to this book, make new rating avg calcualtions and numRatings++
+            //might need to add asp-route-bookid in the view as a third parameter
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult Error()
         {
