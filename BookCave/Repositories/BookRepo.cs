@@ -70,11 +70,13 @@ namespace BookCave.Repositories
         public List<BookThumbnailViewModel> GetSearchString(string search)
         {
                 var searchBooks = (from b in _db.Books
-                                  where b.Title.ToLower().Contains(search.ToLower())
+                                  where (b.Title.ToLower().Contains(search.ToLower())
+                                        || b.Author.ToLower().Contains(search.ToLower())
+                                        || b.Genre.ToLower().Contains(search.ToLower()))
                                   select new BookThumbnailViewModel
                                     {
                                         Id = b.Id,
-                                        Title = b.Genre,
+                                        Title = b.Title,
                                         Author = b.Author,
                                         ImageLink = b.ImageLink,
                                         Price = b.Price,
