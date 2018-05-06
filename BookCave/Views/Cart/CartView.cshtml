@@ -1,7 +1,7 @@
 @model List<BookCave.Models.ViewModels.BookDetailsViewModel>
 
 <h1>Cart:</h1>
-@if(!(Model == null))
+@if(Model != null)
 {
     @foreach(var book in @Model)
     {

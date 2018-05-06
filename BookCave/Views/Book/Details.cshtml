@@ -9,8 +9,10 @@
 
     <h2>Description:</h2>
     <p>@Model.Description</p>
-    <p>@Model.Id</p>
-    <button type="button" class="btn">Add to Cart</button>
+
+    <h3>@Model.Id</h3>
+
+    <a class="btn btn-default" asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">Add to Cart</a>
 </div>
 
 
