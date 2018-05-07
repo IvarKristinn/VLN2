@@ -17,6 +17,11 @@ namespace BookCave.Services
             _tempRepo.AddBookToCart(bookId, userId);
         }
 
+        public void RemoveBookFromCart(int bookId, string userId)
+        {
+            _tempRepo.RemoveBookFromCart(bookId, userId);
+        }
+
         public List<BookDetailsViewModel> GetCartItems(string id)
         {
             var cartItems = _tempRepo.GetCartItems(id);

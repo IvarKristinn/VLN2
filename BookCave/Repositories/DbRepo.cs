@@ -157,6 +157,16 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public void RemoveBookFromCart(int bookId, string userId)
+        {
+            var cartItemRem = (from c in _db.ShoppingCartItems
+                                where c.CartId == userId
+                                && c.BookId == bookId
+                                select c).FirstOrDefault();
+            _db.ShoppingCartItems.Remove(cartItemRem);
+            _db.SaveChanges();
+        }
+
         public bool UpdateBookRating(int bookId, int rating)
         {
             var book = (from b in _db.Books
