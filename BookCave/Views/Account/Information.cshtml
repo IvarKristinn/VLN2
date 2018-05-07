@@ -1,0 +1,18 @@
+@model BookCave.Models.ViewModels.AccountEditViewModel
+
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using BookCave.Models
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
+}
+
+
+<form asp-controller="Account" asp-action="Information" method="POST">
+    <input type="text" asp-for="Name" value="@claim" />
+
+    <button type="submit" class="btn btn-danger">Apply changes</button>
+</form>
