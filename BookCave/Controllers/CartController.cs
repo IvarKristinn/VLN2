@@ -8,6 +8,8 @@ using BookCave.Models;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using BookCave.Data.EntityModels;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
@@ -32,8 +34,32 @@ namespace BookCave.Controllers
             _cartService.AddBookToCart(bookId, userId);
             return RedirectToAction("Index" ,"Home");
         }
-        
-        
+        [HttpGet]
+        public IActionResult BillingAndShipping()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult BillingAndShipping(AddressInputModel newAddress)
+        {
+            if(ModelState.IsValid) {
+                Address address = new Address();
+                address.Street = newAddress.Street;
+                address.HouseNum = newAddress.HouseNum;
+                address.City = newAddress.City;
+                address.Country = newAddress.Country;
+                address.ZipCode = newAddress.ZipCode;
+                /// addressan sett í database
+                return RedirectToAction("BillingAndShippingConfirmation");
+            }
+            return View();
+        }
+
+        public IActionResult BillingAndShippingConfirmation()
+        {
+            /// addressan sótt úr database'i
+            return View();
+        }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
