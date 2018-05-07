@@ -47,7 +47,16 @@ namespace BookCave.Controllers
                 return View(searchBooks);
             }
             return View("NotFound");
+        }
 
+        public IActionResult TopRated()
+        {
+            var topBooks = _bookService.GetTopRatedBooks();
+            if(topBooks != null)
+            {
+                return View(topBooks);
+            }
+            return View("NotFound");
         }
 
         [HttpPost]

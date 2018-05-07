@@ -35,5 +35,11 @@ namespace BookCave.Services
             var bookByGenre = _bookRepo.GetByGenre(genre);
             return bookByGenre;
         }
+        public List<BookThumbnailViewModel> GetTopRatedBooks()
+        {
+            var topBooks  = _bookRepo.GetTopRatedBooks();
+            return topBooks;
+
+        }
     }
 }

@@ -1,7 +1,8 @@
 ﻿@model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
 
 <div class="btn-group-vertical">
-    <button type="button" class="btn btn-primary">All books</button>
+   <a asp-controller="Book" asp-action="TopRated">
+    <button type="button" class="btn btn-primary">All books</button></a>
      <button type="button" class="btn btn-primary">Highest rated books</button>
      <button type="button" class="btn btn-primary">Affordable books</button>
      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre<span class="caret"></span></button>

@@ -49,6 +49,24 @@ namespace BookCave.Repositories
                     }).SingleOrDefault();
         return book;
         }
+        
+        public List<BookThumbnailViewModel> GetTopRatedBooks()
+        {
+            var topBooks = (from b in _db.Books
+                            orderby b.UserRatingAvg descending
+                            select new BookThumbnailViewModel
+                            {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Author = b.Author,
+                            Price = b.Price,
+                            ImageLink = b.ImageLink,
+                            UserRatingAvg = b.UserRatingAvg
+
+                            }).Take(5).ToList();
+                            return topBooks;
+        }
+
 
         public List<BookThumbnailViewModel> GetByGenre(string genre)
         {
