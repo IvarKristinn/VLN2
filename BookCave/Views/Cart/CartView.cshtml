@@ -3,8 +3,10 @@
 <h1>Cart:</h1>
 @if(Model != null)
 {
+    double subTotal = 0;
     @foreach(var book in @Model)
     {
+        subTotal += @book.Price;
         <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
             <div class="container">
                 <span>@book.Title </span>
@@ -14,6 +16,8 @@
             </div>
         </a>
     }
+    <h1>Subtotal: @subTotal $</h1>
+    <a asp-controller="Cart" asp-action="BillingAndShipping">Proceed to checkout</a>
 }
 else
 {
