@@ -48,6 +48,12 @@
             <p><a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary">Sign in to leave a review</a></p>
         }
     </div>
+
+    @foreach(var comment in @Model.Reviews)
+    {
+        <p>@comment</p>
+    }
+
 </div>
 
 

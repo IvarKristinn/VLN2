@@ -46,7 +46,10 @@ namespace BookCave.Repositories
                         Genre = b.Genre,
                         UserRatingAvg = b.UserRatingAvg,
                         NumberOfUserRatings = b.NumberOfUserRating,
-                        Price = b.Price
+                        Price = b.Price,
+                        Reviews = (from r in _db.Comments
+                                    where r.BookId == id
+                                    select r.UserReview).ToList()
                     }).SingleOrDefault();
         return book;
         }

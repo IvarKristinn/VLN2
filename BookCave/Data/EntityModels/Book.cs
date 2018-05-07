@@ -11,6 +11,5 @@ namespace BookCave.Data.EntityModels
         public int NumberOfUserRating { get; set; }
         public double Price { get; set; }
         public string Author { get; set; }
-        //public List<CommentsId> CommentIdList { get; set; }
     }
 }

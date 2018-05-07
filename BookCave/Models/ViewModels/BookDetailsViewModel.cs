@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BookCave.Models.ViewModels
 {
     public class BookDetailsViewModel
@@ -11,7 +13,7 @@ namespace BookCave.Models.ViewModels
         public int UserRatingAvg { get; set; }
         public int NumberOfUserRatings { get; set; }
         public double Price { get; set; }
-        //public List<CommentId>;
+        public List<string> Reviews { get; set; }
 
     }
 }
