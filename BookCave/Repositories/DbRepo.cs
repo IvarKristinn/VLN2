@@ -19,6 +19,7 @@ namespace BookCave.Repositories
         public List<BookThumbnailViewModel> GetBooksByTitle()
         {
             var books = (from b in _db.Books
+                        orderby b.Title
                          select new BookThumbnailViewModel
                         {
                             Id = b.Id,
@@ -119,7 +120,6 @@ namespace BookCave.Repositories
                      return affordableBooks;                     
         }
 
-            
         public List<BookDetailsViewModel> GetCartItems(string id)
         {
             var cartItems = (from c in _db.ShoppingCartItems

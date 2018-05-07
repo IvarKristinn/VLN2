@@ -2,13 +2,15 @@
 
 <div class="btn-group-vertical">
   
+    <a asp-controller="Book" asp-action="AllBooks">
     <button type="button" class="btn btn-primary">All books</button></a>
+
      <a asp-controller="Book" asp-action="TopRated">
      <button type="button" class="btn btn-primary">Highest rated books</button></a>
 
      <a asp-controller="Book" asp-action="AffordableBooks">
      <button type="button" class="btn btn-primary">Affordable books</button></a>
-     
+
      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre<span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
             <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Dark Fantasy">Dark Fantasy</a></li>
