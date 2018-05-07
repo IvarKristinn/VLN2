@@ -35,6 +35,13 @@ namespace BookCave.Controllers
             _cartService.AddBookToCart(bookId, userId);
             return RedirectToAction("Index" ,"Home");
         }
+
+        public IActionResult RemoveFromCart(int bookId)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _cartService.RemoveBookFromCart(bookId, userId);
+            return RedirectToAction("CartView", "Cart");
+        }
         /*[HttpGet]
         public IActionResult BillingAndShipping()
         {

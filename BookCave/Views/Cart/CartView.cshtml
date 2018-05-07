@@ -19,6 +19,7 @@
                 <span>@book.UserRatingAvg</span>
             </div>
         </a>
+        <a class="btn btn-default" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-bookId="@book.Id">Remove Item</a>
     }
     <h1>Subtotal: @subTotal $</h1>
     <a asp-controller="Cart" asp-action="BillingAndShipping">Proceed to checkout</a>
