@@ -6,10 +6,10 @@ namespace BookCave.Services
 {
     public class BookService
     {
-        private BookRepo _bookRepo;
+        private DbRepo _bookRepo;
         public BookService()
         {
-            _bookRepo = new BookRepo();
+            _bookRepo = new DbRepo();
         }
         public List<BookThumbnailViewModel> GetBooksByTitle()
         {

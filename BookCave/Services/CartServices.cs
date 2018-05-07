@@ -7,10 +7,10 @@ namespace BookCave.Services
 {
     public class CartService
     {
-        private BookRepo _tempRepo;
+        private DbRepo _tempRepo;
         public CartService()
         {
-            _tempRepo = new BookRepo();
+            _tempRepo = new DbRepo();
         }
         public void AddBookToCart(int bookId, string userId)
         {

@@ -7,11 +7,11 @@ using BookCave.Data.EntityModels;
 
 namespace BookCave.Repositories
 {
-    public class BookRepo
+    public class DbRepo
     {
         private DataContext _db;
 
-        public BookRepo()
+        public DbRepo()
         {
             _db = new DataContext();
         }
