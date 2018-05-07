@@ -123,6 +123,7 @@ namespace BookCave.Repositories
                      return affordableBooks;                     
         }
 
+        //Change from BookDetailViewModel, make BookCartViewModel
         public List<BookDetailsViewModel> GetCartItems(string id)
         {
             var cartItems = (from c in _db.ShoppingCartItems
