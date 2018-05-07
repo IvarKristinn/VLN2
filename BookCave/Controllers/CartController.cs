@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using BookCave.Data.EntityModels;
 using BookCave.Models.InputModels;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Controllers
 {
@@ -34,31 +35,46 @@ namespace BookCave.Controllers
             _cartService.AddBookToCart(bookId, userId);
             return RedirectToAction("Index" ,"Home");
         }
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult BillingAndShipping()
         {
             return View();
+        }*/
+        [HttpGet]
+        public IActionResult BillingAndShipping(AddressViewModel newAddress)
+        {
+            AddressInputModel address = new AddressInputModel();
+            address.Street = newAddress.Street;
+            address.HouseNum = newAddress.HouseNum;
+            address.City = newAddress.City;
+            address.Country = newAddress.Country;
+            address.ZipCode = newAddress.ZipCode;
+            return View(address);
         }
         [HttpPost]
         public IActionResult BillingAndShipping(AddressInputModel newAddress)
         {
             if(ModelState.IsValid) {
-                Address address = new Address();
+                AddressViewModel address = new AddressViewModel();
                 address.Street = newAddress.Street;
                 address.HouseNum = newAddress.HouseNum;
                 address.City = newAddress.City;
                 address.Country = newAddress.Country;
                 address.ZipCode = newAddress.ZipCode;
                 /// addressan sett í database
-                return RedirectToAction("BillingAndShippingConfirmation");
+                return RedirectToAction("BillingAndShippingConfirmation", address);
             }
             return View();
         }
 
-        public IActionResult BillingAndShippingConfirmation()
+        public IActionResult BillingAndShippingConfirmation(AddressViewModel address)
         {
-            /// addressan sótt úr database'i
-            return View();
+            
+            return View(address);
+        }
+        public IActionResult BackToBilling(AddressViewModel oldAddress)
+        {
+            return RedirectToAction("BillingAndShipping", oldAddress);
         }
         public IActionResult Error()
         {
