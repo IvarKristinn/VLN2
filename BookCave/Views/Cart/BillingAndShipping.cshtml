@@ -1,15 +1,17 @@
 @model BookCave.Models.InputModels.AddressInputModel
-<form action="" method="POST">
+@if(Model != null)
+{
+    <form action="" method="POST">
     <label asp-for="Street">Street name</label>
-    <input type="text" asp-for="Street">
+    <input type="text" asp-for="Street" value="@Model.Street">
     <br/>
 
     <label asp-for="HouseNum">House number</label>
-    <input type="number" asp-for="HouseNum">
+    <input type="number" asp-for="HouseNum" value="@Model.HouseNum">
     <br/>
 
     <label asp-for="City">City</label>
-    <input type="text" asp-for="City">
+    <input type="text" asp-for="City" value="@Model.City">
     <br/>
 
     <label asp-for="Country">Country</label>
@@ -23,12 +25,15 @@
     <br/>
 
     <label asp-for="ZipCode">Zip code</label>
-    <input type="number" asp-for="ZipCode">
+    <input type="number" asp-for="ZipCode" value="@Model.ZipCode">
     <br/>
 
 
-    <a asp-controller="Cart" asp-action="CartView" class="btn btn-primary">Proceed to checkout</a>
+    <a asp-controller="Cart" asp-action="CartView" class="btn btn-primary">Prev</a>
 
     
-    <input type="submit" class="btn btn-primary">
-</form>
+    <input type="submit" class="btn btn-primary" value="Next">
+    </form>
+}
+
+

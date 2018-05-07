@@ -2,7 +2,7 @@
 
      @foreach(var topBooks in @Model)
     {
-        <a asp-controller="Book" asp-action="TopRated">
+        <a asp-controller="Book" asp-action="details" asp-route-id="@topBooks.Id">
             <div class="container">
                 <img src="@topBooks.ImageLink" class="img-thumbnail" alt="book-thumbnail">
                 <p>@topBooks.Title </p>

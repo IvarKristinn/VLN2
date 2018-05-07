@@ -49,5 +49,11 @@ namespace BookCave.Services
         {
             return _bookRepo.AddReview(userId, bookId, review);
         }
+        
+        public List<BookThumbnailViewModel> GetAffordableBooks()
+        {
+            var affordableBooks = _bookRepo.GetAffordableBooks();
+            return affordableBooks;
+        }
     }
 }

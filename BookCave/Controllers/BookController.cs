@@ -18,6 +18,16 @@ namespace BookCave.Controllers
         {
             _bookService = new BookService();
         }
+
+        public IActionResult AllBooks()
+        {
+            var book = _bookService.GetBooksByTitle();
+            if(book != null)
+            {
+                return View(book);
+            }
+            return View("NotFound");
+        }
         public IActionResult Details(int id)
         {
             var book = _bookService.GetBookDetailsById(id);
@@ -56,6 +66,16 @@ namespace BookCave.Controllers
             if(topBooks != null)
             {
                 return View(topBooks);
+            }
+            return View("NotFound");
+        }
+
+        public IActionResult AffordableBooks()
+        {
+            var affordableBooks = _bookService.GetAffordableBooks();
+            if(affordableBooks != null)
+            {
+                return View(affordableBooks);
             }
             return View("NotFound");
         }

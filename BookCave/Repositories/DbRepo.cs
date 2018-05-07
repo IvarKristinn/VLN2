@@ -19,6 +19,7 @@ namespace BookCave.Repositories
         public List<BookThumbnailViewModel> GetBooksByTitle()
         {
             var books = (from b in _db.Books
+                        orderby b.Title
                          select new BookThumbnailViewModel
                         {
                             Id = b.Id,
@@ -63,7 +64,7 @@ namespace BookCave.Repositories
                             ImageLink = b.ImageLink,
                             UserRatingAvg = b.UserRatingAvg
 
-                            }).Take(5).ToList();
+                            }).Take(10).ToList();
                             return topBooks;
         }
 
@@ -102,7 +103,23 @@ namespace BookCave.Repositories
                             }).ToList();
             return searchBooks;
         }
-            
+         public List<BookThumbnailViewModel> GetAffordableBooks()
+        {
+            var affordableBooks  = (from b in _db.Books
+                            orderby b.Price ascending
+                            select new BookThumbnailViewModel
+                            {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Author = b.Author,
+                            Price = b.Price,
+                            ImageLink = b.ImageLink,
+                            UserRatingAvg = b.UserRatingAvg
+
+                            }).Take(10).ToList();
+                     return affordableBooks;                     
+        }
+
         public List<BookDetailsViewModel> GetCartItems(string id)
         {
             var cartItems = (from c in _db.ShoppingCartItems
@@ -123,6 +140,7 @@ namespace BookCave.Repositories
             return cartItems;
         }
 
+       
         public void AddBookToCart(int bookId, string userId)
         {
             var cartItemAdd = new CartItem 
