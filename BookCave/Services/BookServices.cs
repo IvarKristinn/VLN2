@@ -41,5 +41,10 @@ namespace BookCave.Services
             return topBooks;
 
         }
+        public List<BookThumbnailViewModel> GetAffordableBooks()
+        {
+            var affordableBooks = _bookRepo.GetAffordableBooks();
+            return affordableBooks;
+        }
     }
 }

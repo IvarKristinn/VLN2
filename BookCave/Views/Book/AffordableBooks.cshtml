@@ -1,0 +1,14 @@
+@model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
+
+     @foreach(var affordableBooks in @Model)
+    {
+        <a asp-controller="Book" asp-action="AffordableBooks">
+            <div class="container">
+                <img src="@affordableBooks.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+                <p>@affordableBooks.Title </p>
+                <p>@affordableBooks.Author</p>
+                <p>@affordableBooks.Price</p>
+                <p>@affordableBooks.UserRatingAvg</p>
+            </div>
+        </a>
+    }

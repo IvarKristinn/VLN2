@@ -59,6 +59,16 @@ namespace BookCave.Controllers
             return View("NotFound");
         }
 
+        public IActionResult AffordableBooks()
+        {
+            var affordableBooks = _bookService.GetAffordableBooks();
+            if(affordableBooks != null)
+            {
+                return View(affordableBooks);
+            }
+            return View("NotFound");
+        }
+
         [HttpPost]
         public IActionResult Review(int rating, string review)
         {
