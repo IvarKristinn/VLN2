@@ -26,7 +26,7 @@
             <div>
                 <fieldset>
                     <Legend>Review</Legend>
-                    <form asp-controller="Book" asp-action="Review">
+                    <form asp-controller="Book" asp-action="Review" asp-route-bookId="@Model.Id">
                         <textarea name="review" id="review" cols="70" rows="10" placeholder="Write a review" maxlength="360"></textarea>
                         <br><br>
                         <label>Rating: </label>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Services;
 using BookCave.Models.ViewModels;
+using System.Security.Claims;
 
 namespace BookCave.Controllers
 {
@@ -60,13 +61,22 @@ namespace BookCave.Controllers
         }
 
         [HttpPost]
-        public IActionResult Review(int rating, string review)
+        public IActionResult Review(int bookId, int rating, string review)
         {
-            //Create a new database for comments (Id, BookId, UserId, UserReview)
-            //send review into that database as new review
-            //Add rating to this book, make new rating avg calcualtions and numRatings++
-            //might need to add asp-route-bookid in the view as a third parameter
-            return RedirectToAction("Index", "Home");
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            bool ReviewSuccess = _bookService.AddReview(userId, bookId,  review);
+
+            bool ratingSuccess = _bookService.UpdateBookRating(bookId, rating);
+
+            if(ratingSuccess && ReviewSuccess)
+            {
+                return RedirectToAction("Details", new { id = bookId});
+            }
+            else
+            {
+                return View("NotFound");
+            }
+            
         }
         public IActionResult Error()
         {

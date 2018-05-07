@@ -135,5 +135,44 @@ namespace BookCave.Repositories
 
             _db.SaveChanges();
         }
+
+        public bool UpdateBookRating(int bookId, int rating)
+        {
+            var book = (from b in _db.Books
+                        where b.Id == bookId
+                        select b).SingleOrDefault();
+
+            if(book.NumberOfUserRating != 0)
+            {
+                book.UserRatingAvg = ((book.UserRatingAvg * book.NumberOfUserRating) + rating) / (book.NumberOfUserRating + 1);
+                book.NumberOfUserRating = book.NumberOfUserRating + 1;
+            }
+            else
+            {
+                book.UserRatingAvg = rating;
+                book.NumberOfUserRating++;
+            }
+
+            _db.Books.Update(book);
+            _db.SaveChanges();
+
+            return true;
+        }
+
+        public bool AddReview(string userId, int bookId, string review)
+        {
+            var comment = new Comment 
+            {
+                UserId = userId,
+                BookId = bookId,
+                UserReview = review
+            };
+
+            _db.Comments.Add(comment);
+
+            _db.SaveChanges();
+
+            return true;
+        }
     }
 }

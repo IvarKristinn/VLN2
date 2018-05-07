@@ -22,8 +22,6 @@ namespace BookCave.Services
             return book;
         }
 
-        ////what the hell 
-
         public List<BookThumbnailViewModel>  GetSearchString(string search)
         {
             var searchBooks = _bookRepo.GetSearchString(search);
@@ -40,6 +38,16 @@ namespace BookCave.Services
             var topBooks  = _bookRepo.GetTopRatedBooks();
             return topBooks;
 
+        }
+
+        public bool UpdateBookRating(int bookId, int rating)
+        {
+            return _bookRepo.UpdateBookRating(bookId, rating);
+        }
+
+        public bool AddReview(string userId, int bookId, string review)
+        {
+            return _bookRepo.AddReview(userId, bookId, review);
         }
     }
 }
