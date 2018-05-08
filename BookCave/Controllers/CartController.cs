@@ -43,45 +43,39 @@ namespace BookCave.Controllers
             return RedirectToAction("CartView", "Cart");
         }
         [HttpGet]
+
         public IActionResult BillingAndShipping()
         {
+            //GetUsersSavedAddresses if not null
             return View();
         }
+
         [HttpPost]
         public IActionResult BillingAndShipping(BillingAndShippingInputModel newAddresses)
         {
-            if(newAddresses != null) {
-                BillingAndShippingViewModel addresses = new BillingAndShippingViewModel();
-                addresses.BillingAddress.Street = newAddresses.BillingAddress.Street;
-                addresses.BillingAddress.HouseNum = newAddresses.BillingAddress.HouseNum;
-                addresses.BillingAddress.City = newAddresses.BillingAddress.City;
-                addresses.BillingAddress.Country = newAddresses.BillingAddress.Country;
-                addresses.BillingAddress.ZipCode = newAddresses.BillingAddress.ZipCode;
-                addresses.ShippingAddress.Street = newAddresses.ShippingAddress.Street;
-                addresses.ShippingAddress.HouseNum = newAddresses.ShippingAddress.HouseNum;
-                addresses.ShippingAddress.City = newAddresses.ShippingAddress.City;
-                addresses.ShippingAddress.Country = newAddresses.ShippingAddress.Country;
-                addresses.ShippingAddress.ZipCode = newAddresses.ShippingAddress.ZipCode;
-
-
-                return RedirectToAction("BillingAndShippingConfirmation", addresses) ;
-            }
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _cartService.AddTempAddresses(newAddresses, userId);
+            return RedirectToAction("BillingAndShippingConfirmation");
         }
 
-        public IActionResult BillingAndShippingConfirmation(BillingAndShippingViewModel address)
+        public IActionResult BillingAndShippingConfirmation()
         {
-        
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var addresses = _cartService.GetTempAddressesById(userId);
+
+            return View(addresses);
         }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Receipt(List<AddressViewModel> BillShipp)
+        public IActionResult Receipt()
         {
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var addresses = _cartService.GetTempAddressesById(userId);
+            //_cartService.AddAddressesToOrder(addresses, userId);
+            _cartService.RemoveAddressesFromTemp(userId);
             //Create new Order entity model with current CartItems, this orders billing and shipping addresses
             /* 
             var order = new Order 

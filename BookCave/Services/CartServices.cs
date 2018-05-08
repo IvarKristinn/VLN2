@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BookCave.Data.EntityModels;
+using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
@@ -33,6 +34,22 @@ namespace BookCave.Services
         {
             var book = _dbRepo.GetBookDetailsById(id);
             return book;
+        }
+
+        public void AddTempAddresses(BillingAndShippingInputModel newAddresses, string userId)
+        {
+            _dbRepo.AddTempAddresses(newAddresses, userId);
+        }
+
+        public BillingAndShippingViewModel GetTempAddressesById(string userId)
+        {
+            var addresses = _dbRepo.GetTempAddressesById(userId);
+            return addresses;
+        }
+
+        public void RemoveAddressesFromTemp(string userId)
+        {
+            _dbRepo.RemoveAddressesFromTemp(userId);
         }
     }
 }

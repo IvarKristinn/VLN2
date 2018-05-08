@@ -1,6 +1,6 @@
-@model BookCave.Models.ViewModels.AddressViewModel
+@model BookCave.Models.ViewModels.BillingAndShippingViewModel
 
-<h1>bla</h1>
+<h1>@Model.BillingAddress.Street</h1>
 <p>blabla </p>
 <a asp-controller="Cart" asp-action="BillingAndShipping" class="btn btn-primary">prev</a>
 <a asp-controller="Cart" asp-action="OrderConfirmation" class="btn btn-primary">confirm</a>

@@ -281,6 +281,74 @@ namespace BookCave.Repositories
             return addresses;
         }
 
+        public void AddTempAddresses(BillingAndShippingInputModel newAddresses, string userId)
+        {
+            var billingAddess = new TempAddress 
+                                {
+                                    UserId = userId,
+                                    Street = newAddresses.BillingAddress.Street,
+                                    HouseNum = newAddresses.BillingAddress.HouseNum,
+                                    City = newAddresses.BillingAddress.City,
+                                    Country = newAddresses.BillingAddress.Country,
+                                    ZipCode = newAddresses.BillingAddress.ZipCode
+                                };
+            var shippingAddess = new TempAddress 
+                                {
+                                    UserId = userId,
+                                    Street = newAddresses.ShippingAddress.Street,
+                                    HouseNum = newAddresses.ShippingAddress.HouseNum,
+                                    City = newAddresses.ShippingAddress.City,
+                                    Country = newAddresses.ShippingAddress.Country,
+                                    ZipCode = newAddresses.ShippingAddress.ZipCode
+                                };
+
+            _db.TempAddresses.Add(billingAddess);
+            _db.TempAddresses.Add(shippingAddess);
+            _db.SaveChanges();
+        }
+
+        public BillingAndShippingViewModel GetTempAddressesById(string userId)
+        {
+            var addresses = (from t in _db.TempAddresses
+                             where t.UserId == userId
+                             orderby t.Id descending
+                             select t).ToList();
+
+            var viewModel = new BillingAndShippingViewModel 
+                            {
+                                BillingAddress = new AddressViewModel 
+                                                 {
+                                                     Street = addresses[1].Street,
+                                                     HouseNum = addresses[1].HouseNum,
+                                                     City = addresses[1].City,
+                                                     Country  = addresses[1].Country,
+                                                     ZipCode = addresses[1].ZipCode
+                                                 },
+                                ShippingAddress = new AddressViewModel 
+                                                 {
+                                                     Street = addresses[0].Street,
+                                                     HouseNum = addresses[0].HouseNum,
+                                                     City = addresses[0].City,
+                                                     Country  = addresses[0].Country,
+                                                     ZipCode = addresses[0].ZipCode
+                                                 }
+                            };
+
+            return viewModel;
+        }
+
+        public void RemoveAddressesFromTemp(string userId)
+        {
+            var addresses = (from t in _db.TempAddresses
+                    where t.UserId == userId
+                    orderby t.Id descending
+                    select t).ToList();
+
+            _db.TempAddresses.Remove(addresses[0]);
+            _db.TempAddresses.Remove(addresses[1]);
+            _db.SaveChanges();
+        }
+
 /*
         public List<OrderViewModel> GetOrderHistory(string userId)
         {
