@@ -17,7 +17,6 @@ namespace BookCave
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
-            //SeedData();
             host.Run();
         }
 
@@ -25,20 +24,5 @@ namespace BookCave
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
-        public static void SeedData()
-        {
-            var db = new DataContext();
-            
-            if(!db.Books.Any())
-            {
-                var initialBooks = new List<Book>()
-                {
-                    new Book { Title = "Grey Sister"},
-                    new Book { Title = "The Neon Boneyard"}
-                };
-                db.AddRange(initialBooks);
-                db.SaveChanges();
-            }
-        }
     }
 }

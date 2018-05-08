@@ -170,11 +170,11 @@ namespace BookCave.Repositories
                      return affordableBooks;
         }
 
-        public List<CartItemsViewModel> GetCartItems(string id)
+        public List<CartItemsViewModel> GetCartItems(string userId)
         {
             var cartItems = (from c in _db.ShoppingCartItems
                              join b in _db.Books on c.BookId equals b.Id
-                             where c.CartId == id
+                             where c.CartId == userId
                              select new CartItemsViewModel
                              {
                                  Id = b.Id,
