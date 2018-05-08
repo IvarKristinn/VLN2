@@ -28,11 +28,10 @@ namespace BookCave.Controllers
             var ThisCartsItems = _cartService.GetCartItems(userId);
             return View(ThisCartsItems);
         }
-        
-        public IActionResult AddToCart(int bookId)
+        public IActionResult AddToCart(int bookId, int quantity)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            _cartService.AddBookToCart(bookId, userId);
+            _cartService.AddBookToCart(bookId, userId, quantity);
             return RedirectToAction("Index" ,"Home");
         }
 
