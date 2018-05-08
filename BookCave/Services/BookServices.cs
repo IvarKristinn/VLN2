@@ -22,6 +22,12 @@ namespace BookCave.Services
             return book;
         }
 
+        public List<BookThumbnailViewModel> GetBooksById()
+        {
+            var books = _bookRepo.GetBooksById();
+            return books;
+        }
+
         public List<BookThumbnailViewModel>  GetSearchString(string search)
         {
             var searchBooks = _bookRepo.GetSearchString(search);
