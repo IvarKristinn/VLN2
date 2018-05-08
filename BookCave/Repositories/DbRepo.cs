@@ -53,6 +53,22 @@ namespace BookCave.Repositories
                     }).SingleOrDefault();
         return book;
         }
+
+        public List<BookThumbnailViewModel> GetBooksById()
+        {
+            var books = (from b in _db.Books
+                         orderby b.Id descending
+                         select new BookThumbnailViewModel
+                         {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Author = b.Author,
+                            Price = b.Price,
+                            ImageLink = b.ImageLink,
+                            UserRatingAvg = b.UserRatingAvg
+                         }).Take(10).ToList();
+            return books;
+        }
         
         public List<BookThumbnailViewModel> GetTopRatedBooks()
         {
@@ -60,13 +76,12 @@ namespace BookCave.Repositories
                             orderby b.UserRatingAvg descending
                             select new BookThumbnailViewModel
                             {
-                            Id = b.Id,
-                            Title = b.Title,
-                            Author = b.Author,
-                            Price = b.Price,
-                            ImageLink = b.ImageLink,
-                            UserRatingAvg = b.UserRatingAvg
-
+                                Id = b.Id,
+                                Title = b.Title,
+                                Author = b.Author,
+                                Price = b.Price,
+                                ImageLink = b.ImageLink,
+                                UserRatingAvg = b.UserRatingAvg
                             }).Take(10).ToList();
                             return topBooks;
         }
@@ -123,6 +138,7 @@ namespace BookCave.Repositories
                      return affordableBooks;                     
         }
 
+        //Change from BookDetailViewModel, make BookCartViewModel
         public List<BookDetailsViewModel> GetCartItems(string id)
         {
             var cartItems = (from c in _db.ShoppingCartItems

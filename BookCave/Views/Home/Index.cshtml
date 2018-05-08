@@ -1,4 +1,5 @@
-﻿@model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
+﻿@model BookCave.Models.ViewModels.FrontPageViewModel
+<!--List<BookCave.Models.ViewModels.BookThumbnailViewModel>-->
 
 <div class="btn-group-vertical">
   
@@ -21,7 +22,7 @@
         </ul>
 </div>
 
-    @foreach(var book in @Model)
+    @foreach(var book in @Model.NewestBooks)
     {
         <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
             <div class="container">
