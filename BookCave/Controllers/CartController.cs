@@ -42,26 +42,15 @@ namespace BookCave.Controllers
             _cartService.RemoveBookFromCart(bookId, userId);
             return RedirectToAction("CartView", "Cart");
         }
-        /*[HttpGet]
+        [HttpGet]
         public IActionResult BillingAndShipping()
         {
             return View();
-        }*/
-        [HttpGet]
-        public IActionResult BillingAndShipping(AddressViewModel newAddress)
-        {
-            AddressInputModel address = new AddressInputModel();
-            address.Street = newAddress.Street;
-            address.HouseNum = newAddress.HouseNum;
-            address.City = newAddress.City;
-            address.Country = newAddress.Country;
-            address.ZipCode = newAddress.ZipCode;
-            return View(address);
         }
         [HttpPost]
-        public IActionResult BillingAndShipping(AddressInputModel newAddress)
+        public IActionResult BillingAndShipping(List<AddressInputModel> newAddresses)
         {
-            if(ModelState.IsValid) {
+            /*if(ModelState.IsValid) {
                 AddressViewModel address = new AddressViewModel();
                 address.Street = newAddress.Street;
                 address.HouseNum = newAddress.HouseNum;
@@ -70,18 +59,13 @@ namespace BookCave.Controllers
                 address.ZipCode = newAddress.ZipCode;
                 /// addressan sett í database
                 return RedirectToAction("BillingAndShippingConfirmation", address);
-            }
+            }*/
             return View();
         }
 
         public IActionResult BillingAndShippingConfirmation(AddressViewModel address)
         {
-            
             return View(address);
-        }
-        public IActionResult BackToBilling(AddressViewModel oldAddress)
-        {
-            return RedirectToAction("BillingAndShipping", oldAddress);
         }
         public IActionResult Error()
         {
