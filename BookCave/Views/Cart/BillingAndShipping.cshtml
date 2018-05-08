@@ -1,39 +1,56 @@
-@model BookCave.Models.InputModels.AddressInputModel
-@if(Model != null)
-{
-    <form action="" method="POST">
-    <label asp-for="Street">Street name</label>
-    <input type="text" asp-for="Street" value="@Model.Street">
-    <br/>
+@model BookCave.Models.InputModels.BillingAndShippingInputModel
+<form action="" method="POST">
+    <fieldset>
+        <legend>Billing Address</legend>
+        <label asp-for="BillingAddress.Street">Street name</label>
+        <input type="text" asp-for="BillingAddress.Street">
+        <br/>
 
-    <label asp-for="HouseNum">House number</label>
-    <input type="number" asp-for="HouseNum" value="@Model.HouseNum">
-    <br/>
+        <label asp-for="BillingAddress.HouseNum">House number</label>
+        <input type="number" asp-for="BillingAddress.HouseNum">
+        <br/>
 
-    <label asp-for="City">City</label>
-    <input type="text" asp-for="City" value="@Model.City">
-    <br/>
+        <label asp-for="BillingAddress.City">City</label>
+        <input type="text" asp-for="BillingAddress.City">
+        <br/>
 
-    <label asp-for="Country">Country</label>
-    <select name="Country" asp-for="Country">
-        <option value="" disabled selected>Select a country</option>
-        <option value="Iceland">Iceland</option>
-        <option value="UK">UK</option>
-        <option value="Canada">Canada</option>
-        <option value="Wakanda">Wakanda</option>
-    </select>
-    <br/>
+        <label asp-for="BillingAddress.Country">City</label>
+        <input type="text" asp-for="BillingAddress.Country">
+        <br/>
 
-    <label asp-for="ZipCode">Zip code</label>
-    <input type="number" asp-for="ZipCode" value="@Model.ZipCode">
-    <br/>
+        <label asp-for="BillingAddress.ZipCode">Zip code</label>
+        <input type="number" asp-for="BillingAddress.ZipCode" >
+        <br/>
+    </fieldset>
+    <fieldset>
+        <legend>Shipping Address</legend>
+        <label asp-for="ShippingAddress.Street">Street name</label>
+        <input type="text" asp-for="ShippingAddress.Street">
+        <br/>
 
+        <label asp-for="ShippingAddress.HouseNum">House number</label>
+        <input type="number" asp-for="ShippingAddress.HouseNum">
+        <br/>
 
+        <label asp-for="ShippingAddress.City">City</label>
+        <input type="text" asp-for="ShippingAddress.City">
+        <br/>
+
+        <label asp-for="ShippingAddress.Country">City</label>
+        <input type="text" asp-for="ShippingAddress.Country">
+        <br/>
+
+        <label asp-for="ShippingAddress.ZipCode">Zip code</label>
+        <input type="number" asp-for="ShippingAddress.ZipCode" >
+        <br/>
+    </fieldset>
     <a asp-controller="Cart" asp-action="CartView" class="btn btn-primary">Prev</a>
 
-    
     <input type="submit" class="btn btn-primary" value="Next">
-    </form>
-}
+</form>
+
+
+
+
 
 

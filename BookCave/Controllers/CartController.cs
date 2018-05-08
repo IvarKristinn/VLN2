@@ -47,24 +47,31 @@ namespace BookCave.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult BillingAndShipping(List<AddressInputModel> newAddresses)
+        public IActionResult BillingAndShipping(BillingAndShippingInputModel newAddresses)
         {
-            /*if(ModelState.IsValid) {
-                AddressViewModel address = new AddressViewModel();
-                address.Street = newAddress.Street;
-                address.HouseNum = newAddress.HouseNum;
-                address.City = newAddress.City;
-                address.Country = newAddress.Country;
-                address.ZipCode = newAddress.ZipCode;
-                /// addressan sett í database
-                return RedirectToAction("BillingAndShippingConfirmation", address);
-            }*/
+            if(newAddresses != null) {
+                BillingAndShippingViewModel addresses = new BillingAndShippingViewModel();
+                addresses.BillingAddress.Street = newAddresses.BillingAddress.Street;
+                addresses.BillingAddress.HouseNum = newAddresses.BillingAddress.HouseNum;
+                addresses.BillingAddress.City = newAddresses.BillingAddress.City;
+                addresses.BillingAddress.Country = newAddresses.BillingAddress.Country;
+                addresses.BillingAddress.ZipCode = newAddresses.BillingAddress.ZipCode;
+                addresses.ShippingAddress.Street = newAddresses.ShippingAddress.Street;
+                addresses.ShippingAddress.HouseNum = newAddresses.ShippingAddress.HouseNum;
+                addresses.ShippingAddress.City = newAddresses.ShippingAddress.City;
+                addresses.ShippingAddress.Country = newAddresses.ShippingAddress.Country;
+                addresses.ShippingAddress.ZipCode = newAddresses.ShippingAddress.ZipCode;
+
+
+                return RedirectToAction("BillingAndShippingConfirmation", addresses) ;
+            }
             return View();
         }
 
-        public IActionResult BillingAndShippingConfirmation(AddressViewModel address)
+        public IActionResult BillingAndShippingConfirmation(BillingAndShippingViewModel address)
         {
-            return View(address);
+        
+            return View();
         }
         public IActionResult Error()
         {

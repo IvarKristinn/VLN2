@@ -1,12 +1,6 @@
 @model BookCave.Models.ViewModels.AddressViewModel
 
-<fieldset>
-    <legend>Billing Address</legend>
-    <p>Streetname : @Model.Street </br>
-    House Number: @Model.HouseNum </br>
-    City : @Model.City </br>
-    Country : @Model.Country </br>
-    ZipCode : @Model.ZipCode</p>
-</fieldset>
+<h1>bla</h1>
+<p>blabla </p>
 <a asp-controller="Cart" asp-action="BillingAndShipping" class="btn btn-primary">prev</a>
-<a class="btn btn-primary">next</a>
+<a asp-controller="Cart" asp-action="OrderConfirmation" class="btn btn-primary">confirm</a>
