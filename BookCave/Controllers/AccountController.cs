@@ -133,6 +133,7 @@ namespace BookCave.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        [Authorize]
         public async Task<IActionResult> FavoriteThisBook(int bookId)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -166,6 +167,16 @@ namespace BookCave.Controllers
             _accountService.AddNewAddress(newAddress, userId);
             return RedirectToAction("Information");
         }
+
+        [Authorize]
+        public IActionResult History()
+        {
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var orders = _accountService.GetOrderHistory(userId);
+            //return View(orders);
+            return View();
+        }
+
         public IActionResult AccessDenied()
         {
             return View();

@@ -281,5 +281,22 @@ namespace BookCave.Repositories
             
             return addresses;
         }
+
+/*
+        public List<OrderViewModel> GetOrderHistory(string userId)
+        {
+            var orders = (from o in _db.Orders
+                          where o.UserId == userId
+                          orderby o.Id descending
+                          select new OrderViewModel
+                          {
+                              OrderItems = (from c in _db.ShoppingCartItems
+                                            where c)
+                              Billing = o.Billing,
+                              Shipping = o.Shipping
+                          }).ToList();
+            return orders;
+        }
+ */
     }
 }

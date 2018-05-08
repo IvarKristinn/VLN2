@@ -87,5 +87,24 @@ namespace BookCave.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Receipt(List<AddressViewModel> BillShipp)
+        {
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //Create new Order entity model with current CartItems, this orders billing and shipping addresses
+            /* 
+            var order = new Order 
+                        {
+                            UserId = userId,
+                            OrderNum = orderNum,
+                            OrderItems = _cartService.GetCartItems(userId),
+                            Billing = BillShipp[0],
+                            Shipping = BillShipp[1]
+                        };
+            */
+            //_cartService.AddOrderToHistories(order);
+            //Delete CartItems from ShoppingCartItem database
+            return View();
+        }
     }
 }

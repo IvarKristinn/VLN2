@@ -30,5 +30,14 @@ namespace BookCave.Services
             var addresses = _dbRepo.GetUserAddresses(userId);
             return addresses;
         }
+
+/*
+
+        public List<OrderViewModel> GetOrderHistory(string userId)
+        {
+            var orders = _dbRepo.GetOrderHistory(userId);
+            return orders;
+        }
+ */
     }
 }
