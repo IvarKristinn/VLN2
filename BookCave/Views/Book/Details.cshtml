@@ -17,7 +17,25 @@
 
     <h3>@Model.Id</h3>
 
-    <a class="btn btn-default" asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">Add to Cart</a>
+    <!--<a class="btn btn-default" asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">Add to Cart</a>-->
+
+    <form asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">
+        <label>Quantity: </label>
+        <select name="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <br>
+        <input class="btn btn-default" type="submit" value="Add To Cart">
+    </form>
 
     @if(SignInManager.IsSignedIn(User))
     {

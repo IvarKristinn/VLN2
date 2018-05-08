@@ -139,33 +139,30 @@ namespace BookCave.Repositories
         }
 
         //Change from BookDetailViewModel, make BookCartViewModel
-        public List<BookDetailsViewModel> GetCartItems(string id)
+        public List<CartItemsViewModel> GetCartItems(string id)
         {
             var cartItems = (from c in _db.ShoppingCartItems
                              join b in _db.Books on c.BookId equals b.Id
                              where c.CartId == id
-                             select new BookDetailsViewModel
+                             select new CartItemsViewModel
                              {
                                  Id = b.Id,
                                  Title = b.Title,
                                  Author = b.Author,
-                                 Description = b.Description,
                                  ImageLink = b.ImageLink,
-                                 Genre = b.Genre,
-                                 UserRatingAvg = b.UserRatingAvg,
-                                 NumberOfUserRatings = b.NumberOfUserRating,
-                                 Price = b.Price
+                                 Price = b.Price,
+                                 Quantity = c.Quantity
                              }).ToList();
             return cartItems;
         }
 
        
-        public void AddBookToCart(int bookId, string userId)
+        public void AddBookToCart(int bookId, string userId, int quantity)
         {
             var cartItemAdd = new CartItem 
             {
                 CartId = userId,
-                Quantity = 1,
+                Quantity = quantity,
                 BookId = bookId
             };
             _db.ShoppingCartItems.Add(cartItemAdd);
