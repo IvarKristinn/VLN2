@@ -74,7 +74,7 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var addresses = _cartService.GetTempAddressesById(userId);
-            //_cartService.AddAddressesToOrder(addresses, userId);
+
             _cartService.RemoveAddressesFromTemp(userId);
             //Create new Order entity model with current CartItems, this orders billing and shipping addresses
             /* 
@@ -83,10 +83,11 @@ namespace BookCave.Controllers
                             UserId = userId,
                             OrderNum = orderNum,
                             OrderItems = _cartService.GetCartItems(userId),
-                            Billing = BillShipp[0],
-                            Shipping = BillShipp[1]
+                            Billing = addresses[1],
+                            Shipping = addresses[0]
                         };
             */
+            //delete cartItems in shoppingCartItems database
             //_cartService.AddOrderToHistories(order);
             //Delete CartItems from ShoppingCartItem database
             return View();
