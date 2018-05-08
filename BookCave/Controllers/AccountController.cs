@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using BookCave.Models;
 using BookCave.Models.ViewModels;
+using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -104,6 +105,24 @@ namespace BookCave.Controllers
             await _signInManager.SignOutAsync();
             
             return RedirectToAction("Login", "Account");
+        }
+
+        public async Task<IActionResult> FavoriteThisBook(int bookId)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+            user.FavBookId = bookId;
+            await _userManager.UpdateAsync(user);
+            return RedirectToAction("Details", "Book", new { id = bookId});
+        }
+
+        public async Task<IActionResult> RemoveFavBook()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+            user.FavBookId = 0;
+            await _userManager.UpdateAsync(user);
+            return RedirectToAction("Information", "Account");
         }
 
         public IActionResult AccessDenied()

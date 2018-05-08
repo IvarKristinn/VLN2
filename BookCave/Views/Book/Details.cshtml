@@ -19,6 +19,11 @@
 
     <a class="btn btn-default" asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">Add to Cart</a>
 
+    @if(SignInManager.IsSignedIn(User))
+    {
+        <a class="btn btn-default" asp-controller="Account" asp-action="FavoriteThisBook" asp-route-bookId="@Model.Id">Favorite this book!</a>
+    }
+
 
     <div>
         @if(SignInManager.IsSignedIn(User))
