@@ -12,6 +12,7 @@ namespace BookCave.Services
         {
             _dbRepo = new DbRepo();
         }
+
         public void AddBookToCart(int bookId, string userId, int quantity)
         {
             _dbRepo.AddBookToCart(bookId, userId, quantity);
@@ -22,9 +23,9 @@ namespace BookCave.Services
             _dbRepo.RemoveBookFromCart(bookId, userId);
         }
 
-        public List<CartItemsViewModel> GetCartItems(string id)
+        public List<CartItemsViewModel> GetCartItems(string userId)
         {
-            var cartItems = _dbRepo.GetCartItems(id);
+            var cartItems = _dbRepo.GetCartItems(userId);
             return cartItems;
         }
 

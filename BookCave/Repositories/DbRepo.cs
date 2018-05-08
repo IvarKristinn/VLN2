@@ -102,10 +102,9 @@ namespace BookCave.Repositories
                             }).Take(25).ToList();
                             return topBooks;
         }
-
-        public List<BookThumbnailViewModel> GetTopTenBooks()
+        public List<BookThumbnailViewModel> GetTopTwelveBooks()
         {
-            var topTenBooks = (from b in _db.Books
+            var topTwelveBooks = (from b in _db.Books
                             orderby b.UserRatingAvg descending
                             select new BookThumbnailViewModel
                             {
@@ -115,8 +114,8 @@ namespace BookCave.Repositories
                                 Price = b.Price,
                                 ImageLink = b.ImageLink,
                                 UserRatingAvg = b.UserRatingAvg
-                            }).Take(10).ToList();
-                            return topTenBooks;
+                            }).Take(12).ToList();
+                            return topTwelveBooks;
         }
 
         public List<BookThumbnailViewModel> GetByGenre(string genre)
@@ -170,11 +169,11 @@ namespace BookCave.Repositories
                      return affordableBooks;
         }
 
-        public List<CartItemsViewModel> GetCartItems(string id)
+        public List<CartItemsViewModel> GetCartItems(string userId)
         {
             var cartItems = (from c in _db.ShoppingCartItems
                              join b in _db.Books on c.BookId equals b.Id
-                             where c.CartId == id
+                             where c.CartId == userId
                              select new CartItemsViewModel
                              {
                                  Id = b.Id,
