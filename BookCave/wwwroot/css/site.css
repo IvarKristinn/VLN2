@@ -18,7 +18,35 @@
 
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+    width: 100px;
+}
+
+.multi-item-carousel .carousel-inner .item {
+    transition: 500ms ease-in-out left;
+}
+
+.carousel-inner .active .left {
+    left: -33%;
+}
+
+.active .right {
+    left: 33%;
+}
+
+.carousel-inner .next {
+    left: 33%;
+}
+
+.carousel-inner .prev {
+    left: -33%;
+}
+
+.carousel-control .right {
+    background-image: none;
+}
+
+.carousel-control .left {
+    background-image: none;
 }
 
 /* QR code generator */

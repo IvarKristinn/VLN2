@@ -1,5 +1,6 @@
  @model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
-
+<h1>Top rated books on Book Cave!</h1>
+<p>See which books our readers like the most!</p>
      @foreach(var topBooks in @Model)
     {
         <a asp-controller="Book" asp-action="details" asp-route-id="@topBooks.Id">

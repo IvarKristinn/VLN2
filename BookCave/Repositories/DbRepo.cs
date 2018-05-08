@@ -102,10 +102,9 @@ namespace BookCave.Repositories
                             }).Take(25).ToList();
                             return topBooks;
         }
-
-        public List<BookThumbnailViewModel> GetTopTenBooks()
+        public List<BookThumbnailViewModel> GetTopTwelveBooks()
         {
-            var topTenBooks = (from b in _db.Books
+            var topTwelveBooks = (from b in _db.Books
                             orderby b.UserRatingAvg descending
                             select new BookThumbnailViewModel
                             {
@@ -115,8 +114,8 @@ namespace BookCave.Repositories
                                 Price = b.Price,
                                 ImageLink = b.ImageLink,
                                 UserRatingAvg = b.UserRatingAvg
-                            }).Take(10).ToList();
-                            return topTenBooks;
+                            }).Take(12).ToList();
+                            return topTwelveBooks;
         }
 
         public List<BookThumbnailViewModel> GetByGenre(string genre)
