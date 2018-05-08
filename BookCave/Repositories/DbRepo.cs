@@ -100,13 +100,8 @@ namespace BookCave.Repositories
                                 Price = b.Price,
                                 ImageLink = b.ImageLink,
                                 UserRatingAvg = b.UserRatingAvg
-<<<<<<< HEAD
                             }).Take(25).ToList();
                             return topBooks;
-=======
-                            }).Take(10).ToList();
-            return topBooks;
->>>>>>> 139863f0a5e992ddf65671c7b823ead6d8d9a421
         }
         public List<BookThumbnailViewModel> GetTopTenBooks()
         {
