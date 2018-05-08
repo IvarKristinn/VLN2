@@ -45,6 +45,11 @@ namespace BookCave.Services
             return topBooks;
 
         }
+        public List<BookThumbnailViewModel> GetTopTenBooks()
+        {
+            var topTenBooks  = _bookRepo.GetTopTenBooks();
+            return topTenBooks;
+        }
 
         public bool UpdateBookRating(int bookId, int rating)
         {

@@ -12,7 +12,42 @@
 
 
 <form asp-controller="Account" asp-action="Information" method="POST">
+    <label>Edit name: </label>
     <input type="text" asp-for="Name" value="@claim" />
+
+    <label>Link to a picture to set it as your profile picture! </label>
+    <input type="text" asp-for="ProfilePicLink" value="@Model.ProfilePicLink" />
+
+    @if(@Model.ProfilePicLink == null)
+    {
+        <img src="~/images/noprofile.png" alt="Profile Picture" width="150" height="150">
+    }
+    else
+    {
+        <img src="@Model.ProfilePicLink" alt="Profile Picture" width="150" height="150">
+    }
+
+    @if(@Model.FavBook != null)
+    {
+        <div>
+            <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.FavBook.Id">
+                <div class="container">
+                    <img src="@Model.FavBook.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+                    <p>@Model.FavBook.Title </p>
+                    <p>@Model.FavBook.Author</p>
+                    <p>@Model.FavBook.Price</p>
+                    <p>@Model.FavBook.UserRatingAvg</p>
+                </div>
+            </a>
+        </div>
+
+        <label>Remove this book as your favorite book?</label>
+        <input type="checkbox" value="true" name="removeBook" />
+    }
+    else
+    {
+        <h2>You have no book chosen as favorite</h2>
+    }
 
     <button type="submit" class="btn btn-danger">Apply changes</button>
 </form>

@@ -54,6 +54,23 @@ namespace BookCave.Repositories
         return book;
         }
 
+        public BookThumbnailViewModel GetUserFavBook(int favBookId)
+        {
+            var book = (from b in _db.Books
+                        where b.Id == favBookId
+                        select new BookThumbnailViewModel
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Author = b.Author,
+                            Price = b.Price,
+                            ImageLink = b.ImageLink,
+                            UserRatingAvg = b.UserRatingAvg
+                        }).FirstOrDefault();
+                        
+            return book;
+        }
+
         public List<BookThumbnailViewModel> GetBooksById()
         {
             var books = (from b in _db.Books
@@ -69,6 +86,7 @@ namespace BookCave.Repositories
                          }).Take(10).ToList();
             return books;
         }
+
         
         public List<BookThumbnailViewModel> GetTopRatedBooks()
         {
@@ -82,8 +100,23 @@ namespace BookCave.Repositories
                                 Price = b.Price,
                                 ImageLink = b.ImageLink,
                                 UserRatingAvg = b.UserRatingAvg
-                            }).Take(10).ToList();
+                            }).Take(25).ToList();
                             return topBooks;
+        }
+        public List<BookThumbnailViewModel> GetTopTenBooks()
+        {
+            var topTenBooks = (from b in _db.Books
+                            orderby b.UserRatingAvg descending
+                            select new BookThumbnailViewModel
+                            {
+                                Id = b.Id,
+                                Title = b.Title,
+                                Author = b.Author,
+                                Price = b.Price,
+                                ImageLink = b.ImageLink,
+                                UserRatingAvg = b.UserRatingAvg
+                            }).Take(10).ToList();
+                            return topTenBooks;
         }
 
 
@@ -135,7 +168,7 @@ namespace BookCave.Repositories
                             UserRatingAvg = b.UserRatingAvg
 
                             }).Take(10).ToList();
-                     return affordableBooks;                     
+                     return affordableBooks;
         }
 
         //Change from BookDetailViewModel, make BookCartViewModel
@@ -176,6 +209,7 @@ namespace BookCave.Repositories
                                 where c.CartId == userId
                                 && c.BookId == bookId
                                 select c).FirstOrDefault();
+
             _db.ShoppingCartItems.Remove(cartItemRem);
             _db.SaveChanges();
         }

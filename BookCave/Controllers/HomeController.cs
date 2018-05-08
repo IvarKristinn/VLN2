@@ -24,9 +24,11 @@ namespace BookCave.Controllers
         {
             var books = new FrontPageViewModel();
             books.NewestBooks = _bookService.GetBooksById();
+            //prufa
+            books.TopTen = _bookService.GetTopTenBooks();
             return View(books);
         }
-
+    
         [Authorize]
         public IActionResult About()
         {

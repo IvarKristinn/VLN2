@@ -15,10 +15,13 @@ namespace BookCave.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
 
+        private AccountService _accountService;
+
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _accountService = new AccountService();
         }
 
         public IActionResult Register()
@@ -87,21 +90,42 @@ namespace BookCave.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult Information()
+        public async Task<IActionResult> Information()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+
+            var userViewModel = new AccountEditViewModel
+                                    {
+                                        Name = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value,
+                                        ProfilePicLink = user.ProfilePicLink,
+                                        FavBook = _accountService.GetUserFavBook(user.FavBookId)
+                                    };
+
+            return View(userViewModel);
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Information(AccountEditViewModel model)
+        public async Task<IActionResult> Information(AccountEditViewModel model, bool removeBook = false)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
+            //Name claim change
             var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name");
             var newClaim = new Claim("Name", model.Name);
             await _userManager.RemoveClaimAsync(user, claim);
             await _userManager.AddClaimAsync(user, newClaim);
+            //Profile pic change, if user sends in empty or null
+            user.ProfilePicLink = model.ProfilePicLink;
+
+            //Removing fav book
+            if(removeBook == true)
+            {
+                user.FavBookId = 0;
+            }
+
+            await _userManager.UpdateAsync(user);
             await _signInManager.SignOutAsync();
             
             return RedirectToAction("Login", "Account");
