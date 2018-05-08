@@ -100,17 +100,12 @@ namespace BookCave.Repositories
                                 Price = b.Price,
                                 ImageLink = b.ImageLink,
                                 UserRatingAvg = b.UserRatingAvg
-<<<<<<< HEAD
                             }).Take(25).ToList();
                             return topBooks;
-=======
-                            }).Take(10).ToList();
-            return topBooks;
->>>>>>> 139863f0a5e992ddf65671c7b823ead6d8d9a421
         }
-        public List<BookThumbnailViewModel> GetTopTenBooks()
+        public List<BookThumbnailViewModel> GetTopTwelveBooks()
         {
-            var topTenBooks = (from b in _db.Books
+            var topTwelveBooks = (from b in _db.Books
                             orderby b.UserRatingAvg descending
                             select new BookThumbnailViewModel
                             {
@@ -120,8 +115,8 @@ namespace BookCave.Repositories
                                 Price = b.Price,
                                 ImageLink = b.ImageLink,
                                 UserRatingAvg = b.UserRatingAvg
-                            }).Take(10).ToList();
-                            return topTenBooks;
+                            }).Take(12).ToList();
+                            return topTwelveBooks;
         }
 
 
