@@ -3,7 +3,7 @@ using BookCave.Data;
 using BookCave.Models.ViewModels;
 using System.Linq;
 using BookCave.Data.EntityModels;
-
+using BookCave.Models.InputModels;
 
 namespace BookCave.Repositories
 {
@@ -87,7 +87,6 @@ namespace BookCave.Repositories
             return books;
         }
 
-        
         public List<BookThumbnailViewModel> GetTopRatedBooks()
         {
             var topBooks = (from b in _db.Books
@@ -119,7 +118,6 @@ namespace BookCave.Repositories
                             return topTwelveBooks;
         }
 
-
         public List<BookThumbnailViewModel> GetByGenre(string genre)
         {
             var bookByGenre = (from b in _db.Books
@@ -136,7 +134,6 @@ namespace BookCave.Repositories
              return bookByGenre;                          
         }
 
-        ////what the hell 
         public List<BookThumbnailViewModel> GetSearchString(string search)
         {
                 var searchBooks = (from b in _db.Books
@@ -154,6 +151,7 @@ namespace BookCave.Repositories
                             }).ToList();
             return searchBooks;
         }
+
          public List<BookThumbnailViewModel> GetAffordableBooks()
         {
             var affordableBooks  = (from b in _db.Books
@@ -171,34 +169,29 @@ namespace BookCave.Repositories
                      return affordableBooks;
         }
 
-        //Change from BookDetailViewModel, make BookCartViewModel
-        public List<BookDetailsViewModel> GetCartItems(string id)
+        public List<CartItemsViewModel> GetCartItems(string userId)
         {
             var cartItems = (from c in _db.ShoppingCartItems
                              join b in _db.Books on c.BookId equals b.Id
-                             where c.CartId == id
-                             select new BookDetailsViewModel
+                             where c.CartId == userId
+                             select new CartItemsViewModel
                              {
                                  Id = b.Id,
                                  Title = b.Title,
                                  Author = b.Author,
-                                 Description = b.Description,
                                  ImageLink = b.ImageLink,
-                                 Genre = b.Genre,
-                                 UserRatingAvg = b.UserRatingAvg,
-                                 NumberOfUserRatings = b.NumberOfUserRating,
-                                 Price = b.Price
+                                 Price = b.Price,
+                                 Quantity = c.Quantity
                              }).ToList();
             return cartItems;
         }
 
-       
-        public void AddBookToCart(int bookId, string userId)
+        public void AddBookToCart(int bookId, string userId, int quantity)
         {
             var cartItemAdd = new CartItem 
             {
                 CartId = userId,
-                Quantity = 1,
+                Quantity = quantity,
                 BookId = bookId
             };
             _db.ShoppingCartItems.Add(cartItemAdd);
@@ -254,6 +247,38 @@ namespace BookCave.Repositories
             _db.SaveChanges();
 
             return true;
+        }
+
+        public void AddNewAddress(AddressInputModel newAddress, string userId)
+        {
+            var addressEntityModel = new Address()
+                                        {
+                                            UserId = userId,
+                                            Street = newAddress.Street,
+                                            HouseNum = newAddress.HouseNum,
+                                            City = newAddress.City,
+                                            Country = newAddress.Country,
+                                            ZipCode = newAddress.ZipCode
+                                        };
+
+            _db.Addresses.Add(addressEntityModel);
+            _db.SaveChanges();
+        }
+
+        public List<AddressViewModel> GetUserAddresses(string userId)
+        {
+            var addresses = (from a in _db.Addresses
+                             where a.UserId == userId
+                             select new AddressViewModel
+                             {
+                                 Street = a.Street,
+                                 HouseNum = a.HouseNum,
+                                 City = a.City,
+                                 Country = a.Country,
+                                 ZipCode = a.ZipCode
+                             }).ToList();
+            
+            return addresses;
         }
     }
 }

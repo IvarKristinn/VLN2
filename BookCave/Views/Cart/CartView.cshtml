@@ -1,4 +1,4 @@
-@model List<BookCave.Models.ViewModels.BookDetailsViewModel>
+@model List<BookCave.Models.ViewModels.CartItemsViewModel>
 
 @{
     ViewData["Title"] = "Cart";
@@ -10,13 +10,13 @@
     double subTotal = 0;
     @foreach(var book in @Model)
     {
-        subTotal += @book.Price;
+        subTotal += @book.Price * @book.Quantity;
         <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
             <div class="container">
                 <span>@book.Title </span>
                 <span>@book.Author</span>
                 <span>@book.Price</span>
-                <span>@book.UserRatingAvg</span>
+                <span>@book.Quantity</span>
             </div>
         </a>
         <a class="btn btn-default" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-bookId="@book.Id">Remove Item</a>

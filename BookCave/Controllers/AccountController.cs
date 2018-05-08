@@ -2,6 +2,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BookCave.Models;
+using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -99,7 +100,8 @@ namespace BookCave.Controllers
                                     {
                                         Name = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value,
                                         ProfilePicLink = user.ProfilePicLink,
-                                        FavBook = _accountService.GetUserFavBook(user.FavBookId)
+                                        FavBook = _accountService.GetUserFavBook(user.FavBookId),
+                                        UserAddresses = _accountService.GetUserAddresses(userId)
                                     };
 
             return View(userViewModel);
@@ -107,7 +109,7 @@ namespace BookCave.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Information(AccountEditViewModel model, bool removeBook = false)
+        public async Task<IActionResult> Information(AccountEditInputModel model, bool removeBook = false)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
@@ -140,6 +142,7 @@ namespace BookCave.Controllers
             return RedirectToAction("Details", "Book", new { id = bookId});
         }
 
+        [Authorize]
         public async Task<IActionResult> RemoveFavBook()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -149,6 +152,20 @@ namespace BookCave.Controllers
             return RedirectToAction("Information", "Account");
         }
 
+        [Authorize]
+        public IActionResult Address()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Address(AddressInputModel newAddress)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _accountService.AddNewAddress(newAddress, userId);
+            return RedirectToAction("Information");
+        }
         public IActionResult AccessDenied()
         {
             return View();

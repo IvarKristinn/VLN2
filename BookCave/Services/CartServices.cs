@@ -7,30 +7,31 @@ namespace BookCave.Services
 {
     public class CartService
     {
-        private DbRepo _tempRepo;
+        private DbRepo _dbRepo;
         public CartService()
         {
-            _tempRepo = new DbRepo();
+            _dbRepo = new DbRepo();
         }
-        public void AddBookToCart(int bookId, string userId)
+
+        public void AddBookToCart(int bookId, string userId, int quantity)
         {
-            _tempRepo.AddBookToCart(bookId, userId);
+            _dbRepo.AddBookToCart(bookId, userId, quantity);
         }
 
         public void RemoveBookFromCart(int bookId, string userId)
         {
-            _tempRepo.RemoveBookFromCart(bookId, userId);
+            _dbRepo.RemoveBookFromCart(bookId, userId);
         }
 
-        public List<BookDetailsViewModel> GetCartItems(string id)
+        public List<CartItemsViewModel> GetCartItems(string userId)
         {
-            var cartItems = _tempRepo.GetCartItems(id);
+            var cartItems = _dbRepo.GetCartItems(userId);
             return cartItems;
         }
 
         public BookDetailsViewModel GetBookDetailsById(int id)
         {
-            var book = _tempRepo.GetBookDetailsById(id);
+            var book = _dbRepo.GetBookDetailsById(id);
             return book;
         }
     }
