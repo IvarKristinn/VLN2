@@ -4,6 +4,6 @@ namespace BookCave.Models.ViewModels
     {
         public string Name { get; set; }
         public string ProfilePicLink { get; set; }
-        public int FavBookId { get; set; }
+        public BookThumbnailViewModel FavBook { get; set; }
     }
 }
