@@ -3,7 +3,7 @@ using BookCave.Data;
 using BookCave.Models.ViewModels;
 using System.Linq;
 using BookCave.Data.EntityModels;
-
+using BookCave.Models.InputModels;
 
 namespace BookCave.Repositories
 {
@@ -87,7 +87,6 @@ namespace BookCave.Repositories
             return books;
         }
 
-        
         public List<BookThumbnailViewModel> GetTopRatedBooks()
         {
             var topBooks = (from b in _db.Books
@@ -103,9 +102,9 @@ namespace BookCave.Repositories
                             }).Take(25).ToList();
                             return topBooks;
         }
-        public List<BookThumbnailViewModel> GetTopTenBooks()
+        public List<BookThumbnailViewModel> GetTopTwelveBooks()
         {
-            var topTenBooks = (from b in _db.Books
+            var topTwelveBooks = (from b in _db.Books
                             orderby b.UserRatingAvg descending
                             select new BookThumbnailViewModel
                             {
@@ -115,10 +114,9 @@ namespace BookCave.Repositories
                                 Price = b.Price,
                                 ImageLink = b.ImageLink,
                                 UserRatingAvg = b.UserRatingAvg
-                            }).Take(10).ToList();
-                            return topTenBooks;
+                            }).Take(12).ToList();
+                            return topTwelveBooks;
         }
-
 
         public List<BookThumbnailViewModel> GetByGenre(string genre)
         {
@@ -136,7 +134,6 @@ namespace BookCave.Repositories
              return bookByGenre;                          
         }
 
-        ////what the hell 
         public List<BookThumbnailViewModel> GetSearchString(string search)
         {
                 var searchBooks = (from b in _db.Books
@@ -154,6 +151,7 @@ namespace BookCave.Repositories
                             }).ToList();
             return searchBooks;
         }
+
          public List<BookThumbnailViewModel> GetAffordableBooks()
         {
             var affordableBooks  = (from b in _db.Books
@@ -171,12 +169,11 @@ namespace BookCave.Repositories
                      return affordableBooks;
         }
 
-        //Change from BookDetailViewModel, make BookCartViewModel
-        public List<CartItemsViewModel> GetCartItems(string id)
+        public List<CartItemsViewModel> GetCartItems(string userId)
         {
             var cartItems = (from c in _db.ShoppingCartItems
                              join b in _db.Books on c.BookId equals b.Id
-                             where c.CartId == id
+                             where c.CartId == userId
                              select new CartItemsViewModel
                              {
                                  Id = b.Id,
@@ -189,7 +186,6 @@ namespace BookCave.Repositories
             return cartItems;
         }
 
-       
         public void AddBookToCart(int bookId, string userId, int quantity)
         {
             var cartItemAdd = new CartItem 
@@ -252,5 +248,54 @@ namespace BookCave.Repositories
 
             return true;
         }
+
+        public void AddNewAddress(AddressInputModel newAddress, string userId)
+        {
+            var addressEntityModel = new Address()
+                                        {
+                                            UserId = userId,
+                                            Street = newAddress.Street,
+                                            HouseNum = newAddress.HouseNum,
+                                            City = newAddress.City,
+                                            Country = newAddress.Country,
+                                            ZipCode = newAddress.ZipCode
+                                        };
+
+            _db.Addresses.Add(addressEntityModel);
+            _db.SaveChanges();
+        }
+
+        public List<AddressViewModel> GetUserAddresses(string userId)
+        {
+            var addresses = (from a in _db.Addresses
+                             where a.UserId == userId
+                             select new AddressViewModel
+                             {
+                                 Street = a.Street,
+                                 HouseNum = a.HouseNum,
+                                 City = a.City,
+                                 Country = a.Country,
+                                 ZipCode = a.ZipCode
+                             }).ToList();
+            
+            return addresses;
+        }
+
+/*
+        public List<OrderViewModel> GetOrderHistory(string userId)
+        {
+            var orders = (from o in _db.Orders
+                          where o.UserId == userId
+                          orderby o.Id descending
+                          select new OrderViewModel
+                          {
+                              OrderItems = (from c in _db.ShoppingCartItems
+                                            where c)
+                              Billing = o.Billing,
+                              Shipping = o.Shipping
+                          }).ToList();
+            return orders;
+        }
+ */
     }
 }

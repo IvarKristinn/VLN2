@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180508135823_addressesMigration")]
+    partial class addressesMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,13 +78,9 @@ namespace BookCave.Migrations
 
                     b.Property<string>("CartId");
 
-                    b.Property<int?>("OrderId");
-
                     b.Property<int>("Quantity");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("ShoppingCartItems");
                 });
@@ -102,44 +99,6 @@ namespace BookCave.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("BookCave.Data.EntityModels.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("BillingId");
-
-                    b.Property<int?>("ShippingId");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BillingId");
-
-                    b.HasIndex("ShippingId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BookCave.Data.EntityModels.CartItem", b =>
-                {
-                    b.HasOne("BookCave.Data.EntityModels.Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId");
-                });
-
-            modelBuilder.Entity("BookCave.Data.EntityModels.Order", b =>
-                {
-                    b.HasOne("BookCave.Data.EntityModels.Address", "Billing")
-                        .WithMany()
-                        .HasForeignKey("BillingId");
-
-                    b.HasOne("BookCave.Data.EntityModels.Address", "Shipping")
-                        .WithMany()
-                        .HasForeignKey("ShippingId");
                 });
 #pragma warning restore 612, 618
         }
