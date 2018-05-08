@@ -71,21 +71,36 @@ namespace BookCave.Repositories
             return book;
         }
 
-        public List<BookThumbnailViewModel> GetTopRatedBooks()
+        public List<BookThumbnailViewModel> GetBooksById()
         {
-            var topBooks = (from b in _db.Books
-                            orderby b.UserRatingAvg descending
-                            select new BookThumbnailViewModel
-                            {
+            var books = (from b in _db.Books
+                         orderby b.Id descending
+                         select new BookThumbnailViewModel
+                         {
                             Id = b.Id,
                             Title = b.Title,
                             Author = b.Author,
                             Price = b.Price,
                             ImageLink = b.ImageLink,
                             UserRatingAvg = b.UserRatingAvg
-
+                         }).Take(10).ToList();
+            return books;
+        }
+        
+        public List<BookThumbnailViewModel> GetTopRatedBooks()
+        {
+            var topBooks = (from b in _db.Books
+                            orderby b.UserRatingAvg descending
+                            select new BookThumbnailViewModel
+                            {
+                                Id = b.Id,
+                                Title = b.Title,
+                                Author = b.Author,
+                                Price = b.Price,
+                                ImageLink = b.ImageLink,
+                                UserRatingAvg = b.UserRatingAvg
                             }).Take(10).ToList();
-                            return topBooks;
+            return topBooks;
         }
 
 
