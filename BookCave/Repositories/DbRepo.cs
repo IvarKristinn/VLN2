@@ -3,7 +3,7 @@ using BookCave.Data;
 using BookCave.Models.ViewModels;
 using System.Linq;
 using BookCave.Data.EntityModels;
-
+using BookCave.Models.InputModels;
 
 namespace BookCave.Repositories
 {
@@ -87,7 +87,6 @@ namespace BookCave.Repositories
             return books;
         }
 
-        
         public List<BookThumbnailViewModel> GetTopRatedBooks()
         {
             var topBooks = (from b in _db.Books
@@ -103,6 +102,7 @@ namespace BookCave.Repositories
                             }).Take(25).ToList();
                             return topBooks;
         }
+
         public List<BookThumbnailViewModel> GetTopTenBooks()
         {
             var topTenBooks = (from b in _db.Books
@@ -118,7 +118,6 @@ namespace BookCave.Repositories
                             }).Take(10).ToList();
                             return topTenBooks;
         }
-
 
         public List<BookThumbnailViewModel> GetByGenre(string genre)
         {
@@ -136,7 +135,6 @@ namespace BookCave.Repositories
              return bookByGenre;                          
         }
 
-        ////what the hell 
         public List<BookThumbnailViewModel> GetSearchString(string search)
         {
                 var searchBooks = (from b in _db.Books
@@ -154,6 +152,7 @@ namespace BookCave.Repositories
                             }).ToList();
             return searchBooks;
         }
+
          public List<BookThumbnailViewModel> GetAffordableBooks()
         {
             var affordableBooks  = (from b in _db.Books
@@ -171,7 +170,6 @@ namespace BookCave.Repositories
                      return affordableBooks;
         }
 
-        //Change from BookDetailViewModel, make BookCartViewModel
         public List<CartItemsViewModel> GetCartItems(string id)
         {
             var cartItems = (from c in _db.ShoppingCartItems
@@ -189,7 +187,6 @@ namespace BookCave.Repositories
             return cartItems;
         }
 
-       
         public void AddBookToCart(int bookId, string userId, int quantity)
         {
             var cartItemAdd = new CartItem 
@@ -251,6 +248,38 @@ namespace BookCave.Repositories
             _db.SaveChanges();
 
             return true;
+        }
+
+        public void AddNewAddress(AddressInputModel newAddress, string userId)
+        {
+            var addressEntityModel = new Address()
+                                        {
+                                            UserId = userId,
+                                            Street = newAddress.Street,
+                                            HouseNum = newAddress.HouseNum,
+                                            City = newAddress.City,
+                                            Country = newAddress.Country,
+                                            ZipCode = newAddress.ZipCode
+                                        };
+
+            _db.Addresses.Add(addressEntityModel);
+            _db.SaveChanges();
+        }
+
+        public List<AddressViewModel> GetUserAddresses(string userId)
+        {
+            var addresses = (from a in _db.Addresses
+                             where a.UserId == userId
+                             select new AddressViewModel
+                             {
+                                 Street = a.Street,
+                                 HouseNum = a.HouseNum,
+                                 City = a.City,
+                                 Country = a.Country,
+                                 ZipCode = a.ZipCode
+                             }).ToList();
+            
+            return addresses;
         }
     }
 }

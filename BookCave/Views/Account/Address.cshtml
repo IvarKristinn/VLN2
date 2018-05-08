@@ -1,0 +1,35 @@
+@model BookCave.Models.InputModels.AddressInputModel
+
+<form asp-controller="Account" asp-action="Address" method="POST">
+    <label>Street:</label>
+    <br>
+    <input type="text" asp-for="Street" placeholder="Street">
+    <br>
+    
+    <label>House number:</label>
+    <br>
+    <input type="text" asp-for="HouseNum" placeholder="House number">
+    <br>
+
+    <label>City:</label>
+    <br>
+    <input type="text" asp-for="City" placeholder="City">
+    <br>
+
+    <label>Zip code:</label>
+    <br>
+    <input type="text" asp-for="ZipCode" placeholder="Zip code">
+    <br>
+
+    <label>Country:</label>
+    <br>
+    <select asp-for="Country">
+        <option value="iceland">Iceland</option>
+        <option value="england">England</option>
+        <option value="unitedStates">United States</option>
+        <option value="denmark">Denmark</option>
+    </select>
+    <br><br>
+
+    <input type="submit" value="Submit">
+</form> 
