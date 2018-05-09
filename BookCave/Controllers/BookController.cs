@@ -84,7 +84,12 @@ namespace BookCave.Controllers
         public IActionResult Review(int bookId, int rating, string review)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            bool ReviewSuccess = _bookService.AddReview(userId, bookId,  review);
+            bool ReviewSuccess = true;
+            //debug to see what value of review is when you leave it empty
+            if(review != "")
+            {
+                ReviewSuccess = _bookService.AddReview(userId, bookId,  review);
+            }
 
             bool ratingSuccess = _bookService.UpdateBookRating(bookId, rating);
 

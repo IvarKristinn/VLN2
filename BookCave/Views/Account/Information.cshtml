@@ -10,6 +10,7 @@
     var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
 }
 
+<a class="btn btn-default" asp-controller="Account" asp-action="History">View History</a>
 
 <form asp-controller="Account" asp-action="Information" method="POST">
     <label>Edit name: </label>

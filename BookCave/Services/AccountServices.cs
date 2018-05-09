@@ -31,13 +31,10 @@ namespace BookCave.Services
             return addresses;
         }
 
-/*
-
         public List<OrderViewModel> GetOrderHistory(string userId)
         {
             var orders = _dbRepo.GetOrderHistory(userId);
             return orders;
         }
- */
     }
 }
