@@ -13,9 +13,15 @@
         <label asp-for="BillingAddress.City">City</label>
         <input type="text" asp-for="BillingAddress.City">
         <br/>
-
-        <label asp-for="BillingAddress.Country">City</label>
-        <input type="text" asp-for="BillingAddress.Country">
+        
+        <label asp-for="BillingAddress.Country">Country</label>
+        <select asp-for="BillingAddress.Country">
+            <option value="" disabled selected >Select a country</option>
+            <option value="Iceland">Iceland</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="United States">United states</option>
+            <option value="Wakanda">Wakanda</option>
+        </select>
         <br/>
 
         <label asp-for="BillingAddress.ZipCode">Zip code</label>
@@ -36,8 +42,14 @@
         <input type="text" asp-for="ShippingAddress.City">
         <br/>
 
-        <label asp-for="ShippingAddress.Country">City</label>
-        <input type="text" asp-for="ShippingAddress.Country">
+        <label asp-for="ShippingAddress.Country">Country</label>
+        <select asp-for="ShippingAddress.Country">
+            <option value="" disabled selected >Select a country</option>
+            <option value="Iceland">Iceland</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="United States">United states</option>
+            <option value="Wakanda">Wakanda</option>
+        </select>
         <br/>
 
         <label asp-for="ShippingAddress.ZipCode">Zip code</label>

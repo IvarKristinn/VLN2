@@ -30,6 +30,11 @@ namespace BookCave.Services
             return cartItems;
         }
 
+        public void RemoveAllCartItems(string userId)
+        {
+            _dbRepo.RemoveAllCartItems(userId);
+        }
+
         public BookDetailsViewModel GetBookDetailsById(int id)
         {
             var book = _dbRepo.GetBookDetailsById(id);
@@ -50,6 +55,11 @@ namespace BookCave.Services
         public void RemoveAddressesFromTemp(string userId)
         {
             _dbRepo.RemoveAddressesFromTemp(userId);
+        }
+
+        public void AddOrderToHistories(Order order)
+        {
+            _dbRepo.AddOrderToHistories(order);
         }
     }
 }
