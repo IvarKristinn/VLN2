@@ -5,12 +5,42 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 
-<div class="container">
+<div class="BookList">
+    <h2 id="OurBooks">Our books</h2>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="AllBooks">All books</a>
+        </div><br>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="AffordableBooks">Affordable books</a>
+        </div><br>
+        <p id="Genre">Genre</p>
+        <div class="FrontPageBookListGenre">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="Dark Fantasy">Dark Fantasy</a>
+        </div>
+        <div class="FrontPageBookListGenre">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="Epic Fantasy">Epic Fantasy</a>
+        </div>
+        <div class="FrontPageBookListGenre">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="Heroic Fantasy">Heroic Fantasy</a>
+        </div>
+        <div class="FrontPageBookListGenre">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="High Fantasy">High Fantasy</a>
+        </div>
+        <div class="FrontPageBookListGenre">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="Urban Fantasy">Urban Fantasy</a>
+        </div><br>
+        
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="TopRated">Highest rated books</a>
+        </div><br>
+</div>
+
+<div class="thumb">
     <img src="@Model.ImageLink" class="img-thumbnail" alt="book-thumbnail">
     <h1>@Model.Title</h1> 
     <h2>Author: @Model.Author</h2>
     <p>Price: @Model.Price $</br>
-    Genre: @Model.Genre</p>
+    <p>Genre: @Model.Genre</p>
 
     <h2>Description:</h2>
     <p>@Model.Description</p>

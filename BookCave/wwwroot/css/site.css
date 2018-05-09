@@ -1,6 +1,6 @@
 ﻿
 body {
-    padding-top: 50px;
+    padding-top: 80px;
     padding-bottom: 5px;
 }
 
@@ -152,4 +152,13 @@ body {
     font-size: 20px;
     padding-left: 35px;
     
+}
+
+/* Thumbnail*/
+
+.ThumbNailIndex
+{
+   border-style: solid;
+   width: 30%;
+   float: left;
 }
