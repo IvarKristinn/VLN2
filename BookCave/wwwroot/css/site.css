@@ -1,23 +1,48 @@
 ﻿
 body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 .navbar {
     background-color: #676767;
+    padding-top: 3px;
 }
 
-.page-footer {
+.navbar-right {
+    margin-top: 4px;
+}
+
+#search {
+    margin-right: 0px;
+    width: 400px;
+}
+
+#searchbar {
+    margin-top: 12px;
+}
+
+#logo-link {
+    padding-top: 2px;
+    padding-right: 12px;
+}
+
+#footer {
     background-color: #333433;
+    padding-top: 10px;
     color: aliceblue;
+    padding-bottom: 20px;
+}
+#pagebreak {
+    margin-bottom: 8px;
+    background-color: #CBCCCC;
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /* Carousel */
@@ -59,9 +84,6 @@ body {
     background-image: none;
 }
 
-#searchbar {
-   margin-top: 10px;
-}
 
 /* QR code generator */
 #qrCode {
