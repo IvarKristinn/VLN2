@@ -171,10 +171,9 @@ namespace BookCave.Controllers
         [Authorize]
         public IActionResult History()
         {
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var orders = _accountService.GetOrderHistory(userId);
-            //return View(orders);
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var orders = _accountService.GetOrderHistory(userId);
+            return View(orders);
         }
 
         public IActionResult AccessDenied()
