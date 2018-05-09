@@ -61,3 +61,17 @@
         display: none;
     }
 }
+
+/* Front page look */
+
+.BookList
+{
+    background-color: #333433;
+    max-width: 300px;
+    height: 500px;
+}
+
+.FrontPageBookList a 
+{
+   color: white;
+}

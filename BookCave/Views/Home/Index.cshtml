@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
  <div class="container">
      <div class="row">
          <div class="col-md-10">
@@ -103,28 +104,34 @@
     </div>      
 </div>
 
-<div class="btn-group-vertical">
-  
-    <a asp-controller="Book" asp-action="AllBooks">
-    <button type="button" class="btn btn-primary">All books</button></a>
 
-     <a asp-controller="Book" asp-action="TopRated">
-     <button type="button" class="btn btn-primary">Highest rated books</button></a>
-
-     <a asp-controller="Book" asp-action="AffordableBooks">
-     <button type="button" class="btn btn-primary">Affordable books</button></a>
-
-     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre<span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Dark Fantasy">Dark Fantasy</a></li>
-            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Epic Fantasy">Epic Fantasy</a></li>
-            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Heroic Fantasy">Heroic Fantasy</a></li>
-            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="High Fantasy">High Fantasy</a></li>
-            <li><a asp-controller="Book" asp-action="Genre" asp-route-genre="Urban Fantasy">Urban Fantasy</a></li>
-        </ul>
+<div class="BookList">
+    <h1> Our books! </h1>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="AllBooks">All books</a>
+        </div>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="AffordableBooks">Affordable books</a>
+        </div>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="Dark Fantasy">Dark Fantasy</a>
+        </div>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="Epic Fantasy">Epic Fantasy</a>
+        </div>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="Heroic Fantasy">Heroic Fantasy</a>
+        </div>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="High Fantasy">High Fantasy</a>
+        </div>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="Genre" asp-route-genre="Urban Fantasy">Urban Fantasy</a>
+        </div>
+        <div class="FrontPageBookList">
+            <a asp-controller="Book" asp-action="TopRated">Highest rated books</a>
+        </div>
 </div>
-
-    <div>
     @foreach(var book in @Model.NewestBooks)
     {
         <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
