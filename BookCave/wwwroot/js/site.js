@@ -20,3 +20,8 @@ $('.multi-item-carousel').carousel({
     }
   });
 
+$('#savedBillingGet').addEventListener("click", function(){
+  alert("haha");
+  //var test = document.getElementById("SavedBillingAddresses").val();
+  //console.log(test);
+});
