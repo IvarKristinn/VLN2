@@ -76,20 +76,34 @@ namespace BookCave.Controllers
             var addresses = _cartService.GetTempAddressesById(userId);
 
             _cartService.RemoveAddressesFromTemp(userId);
-            //Create new Order entity model with current CartItems, this orders billing and shipping addresses
-            /* 
+
             var order = new Order 
                         {
                             UserId = userId,
-                            OrderNum = orderNum,
                             OrderItems = _cartService.GetCartItems(userId),
-                            Billing = addresses[1],
-                            Shipping = addresses[0]
+                            Billing = new Address
+                            {
+                                UserId = userId,
+                                Street = addresses.BillingAddress.Street,
+                                HouseNum = addresses.BillingAddress.HouseNum,
+                                City = addresses.BillingAddress.City,
+                                Country = addresses.BillingAddress.Country,
+                                ZipCode = addresses.BillingAddress.ZipCode
+                            },
+                            Shipping = new Address
+                            {
+                                UserId = userId,
+                                Street = addresses.ShippingAddress.Street,
+                                HouseNum = addresses.ShippingAddress.HouseNum,
+                                City = addresses.ShippingAddress.City,
+                                Country = addresses.ShippingAddress.Country,
+                                ZipCode = addresses.ShippingAddress.ZipCode
+                            }
                         };
-            */
-            //delete cartItems in shoppingCartItems database
-            //_cartService.AddOrderToHistories(order);
-            //Delete CartItems from ShoppingCartItem database
+            
+            _cartService.AddOrderToHistories(order);
+            _cartService.RemoveAllCartItems(userId);
+
             return View();
         }
     }

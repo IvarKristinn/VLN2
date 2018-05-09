@@ -1,6 +1,25 @@
 @model BookCave.Models.ViewModels.BillingAndShippingViewModel
 
-<h1>@Model.BillingAddress.Street</h1>
-<p>blabla </p>
+<fieldset>
+    <legend>Billing Address</legend>
+    <p>
+        Street: @Model.BillingAddress.Street </br>
+        House number: @Model.BillingAddress.HouseNum</br>
+        City:  @Model.BillingAddress.City</br>
+        Country: @Model.BillingAddress.Country</br>
+        Zip Code: @Model.BillingAddress.ZipCode</br>
+    </p>
+</fieldset>
+<fieldset>
+    <legend>Shipping Address</legend>
+
+    <p>
+        Street: @Model.ShippingAddress.Street </br>
+        House number: @Model.ShippingAddress.HouseNum</br>
+        City:  @Model.ShippingAddress.City</br>
+        Country: @Model.ShippingAddress.Country</br>
+        Zip Code: @Model.ShippingAddress.ZipCode</br>
+    </p>
+</fieldset>
 <a asp-controller="Cart" asp-action="BillingAndShipping" class="btn btn-primary">prev</a>
 <a asp-controller="Cart" asp-action="OrderConfirmation" class="btn btn-primary">confirm</a>

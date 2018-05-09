@@ -210,6 +210,19 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public void RemoveAllCartItems(string userId)
+        {
+            var allUserCartItems = (from c in _db.ShoppingCartItems
+                                    where c.CartId == userId
+                                    select c).ToList();
+
+            foreach(var item in allUserCartItems)
+            {
+                _db.ShoppingCartItems.Remove(item);
+            }
+            _db.SaveChanges();
+        }
+
         public bool UpdateBookRating(int bookId, int rating)
         {
             var book = (from b in _db.Books
@@ -349,7 +362,12 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
-/*
+        public void AddOrderToHistories(Order order)
+        {
+            _db.Orders.Add(order);
+            _db.SaveChanges();
+        }
+
         public List<OrderViewModel> GetOrderHistory(string userId)
         {
             var orders = (from o in _db.Orders
@@ -357,13 +375,11 @@ namespace BookCave.Repositories
                           orderby o.Id descending
                           select new OrderViewModel
                           {
-                              OrderItems = (from c in _db.ShoppingCartItems
-                                            where c)
+                              OrderItems = o.OrderItems,
                               Billing = o.Billing,
                               Shipping = o.Shipping
                           }).ToList();
             return orders;
         }
- */
     }
 }
