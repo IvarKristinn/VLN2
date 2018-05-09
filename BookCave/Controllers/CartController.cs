@@ -18,10 +18,13 @@ namespace BookCave.Controllers
     public class CartController : Controller
     {
         private CartService _cartService;
+        private AccountService _accountService;
         public CartController()
         {
             _cartService = new CartService();
+            _accountService = new AccountService();
         }
+
 
         public IActionResult CartView()
         {
@@ -46,6 +49,14 @@ namespace BookCave.Controllers
 
         public IActionResult BillingAndShipping()
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var addresses = _accountService.GetUserAddresses(userId);
+            if(addresses != null) 
+            {
+                ViewBag.SavedAddresses = addresses;
+                ViewBag.AddressCount = addresses.Count();
+                return View();
+            }
             //GetUsersSavedAddresses if not null
             return View();
         }

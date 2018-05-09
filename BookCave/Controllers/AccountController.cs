@@ -15,13 +15,15 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         private AccountService _accountService;
 
-        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
             _accountService = new AccountService();
         }
 
@@ -39,6 +41,15 @@ namespace BookCave.Controllers
                 return View();
             }
 
+            IdentityResult roleResult;
+
+            var roleExist = await _roleManager.RoleExistsAsync("Staff");
+
+            if (!roleExist)
+            {
+                roleResult = await _roleManager.CreateAsync(new IdentityRole("Staff"));
+            }
+
             var user = new ApplicationUser
             {
                 UserName = model.Email,
@@ -50,6 +61,7 @@ namespace BookCave.Controllers
 
             if(result.Succeeded)
             {
+                //await _userManager.AddToRoleAsync(user, "Staff");
                 await _userManager.AddClaimAsync(user, new Claim("Name", model.Name));
                 await _signInManager.SignInAsync(user, false);
 
@@ -74,8 +86,14 @@ namespace BookCave.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
             if(result.Succeeded)
             {
+                if(User.IsInRole("Staff"))
+                {
+                    return RedirectToAction("Staff");
+                }
+
                 return RedirectToAction("Index", "Home");
             }
             
@@ -181,6 +199,12 @@ namespace BookCave.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var orders = _accountService.GetOrderHistory(userId);
             return View(orders);
+        }
+
+        [Authorize(Roles = "Staff")]
+        public IActionResult Staff()
+        {
+            return View();
         }
 
         public IActionResult AccessDenied()
