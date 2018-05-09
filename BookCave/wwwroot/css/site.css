@@ -1,6 +1,16 @@
-﻿body {
+﻿
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+}
+
+.navbar {
+    background-color: #676767;
+}
+
+.page-footer {
+    background-color: #333433;
+    color: aliceblue;
 }
 
 /* Wrapping element */
@@ -49,6 +59,10 @@
     background-image: none;
 }
 
+#searchbar {
+   margin-top: 10px;
+}
+
 /* QR code generator */
 #qrCode {
     margin: 15px;
@@ -60,4 +74,60 @@
     .carousel-caption {
         display: none;
     }
+}
+
+/* Front page look */
+
+.BookList
+{
+    background-color: #333433;
+    max-width: 300px;
+    height: 400px;
+    margin-top: 50px;
+    
+}
+
+.FrontPageBookList a 
+{
+   color: white;
+   text-decoration: none;
+   font-size: 20px;
+   margin: 20px;
+   padding-left: 15px;
+}
+
+.FrontPageBookList a:hover
+{
+   color: #E2222A;
+   font-size: 24px;
+}
+.FrontPageBookListGenre a 
+{
+   color: white;
+   text-decoration: none;
+   font-size: 20px;
+   margin: 20px;
+   padding-left: 30px;
+
+}
+
+.FrontPageBookListGenre a:hover
+{
+   color: #E2222A;
+   font-size: 24px;
+}
+
+#OurBooks 
+{
+    color: #CBCCCC;
+    text-align: center; 
+    padding-top: 15px;
+}
+#Genre
+{
+    
+    color: white;
+    font-size: 20px;
+    padding-left: 35px;
+    
 }
