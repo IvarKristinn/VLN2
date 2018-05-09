@@ -5,16 +5,29 @@
     var addressCount = @ViewBag.AddressCount;
 }
 
+<div id="all-addresses">
+    @for(var i = 0; i < addressCount; i++)
+    {
+        <span id="Street-@i">@addresses[i].Street</span>
+        <span id="HouseNum-@i">@addresses[i].HouseNum</span>
+        <span id="City-@i">@addresses[i].City</span>
+        <span id="ZipCode-@i">@addresses[i].ZipCode</span>
+        <span id="Country-@i">@addresses[i].Country</span>
+        <br>
+    }
+</div>
+
+
 <form action="" method="POST" name="address">
     <fieldset>
         <legend>Billing Address</legend>
 
         <label for="SavedBillingAddresses">Saved Addresses</label><br>
         <select id="SavedBillingAddresses">
-            <option value="" disabled="disabled">Select an address</option>
+            <option value="" disabled selected>Select an address</option>
             @for(var i = 0; i < addressCount; i++)
             {
-                <option value="i">@addresses[i].Street</option>
+                <option value="@i">@addresses[i].Street</option>
             }
         </select>
 
@@ -23,28 +36,28 @@
         <br><br>
 
         <label asp-for="BillingAddress.Street">Street</label><br>
-        <input type="text" asp-for="BillingAddress.Street" name="billingstreet" value="">
+        <input type="text" asp-for="BillingAddress.Street" name="billingstreet" id="billStreet" value="">
         <br/>
 
         <label asp-for="BillingAddress.HouseNum">House number</label><br>
-        <input type="text" asp-for="BillingAddress.HouseNum" value="">
+        <input type="text" asp-for="BillingAddress.HouseNum" id="billHouseNum" value="">
         <br/>
 
         <label asp-for="BillingAddress.City">City</label><br>
-        <input type="text" asp-for="BillingAddress.City" value="">
+        <input type="text" asp-for="BillingAddress.City" id="billCity" value="">
         <br/>
 
         <label asp-for="BillingAddress.ZipCode">Zip code</label><br>
-        <input type="text" asp-for="BillingAddress.ZipCode" value="">
+        <input type="text" asp-for="BillingAddress.ZipCode" id="billZipCode" value="">
         <br/>
 
         <label asp-for="BillingAddress.Country">Country</label><br>
-        <select asp-for="BillingAddress.Country">
-            <option value="" disabled selected >Select a country</option>
+        <select asp-for="BillingAddress.Country" id="billCountrySelect">
+            <option value="" disabled selected>Select a country</option>
             <option value="Iceland">Iceland</option>
             <option value="United Kingdom">United Kingdom</option>
             <option value="United States">United states</option>
-            <option value="Wakanda">Wakanda</option>
+            <option id="fuck" value="Wakanda">Wakanda</option>
         </select>
         <br/><br>
     </fieldset>
@@ -59,7 +72,7 @@
 
         <label for="SavedShippingAddresses">Saved Addresses</label><br>
         <select id="SavedShippingAddresses">
-            <option value="" disabled="disabled">Select an address</option>
+            <option value="" disabled selected>Select an address</option>
             @for(var i = 0; i < addressCount; i++)
             {
                 <option>@addresses[i].Street</option>
@@ -83,8 +96,8 @@
         <br/>
 
         <label asp-for="ShippingAddress.Country">Country</label><br>
-        <select asp-for="ShippingAddress.Country">
-            <option value="" disabled selected >Select a country</option>
+        <select asp-for="ShippingAddress.Country" id="ShippCountrySelect">
+            <option value="" disabled selected>Select a country</option>
             <option value="Iceland">Iceland</option>
             <option value="United Kingdom">United Kingdom</option>
             <option value="United States">United states</option>
