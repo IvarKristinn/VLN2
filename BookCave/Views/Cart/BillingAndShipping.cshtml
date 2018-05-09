@@ -1,35 +1,41 @@
 @model BookCave.Models.InputModels.BillingAndShippingInputModel
 
 @{
-    var listi = @ViewBag.SavedAddresses;
-    var fjoldi = @ViewBag.AddressCount;
+    var addresses = @ViewBag.SavedAddresses;
+    var addressCount = @ViewBag.AddressCount;
 }
+
 <form action="" method="POST" name="address">
     <fieldset>
         <legend>Billing Address</legend>
 
         <label for="SavedBillingAddresses">Saved Addresses</label><br>
         <select id="SavedBillingAddresses">
-            <option value="" disabled selected >Select an address</option>
-            @for(var i = 0; i < fjoldi; i++)
+            <option value="" disabled="disabled">Select an address</option>
+            @for(var i = 0; i < addressCount; i++)
             {
-                <option>@listi[i].Street</option>
+                <option value="i">@addresses[i].Street</option>
             }
-        </select> <br>
+        </select>
+
+        <br>
+        <button type="button" id="savedBillingGet" class="btn btn-danger">Use address</button>
+        <br><br>
+
         <label asp-for="BillingAddress.Street">Street</label><br>
-        <input type="text" asp-for="BillingAddress.Street" name="billingstreet" placeholder="Street">
+        <input type="text" asp-for="BillingAddress.Street" name="billingstreet" value="">
         <br/>
 
         <label asp-for="BillingAddress.HouseNum">House number</label><br>
-        <input type="text" asp-for="BillingAddress.HouseNum" placeholder="House number">
+        <input type="text" asp-for="BillingAddress.HouseNum" value="">
         <br/>
 
         <label asp-for="BillingAddress.City">City</label><br>
-        <input type="text" asp-for="BillingAddress.City" placeholder="City">
+        <input type="text" asp-for="BillingAddress.City" value="">
         <br/>
 
         <label asp-for="BillingAddress.ZipCode">Zip code</label><br>
-        <input type="text" asp-for="BillingAddress.ZipCode" placeholder="Zip code">
+        <input type="text" asp-for="BillingAddress.ZipCode" value="">
         <br/>
 
         <label asp-for="BillingAddress.Country">Country</label><br>
@@ -42,33 +48,38 @@
         </select>
         <br/><br>
     </fieldset>
-    <input type="checkbox" id="billingtoo" onclick="FillBilling(address)">
+
+
+    <label for="billingChk">Use the same address for shipping address</label>
+    <button type="button" id="billingChk" class="btn btn-default">Yes!</button>
+
+
     <fieldset>
         <legend>Shipping Address</legend>
 
         <label for="SavedShippingAddresses">Saved Addresses</label><br>
         <select id="SavedShippingAddresses">
-            <option value="" disabled selected >Select an address</option>
-            @for(var i = 0; i < fjoldi; i++)
+            <option value="" disabled="disabled">Select an address</option>
+            @for(var i = 0; i < addressCount; i++)
             {
-                <option>@listi[i].Street</option>
+                <option>@addresses[i].Street</option>
             }
         </select> <br>
 
         <label asp-for="ShippingAddress.Street">Street</label><br>
-        <input type="text" asp-for="ShippingAddress.Street" name="shippingstreet" placeholder="Street">
+        <input type="text" asp-for="ShippingAddress.Street" name="shippingstreet" value="">
         <br/>
 
         <label asp-for="ShippingAddress.HouseNum">House number</label><br>
-        <input type="text" asp-for="ShippingAddress.HouseNum" placeholder="House number">
+        <input type="text" asp-for="ShippingAddress.HouseNum" value="">
         <br/>
 
         <label asp-for="ShippingAddress.City">City</label><br>
-        <input type="text" asp-for="ShippingAddress.City" placeholder="City">
+        <input type="text" asp-for="ShippingAddress.City" value="">
         <br/>
 
         <label asp-for="ShippingAddress.ZipCode">Zip code</label><br>
-        <input type="text" asp-for="ShippingAddress.ZipCode" placeholder="Zip code">
+        <input type="text" asp-for="ShippingAddress.ZipCode" value="">
         <br/>
 
         <label asp-for="ShippingAddress.Country">Country</label><br>
@@ -84,6 +95,7 @@
     <a asp-controller="Cart" asp-action="CartView" class="btn btn-primary">Prev</a>
 
     <input type="submit" class="btn btn-primary" value="Next">
+
 </form>
 
 

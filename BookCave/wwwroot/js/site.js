@@ -19,3 +19,9 @@ $('.multi-item-carousel').carousel({
         $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
     }
   });
+
+$('#savedBillingGet').addEventListener("click", function(){
+  alert("haha");
+  //var test = document.getElementById("SavedBillingAddresses").val();
+  //console.log(test);
+});

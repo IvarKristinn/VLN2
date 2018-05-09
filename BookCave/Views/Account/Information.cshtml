@@ -13,67 +13,74 @@
 @{
     var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
 }
+<div class="container" id="account-info-size">
+    <h5>Account Information</h5>
+    <div class="row">
+        <div class="col-md-4" id="account-info1">
+            <a class="btn btn-default" asp-controller="Account" asp-action="History">View History</a>
+            <br><br>
+            <form asp-controller="Account" asp-action="Information" method="POST">
+                <label>Edit name: </label>
+                <input type="text" asp-for="Name" value="@Model.Name" />
+                <br>
 
-<a class="btn btn-default" asp-controller="Account" asp-action="History">View History</a>
+                <label>Link to a picture to set it as your profile picture! </label>
+                <input type="text" asp-for="ProfilePicLink" value="@Model.ProfilePicLink" />
+                <br>
 
-<form asp-controller="Account" asp-action="Information" method="POST">
-    <label>Edit name: </label>
-    <input type="text" asp-for="Name" value="@Model.Name" />
-    <br>
-
-    <label>Link to a picture to set it as your profile picture! </label>
-    <input type="text" asp-for="ProfilePicLink" value="@Model.ProfilePicLink" />
-    <br>
-
-    @if(@Model.ProfilePicLink == null)
-    {
-        <img src="~/images/noprofile.png" alt="Profile Picture" width="150" height="150">
-    }
-    else
-    {
-        <img src="@Model.ProfilePicLink" alt="Profile Picture" width="150" height="150">
-    }
-
-    @if(@Model.FavBook != null)
-    {
-        <div>
-            <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.FavBook.Id">
-                <div class="container">
-                    <img src="@Model.FavBook.ImageLink" class="img-thumbnail" alt="book-thumbnail">
-                    <p>@Model.FavBook.Title</p>
-                    <p>@Model.FavBook.Author</p>
-                    <p>@Model.FavBook.Price</p>
-                    <p>@Model.FavBook.UserRatingAvg</p>
-                </div>
-            </a>
+                @if(@Model.ProfilePicLink == null)
+                {
+                    <img src="~/images/noprofile.png" alt="Profile Picture" width="150" height="150">
+                }
+                else
+                {
+                    <img src="@Model.ProfilePicLink" alt="Profile Picture" width="150" height="150">
+                }
         </div>
+        <div class="col-md-4" id="account-info2">
+            @if(@Model.FavBook != null)
+            {
+                <div>
+                    <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.FavBook.Id">
+                        <div class="container">
+                            <img id="acc-info-img2" src="@Model.FavBook.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+                            <p>@Model.FavBook.Title</p>
+                            <p>@Model.FavBook.Author</p>
+                            <p>@Model.FavBook.Price</p>
+                            <p>@Model.FavBook.UserRatingAvg</p>
+                        </div>
+                    </a>
+                </div>
 
-        <input type="checkbox" value="true" name="removeBook" />
-        <label>Remove this book as your favorite book&#63;</label>
-    }
-    else
-    {
-        <h2>You have no book chosen as favorite</h2>
-    }
-
-    <br>
-    @if(@Model.UserAddresses.Count() != 0)
-    {
-        @foreach(var a in @Model.UserAddresses)
-        {
-            <span>@a.Street, @a.HouseNum, @a.City, @a.ZipCode, @a.Country</span>
-            <a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">Remove address</a>
+                <input type="checkbox" value="true" name="removeBook" />
+                <label>Remove this book as your favorite book&#63;</label>
+            }
+            else
+            {
+                <h2>You have no book chosen as favorite</h2>
+            }
+        </div>
+        <div class="col-md-4" id="account-info3">
+            @if(@Model.UserAddresses.Count() != 0)
+            {
+                @foreach(var a in @Model.UserAddresses)
+                {
+                    <span>@a.Street, @a.HouseNum, @a.City, @a.ZipCode, @a.Country</span>
+                    <a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">Remove address</a>
+                    <br>
+                }
+            }
+            else
+            {
+                <span>No addresses on record.</span>
+            }
             <br>
-        }
-    }
-    else
-    {
-        <span>No addresses on record.</span>
-    }
-    <br><br>
 
-    <a class="btn btn-default" asp-controller="Account" asp-action="Address">Add a new address</a>
-    <br><br>
+            <a class="btn btn-default" asp-controller="Account" asp-action="Address">Add a new address</a>
+            <br><br>
 
-    <button type="submit" class="btn btn-danger">Apply changes</button>
-</form>
+            <button type="submit" class="btn btn-danger">Apply changes</button>
+        </form>
+        </div>
+    </div>
+</div>

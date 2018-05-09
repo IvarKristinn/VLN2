@@ -51,13 +51,14 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var addresses = _accountService.GetUserAddresses(userId);
+
             if(addresses != null) 
             {
                 ViewBag.SavedAddresses = addresses;
                 ViewBag.AddressCount = addresses.Count();
                 return View();
             }
-            //GetUsersSavedAddresses if not null
+
             return View();
         }
 
