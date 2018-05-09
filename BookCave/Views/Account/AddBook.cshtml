@@ -1,0 +1,37 @@
+@model BookCave.Models.InputModels.BookInputModel
+
+<form action="" method="POST">
+    <fieldset>
+        <legend>Insert a book</legend>
+
+        <label asp-for="Title">Title</label><br>
+        <input type="text" asp-for="Title" placeholder="Title"> <br>
+
+        <label asp-for="Author">Author</label><br>
+        <input type="text" asp-for="Author" placeholder="Author"><br>
+
+        <label for="Description">Description</label><br>
+        <textarea name="Description" id="Description" cols="70" rows="10" placeholder="Write a description" maxlength="360"></textarea> <br>
+        
+        <!--- þarf að bootstrappa þetta -->
+        <label asp-for="Genre">Genre</label><br>
+        <select asp-for="Genre">
+            <option value="" disabled selected>Select a genre</option>
+            <option value="Dark Fantasy">Dark Fantasy</option>
+            <option value="Epic Fantasy">Epic Fantasy</option>
+            <option value="Heroic Fantasy">Heroic Fantasy</option>
+            <option value="High Fantasy">High Fantasy</option>
+            <option value="Urban Fantasy">Urban Fantasy</option>
+        </select><br>
+
+        <label asp-for="Price">Price</label><br>
+        <input type="text" asp-for="Price" placeholder="Price"><br>
+
+        <label asp-for="ImageLink">ImageLink</label><br>
+        <input type="text" asp-for="ImageLink" placeholder="ImageLink"> <br>
+
+        <a asp-controller="Account" asp-action="Staff" class="btn btn-primary">Prev</a>
+
+        <input type="submit" class="btn btn-primary" value="Add book to database">
+    </fieldset>
+</form>
