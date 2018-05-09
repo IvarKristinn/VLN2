@@ -82,10 +82,52 @@ body {
 {
     background-color: #333433;
     max-width: 300px;
-    height: 500px;
+    height: 400px;
+    margin-top: 50px;
+    
 }
 
 .FrontPageBookList a 
 {
    color: white;
+   text-decoration: none;
+   font-size: 20px;
+   margin: 20px;
+   padding-left: 15px;
+}
+
+.FrontPageBookList a:hover
+{
+   color: #E2222A;
+   font-size: 24px;
+}
+.FrontPageBookListGenre a 
+{
+   color: white;
+   text-decoration: none;
+   font-size: 20px;
+   margin: 20px;
+   padding-left: 30px;
+
+}
+
+.FrontPageBookListGenre a:hover
+{
+   color: #E2222A;
+   font-size: 24px;
+}
+
+#OurBooks 
+{
+    color: #CBCCCC;
+    text-align: center; 
+    padding-top: 15px;
+}
+#Genre
+{
+    
+    color: white;
+    font-size: 20px;
+    padding-left: 35px;
+    
 }
