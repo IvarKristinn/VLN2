@@ -1,15 +1,16 @@
 @model BookCave.Models.ViewModels.RegisterViewModel
 
+@{
+    ViewData["Title"] = "Register";
+}
+
 <h1>Register</h1>
 <form asp-action="Register" asp-controller="Account" class="form-horizontal">
     <div class="form-group">
         <input type="email" asp-for="Email" class="form-control" placeholder="Enter your email address..." />
     </div>
     <div class="form-group">
-        <input type="text" asp-for="FirstName" class="form-control" placeholder="Enter your first name..." />
-    </div>
-    <div class="form-group">
-        <input type="text" asp-for="LastName" class="form-control" placeholder="Enter your last name..." />
+        <input type="text" asp-for="Name" class="form-control" placeholder="Enter your full name..." />
     </div>
     <div class="form-group">
         <input type="password" asp-for="Password" class="form-control" placeholder="Choose a password..." />

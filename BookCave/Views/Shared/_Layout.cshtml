@@ -21,62 +21,51 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
-                <img src="~/images/HelloLogo.jpg" title="logo" alt="additional logo"style="width:80px;" style="height:80px;" />
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand" id="logo-link">
+                <img src="~/images/HvittGratt.jpg" title="logo" alt="additional logo"style="width:120px;" style="height:120px;"/>
                 </a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">BookCave</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-
                 <ul class="nav navbar-nav navbar-right">
                     <li><a asp-area="" asp-controller="Cart" asp-action="CartView">Cart</a></li>
                 </ul>
 
-                <form asp-controller="Book" asp-action="Search" class="nav navbar-nav" id="searchbar">
-                    <div class ="form-group form-inline">
-                        <input class="form-control" type="text" id="search" name="search" placeholder="Search..">
-                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                <form asp-controller="Book" asp-action="Search" class="nav navbar-nav">
+                    <div class="form-group form-inline" id="searchbar">
+                        <input class="form-control" type="text" id="search" name="search" placeholder="Title, Author or Genre..">
+                        <button class="btn btn-default" type="submit" id="spyglass"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </form>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer class="page-footer font-small pt-4 mt-4">
-            <div class="container-fluid text-center text-md-left">
-                <div class="col-md-6">
-                    <h5 class="text-uppercase">Find us at:</h5>
-                    <br>
-                    <p>Menntavegi 1</p>
-                    <p>101 Reykjavík</p>
-                    <p>Iceland</p>
+    <div class="body-content">
+        <div class="container">@RenderBody()</div>
+        <hr id="pagebreak"/>
+        <div id="footer">
+            <footer class="page-footer font-small pt-4 mt-4">
+                <div class="container-fluid text-center text-md-left">
+                    <div class="col-md-6">
+                        <h5 class="text-uppercase">Find us at:</h5>
+                        <br>
+                        <p>Menntavegi 1</p>
+                        <p>101 Reykjavík</p>
+                        <p>Iceland</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="text-uppercase">Contact us!</h5>
+                        <br>
+                        <p>books&#64;bookcave.com</p>
+                        <p>58-12345</p>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h5 class="text-uppercase">Contact us!</h5>
-                    <br>
-                    <p>books&#64;bookcave.com</p>
-                    <p>58-12345</p>
+                <div class="footer-copyright py-3 text-center">
+                    &copy; 2018-2018, BookCave.com
                 </div>
-            </div>
-            <div class="footer-copyright py-3 text-center">
-                &copy; 2018-2018, BookCave.com
-            </div>
-            <!--<p>&copy; 2018 - BookCave</p>-->
-        </footer>
+                <!--<p>&copy; 2018 - BookCave</p>-->
+            </footer>
+        </div>
     </div>
 
     <environment include="Development">

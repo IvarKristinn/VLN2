@@ -15,13 +15,15 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         private AccountService _accountService;
 
-        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
             _accountService = new AccountService();
         }
 
@@ -39,17 +41,28 @@ namespace BookCave.Controllers
                 return View();
             }
 
+            IdentityResult roleResult;
+
+            var roleExist = await _roleManager.RoleExistsAsync("Staff");
+
+            if (!roleExist)
+            {
+                roleResult = await _roleManager.CreateAsync(new IdentityRole("Staff"));
+            }
+
             var user = new ApplicationUser
             {
                 UserName = model.Email,
-                Email = model.Email
+                Email = model.Email,
+                Name = model.Name
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if(result.Succeeded)
             {
-                await _userManager.AddClaimAsync(user, new Claim("Name", $"{model.FirstName} {model.LastName}"));
+                //await _userManager.AddToRoleAsync(user, "Staff");
+                await _userManager.AddClaimAsync(user, new Claim("Name", model.Name));
                 await _signInManager.SignInAsync(user, false);
 
                 return RedirectToAction("Index", "Home");
@@ -98,7 +111,7 @@ namespace BookCave.Controllers
 
             var userViewModel = new AccountEditViewModel
                                     {
-                                        Name = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value,
+                                        Name = user.Name,
                                         ProfilePicLink = user.ProfilePicLink,
                                         FavBook = _accountService.GetUserFavBook(user.FavBookId),
                                         UserAddresses = _accountService.GetUserAddresses(userId)
@@ -113,11 +126,10 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
+            
             //Name claim change
-            var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name");
-            var newClaim = new Claim("Name", model.Name);
-            await _userManager.RemoveClaimAsync(user, claim);
-            await _userManager.AddClaimAsync(user, newClaim);
+            user.Name = model.Name;
+
             //Profile pic change, if user sends in empty or null
             user.ProfilePicLink = model.ProfilePicLink;
 
@@ -128,9 +140,8 @@ namespace BookCave.Controllers
             }
 
             await _userManager.UpdateAsync(user);
-            await _signInManager.SignOutAsync();
-            
-            return RedirectToAction("Login", "Account");
+
+            return RedirectToAction("Information");
         }
 
         [Authorize]
@@ -169,11 +180,24 @@ namespace BookCave.Controllers
         }
 
         [Authorize]
+        public IActionResult RemoveAddress(int addressId)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _accountService.RemoveUserAddress(addressId, userId);
+            return RedirectToAction("Information");
+        }
+
+        [Authorize]
         public IActionResult History()
         {
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var orders = _accountService.GetOrderHistory(userId);
-            //return View(orders);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var orders = _accountService.GetOrderHistory(userId);
+            return View(orders);
+        }
+
+        [Authorize(Roles = "Staff")]
+        public IActionResult Staff()
+        {
             return View();
         }
 

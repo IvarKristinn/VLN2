@@ -81,17 +81,22 @@ namespace BookCave.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Receipt()
+        public IActionResult OrderConfirmation()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var addresses = _cartService.GetTempAddressesById(userId);
+
+            if(addresses == null)
+            {
+                return RedirectToAction("Error");
+            }
 
             _cartService.RemoveAddressesFromTemp(userId);
 
             var order = new Order 
                         {
                             UserId = userId,
-                            OrderItems = _cartService.GetCartItems(userId),
+                            ItemGroupingId = _cartService.GetCartItemGroupingId(userId),
                             Billing = new Address
                             {
                                 UserId = userId,
@@ -113,9 +118,9 @@ namespace BookCave.Controllers
                         };
             
             _cartService.AddOrderToHistories(order);
-            _cartService.RemoveAllCartItems(userId);
+            //_cartService.RemoveAllCartItems(userId);
 
-            return View();
+            return View(addresses);
         }
     }
 }

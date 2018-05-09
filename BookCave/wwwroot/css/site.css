@@ -1,13 +1,48 @@
-﻿body {
-    padding-top: 50px;
+﻿
+body {
+    padding-top: 80px;
+    padding-bottom: 5px;
+}
+
+.navbar {
+    background-color: #676767;
+    padding-top: 3px;
+}
+
+.navbar-right {
+    margin-top: 4px;
+}
+
+#search {
+    margin-right: 0px;
+    width: 400px;
+}
+
+#searchbar {
+    margin-top: 12px;
+}
+
+#logo-link {
+    padding-top: 2px;
+    padding-right: 12px;
+}
+
+#footer {
+    background-color: #333433;
+    padding-top: 10px;
+    color: aliceblue;
     padding-bottom: 20px;
+}
+#pagebreak {
+    margin-bottom: 8px;
+    background-color: #CBCCCC;
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /* Carousel */
@@ -49,6 +84,7 @@
     background-image: none;
 }
 
+
 /* QR code generator */
 #qrCode {
     margin: 15px;
@@ -60,4 +96,69 @@
     .carousel-caption {
         display: none;
     }
+}
+
+/* Front page look */
+
+.BookList
+{
+    background-color: #333433;
+    max-width: 300px;
+    height: 400px;
+    margin-top: 50px;
+    
+}
+
+.FrontPageBookList a 
+{
+   color: white;
+   text-decoration: none;
+   font-size: 20px;
+   margin: 20px;
+   padding-left: 15px;
+}
+
+.FrontPageBookList a:hover
+{
+   color: #E2222A;
+   font-size: 24px;
+}
+.FrontPageBookListGenre a 
+{
+   color: white;
+   text-decoration: none;
+   font-size: 20px;
+   margin: 20px;
+   padding-left: 30px;
+
+}
+
+.FrontPageBookListGenre a:hover
+{
+   color: #E2222A;
+   font-size: 24px;
+}
+
+#OurBooks 
+{
+    color: #CBCCCC;
+    text-align: center; 
+    padding-top: 15px;
+}
+#Genre
+{
+    
+    color: white;
+    font-size: 20px;
+    padding-left: 35px;
+    
+}
+
+/* Thumbnail*/
+
+.ThumbNailIndex
+{
+   border-style: solid;
+   width: 30%;
+   float: left;
 }

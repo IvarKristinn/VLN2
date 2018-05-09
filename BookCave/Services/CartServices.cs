@@ -30,6 +30,18 @@ namespace BookCave.Services
             return cartItems;
         }
 
+        public List<CartItem> GetCartItemsRaw(string userId)
+        {
+            var cartItemsRaw = _dbRepo.GetCartItemsRaw(userId);
+            return cartItemsRaw;
+        }
+
+        public int GetCartItemGroupingId(string  userId)
+        {
+            var cartItemGroupingId = _dbRepo.GetCartItemGroupingId(userId);
+            return cartItemGroupingId;
+        }
+
         public void RemoveAllCartItems(string userId)
         {
             _dbRepo.RemoveAllCartItems(userId);
