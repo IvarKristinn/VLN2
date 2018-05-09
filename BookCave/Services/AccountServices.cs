@@ -25,6 +25,11 @@ namespace BookCave.Services
             _dbRepo.AddNewAddress(newAddress, userId);
         }
 
+        public void RemoveUserAddress(int addressId, string userId)
+        {
+            _dbRepo.RemoveUserAddress(addressId, userId);
+        }
+
         public List<AddressViewModel> GetUserAddresses(string userId)
         {
             var addresses = _dbRepo.GetUserAddresses(userId);

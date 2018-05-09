@@ -310,12 +310,23 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public void RemoveUserAddress(int addressId, string userId)
+        {
+            var address = (from a in _db.Addresses
+                           where a.Id == addressId
+                           select a).FirstOrDefault();
+            
+            _db.Addresses.Remove(address);
+            _db.SaveChanges();
+        }
+
         public List<AddressViewModel> GetUserAddresses(string userId)
         {
             var addresses = (from a in _db.Addresses
                              where a.UserId == userId
                              select new AddressViewModel
                              {
+                                 Id = a.Id,
                                  Street = a.Street,
                                  HouseNum = a.HouseNum,
                                  City = a.City,

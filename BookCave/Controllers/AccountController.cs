@@ -42,14 +42,15 @@ namespace BookCave.Controllers
             var user = new ApplicationUser
             {
                 UserName = model.Email,
-                Email = model.Email
+                Email = model.Email,
+                Name = model.Name
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if(result.Succeeded)
             {
-                await _userManager.AddClaimAsync(user, new Claim("Name", $"{model.FirstName} {model.LastName}"));
+                await _userManager.AddClaimAsync(user, new Claim("Name", model.Name));
                 await _signInManager.SignInAsync(user, false);
 
                 return RedirectToAction("Index", "Home");
@@ -98,7 +99,7 @@ namespace BookCave.Controllers
 
             var userViewModel = new AccountEditViewModel
                                     {
-                                        Name = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value,
+                                        Name = user.Name,
                                         ProfilePicLink = user.ProfilePicLink,
                                         FavBook = _accountService.GetUserFavBook(user.FavBookId),
                                         UserAddresses = _accountService.GetUserAddresses(userId)
@@ -113,11 +114,10 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
+            
             //Name claim change
-            var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name");
-            var newClaim = new Claim("Name", model.Name);
-            await _userManager.RemoveClaimAsync(user, claim);
-            await _userManager.AddClaimAsync(user, newClaim);
+            user.Name = model.Name;
+
             //Profile pic change, if user sends in empty or null
             user.ProfilePicLink = model.ProfilePicLink;
 
@@ -128,9 +128,8 @@ namespace BookCave.Controllers
             }
 
             await _userManager.UpdateAsync(user);
-            await _signInManager.SignOutAsync();
-            
-            return RedirectToAction("Login", "Account");
+
+            return RedirectToAction("Information");
         }
 
         [Authorize]
@@ -165,6 +164,14 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             _accountService.AddNewAddress(newAddress, userId);
+            return RedirectToAction("Information");
+        }
+
+        [Authorize]
+        public IActionResult RemoveAddress(int addressId)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _accountService.RemoveUserAddress(addressId, userId);
             return RedirectToAction("Information");
         }
 

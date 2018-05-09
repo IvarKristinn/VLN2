@@ -14,7 +14,7 @@
 
 <form asp-controller="Account" asp-action="Information" method="POST">
     <label>Edit name: </label>
-    <input type="text" asp-for="Name" value="@claim" />
+    <input type="text" asp-for="Name" value="@Model.Name" />
     <br>
 
     <label>Link to a picture to set it as your profile picture! </label>
@@ -57,7 +57,9 @@
     {
         @foreach(var a in @Model.UserAddresses)
         {
-            <span>@a.Street, @a.HouseNum, @a.City, @a.ZipCode, @a.Country</span><br>
+            <span>@a.Street, @a.HouseNum, @a.City, @a.ZipCode, @a.Country</span>
+            <a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">Remove address</a>
+            <br>
         }
     }
     else
