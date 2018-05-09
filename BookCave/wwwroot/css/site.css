@@ -153,3 +153,12 @@ body {
     padding-left: 35px;
     
 }
+
+/* Thumbnail*/
+
+.ThumbNailIndex
+{
+   border-style: solid;
+   width: 30%;
+   float: left;
+}

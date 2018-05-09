@@ -103,6 +103,7 @@
         </div>
     </div>      
 </div>
+</div>
 
 
 <div class="BookList">
@@ -134,17 +135,23 @@
             <a asp-controller="Book" asp-action="TopRated">Highest rated books</a>
         </div><br>
 </div>
+
+<div class="row">
     @foreach(var book in @Model.NewestBooks)
     {
-        <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
-            <div class="container">
-                <img src="@book.ImageLink" class="img-thumbnail" alt="book-thumbnail">
-                <p>@book.Title </p>
-                <p>@book.Author</p>
-                <p>@book.Price</p>
-                <p>@book.UserRatingAvg</p>
+            <div class="col-sm-5 col-md-4 col-lg-3">
+                <div class="thumbnail">
+                    <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
+                            <img src="@book.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+                            <p>Title: @book.Title </p>
+                            <p>Author: @book.Author</p>
+                            <p>Price: @book.Price</p>
+                            <p>User Rating: @book.UserRatingAvg</p>
+                    </a>
+                </div>
             </div>
-        </a>
     }
 </div>
+
+
 
