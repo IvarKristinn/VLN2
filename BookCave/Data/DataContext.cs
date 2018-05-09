@@ -9,6 +9,7 @@ namespace BookCave.Data
         public DbSet<CartItem> ShoppingCartItems { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<TempAddress> TempAddresses { get; set; }
         public DbSet<Order> Orders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
