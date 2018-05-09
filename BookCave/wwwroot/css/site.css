@@ -155,10 +155,59 @@ body {
 }
 
 /* Thumbnail*/
-
+/*???*/
 .ThumbNailIndex
 {
    border-style: solid;
    width: 30%;
    float: left;
+}
+
+.background-two
+{
+    background-color:  
+}
+
+.thumbnail 
+{
+    height: 350px;
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: #555657; 
+}
+
+.thumbnail a
+{
+    text-decoration: none;
+    color: white;
+}
+.thumbnail a:hover, thumb-title:hover
+{
+    text-decoration: none;
+    color: red;
+}
+
+
+.img-thumb
+{
+    max-height: 200px;
+    max-width: 200px;
+}
+#thumb-title
+{
+    text-align: center;
+    font-size: 16px;
+}
+/* Login Page*/
+#form-login-size 
+{
+    margin-bottom:230px;
+    height: 240px;
+}
+
+/* Register Page*/
+#form-register-size
+{
+    margin-bottom:230px;
+    height: 240px;
 }
