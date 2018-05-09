@@ -183,20 +183,52 @@ namespace BookCave.Repositories
                                  Price = b.Price,
                                  Quantity = c.Quantity
                              }).ToList();
+
             return cartItems;
+        }
+
+        public List<CartItem> GetCartItemsRaw(string userId)
+        {
+            //broken
+            var cartItemRaw = (from c in _db.ShoppingCartItems
+                               join b in _db.Books on c.BookId equals b.Id
+                               where c.CartId == userId
+                               select c).ToList();
+
+            return cartItemRaw;
         }
 
         public void AddBookToCart(int bookId, string userId, int quantity)
         {
+            var groupingId = (from c in _db.ShoppingCartItems
+                              where c.CartId == userId
+                              select c.GroupingId).FirstOrDefault();
+            
+            if(groupingId == 0)
+            {
+                groupingId = 1;
+            }
+
             var cartItemAdd = new CartItem 
             {
                 CartId = userId,
+                GroupingId = groupingId,
                 Quantity = quantity,
                 BookId = bookId
             };
+
             _db.ShoppingCartItems.Add(cartItemAdd);
 
             _db.SaveChanges();
+        }
+
+        public int GetCartItemGroupingId(string  userId)
+        {
+            var cartItemGroupingId = (from c in _db.ShoppingCartItems
+                                      where c.CartId == userId
+                                      orderby c.GroupingId descending
+                                      select c.GroupingId).FirstOrDefault();
+            return cartItemGroupingId;
         }
 
         public void RemoveBookFromCart(int bookId, string userId)
@@ -278,12 +310,23 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public void RemoveUserAddress(int addressId, string userId)
+        {
+            var address = (from a in _db.Addresses
+                           where a.Id == addressId
+                           select a).FirstOrDefault();
+            
+            _db.Addresses.Remove(address);
+            _db.SaveChanges();
+        }
+
         public List<AddressViewModel> GetUserAddresses(string userId)
         {
             var addresses = (from a in _db.Addresses
                              where a.UserId == userId
                              select new AddressViewModel
                              {
+                                 Id = a.Id,
                                  Street = a.Street,
                                  HouseNum = a.HouseNum,
                                  City = a.City,
@@ -326,28 +369,34 @@ namespace BookCave.Repositories
                              where t.UserId == userId
                              orderby t.Id descending
                              select t).ToList();
-
-            var viewModel = new BillingAndShippingViewModel 
-                            {
-                                BillingAddress = new AddressViewModel 
-                                                 {
-                                                     Street = addresses[1].Street,
-                                                     HouseNum = addresses[1].HouseNum,
-                                                     City = addresses[1].City,
-                                                     Country  = addresses[1].Country,
-                                                     ZipCode = addresses[1].ZipCode
-                                                 },
-                                ShippingAddress = new AddressViewModel 
-                                                 {
-                                                     Street = addresses[0].Street,
-                                                     HouseNum = addresses[0].HouseNum,
-                                                     City = addresses[0].City,
-                                                     Country  = addresses[0].Country,
-                                                     ZipCode = addresses[0].ZipCode
-                                                 }
-                            };
-
-            return viewModel;
+            
+            if(addresses.Count() == 2)
+            {
+                var viewModel = new BillingAndShippingViewModel 
+                                {
+                                    BillingAddress = new AddressViewModel 
+                                                    {
+                                                        Street = addresses[1].Street,
+                                                        HouseNum = addresses[1].HouseNum,
+                                                        City = addresses[1].City,
+                                                        Country  = addresses[1].Country,
+                                                        ZipCode = addresses[1].ZipCode
+                                                    },
+                                    ShippingAddress = new AddressViewModel 
+                                                    {
+                                                        Street = addresses[0].Street,
+                                                        HouseNum = addresses[0].HouseNum,
+                                                        City = addresses[0].City,
+                                                        Country  = addresses[0].Country,
+                                                        ZipCode = addresses[0].ZipCode
+                                                    }
+                                };
+                return viewModel;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void RemoveAddressesFromTemp(string userId)
@@ -375,7 +424,18 @@ namespace BookCave.Repositories
                           orderby o.Id descending
                           select new OrderViewModel
                           {
-                              OrderItems = o.OrderItems,
+                              OrderItems = (from c in _db.ShoppingCartItems
+                                            join b in _db.Books on c.BookId equals b.Id
+                                            where c.GroupingId == o.ItemGroupingId
+                                            select new CartItemsViewModel
+                                                       {
+                                                           Id = c.BookId,
+                                                           Title = b.Title,
+                                                           Author = b.Author,
+                                                           ImageLink = b.ImageLink,
+                                                           Price = b.Price,
+                                                           Quantity = c.Quantity
+                                                       }).ToList(),
                               Billing = o.Billing,
                               Shipping = o.Shipping
                           }).ToList();

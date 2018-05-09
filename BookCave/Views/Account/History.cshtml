@@ -1,6 +1,9 @@
 @model List<BookCave.Models.ViewModels.OrderViewModel>
 
-@foreach(var o in Model)
+@foreach (var order in @Model)
 {
-    <span>@o.OrderItems.Title</span><br>
+    @foreach (var book in order.OrderItems)
+    {
+        <h3>@book.Title</h3>
+    }
 }
