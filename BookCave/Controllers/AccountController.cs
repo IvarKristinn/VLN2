@@ -86,8 +86,14 @@ namespace BookCave.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
             if(result.Succeeded)
             {
+                if(User.IsInRole("Staff"))
+                {
+                    return RedirectToAction("Staff");
+                }
+
                 return RedirectToAction("Index", "Home");
             }
             
