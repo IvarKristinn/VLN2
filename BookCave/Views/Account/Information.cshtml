@@ -23,21 +23,38 @@
                 <label>Edit name</label> <br>
                 <input type="text" asp-for="Name" value="@Model.Name" class="form-control"/>
                 <br>
-                <h5 class="account-info-btext">Your Address/es</h5>
-            @if(@Model.UserAddresses.Count() != 0)
-            {
-                @foreach(var a in @Model.UserAddresses)
-                {
-                    <span>@a.Street, @a.HouseNum, @a.City, @a.ZipCode, @a.Country</span>
-                    <a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">X</a>
-                    <br>
-                }
-            }
-            else
-            {
-                <span>No addresses on record.</span>
-            }
-            <br>
+                    <h5 class="account-info-btext">Your Address/es</h5>
+                    <div class="container" id="acc-info-add-table">
+                        @if(@Model.UserAddresses.Count() != 0)
+                        {
+                            @foreach(var a in @Model.UserAddresses)
+                            {
+                                <table id="testtableacc">
+                                        <tr>
+                                            <th scope="row" class="AccTable">Street</th>
+                                            <th scope="row" class="AccTable th-right">Nr</th>
+                                            <th scope="row" class="AccTable th-right">City</th>
+                                            <th scope="row" class="AccTable th-right">Zip</th>
+                                            <th scope="row" class="AccTable th-right">Country</th>
+                                            <th scope="row" class="AccTable th-right">Remove</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="AccData">@a.Street</td>
+                                            <td class="AccData th-right">@a.HouseNum</td>
+                                            <td class="AccData th-right">@a.City</td>
+                                            <td class="AccData th-right">@a.ZipCode</td>
+                                            <td class="AccData th-right">@a.Country</td>
+                                            <td class="AccData th-right"><a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">X</a></td>
+                                        </tr>
+                                </table>
+                            }
+                        }
+                        else
+                        {
+                            <span>No addresses on record.</span>
+                        }
+                    </div>
+                <br><br>
             <a class="btn btn-default" asp-controller="Account" asp-action="Address">Add an address</a>
         </div>
         <div class="col-sm-5 col-md-4 col-lg-3" id="account-info2">
@@ -53,7 +70,6 @@
                         </div>
                     </a>
                 </div>
-
                 <input type="checkbox" value="true" name="removeBook" />
                 <label>Remove this book as your favorite book&#63;</label>
             }
@@ -76,8 +92,8 @@
                 <label>Link to a picture to set it as your profile picture</label>
                 <input type="text" asp-for="ProfilePicLink" value="@Model.ProfilePicLink" class="form-control" />
                 <br><br>
-            <button type="submit" class="btn btn-danger">Accept Changes</button>
-        </form>
+                <button type="submit" class="btn btn-danger">Accept Changes</button>
+            </form>
         </div>
     </div>
 </div>

@@ -287,6 +287,28 @@ body {
     font-weight: bold;
 }
 
+#acc-info-add-table {
+    width: 330px;
+    float: left;
+}
+
+#testtableacc {
+    width: 100%;
+}
+
+.th-right {
+    text-align: right;
+}
+
+.AccTable {
+    font-size: 12px;
+}
+
+.AccData {
+    font-size: 10px;
+
+}
+
 /* Book details*/
 #row1 {
     padding-top: 50px;
