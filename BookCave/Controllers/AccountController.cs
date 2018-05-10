@@ -237,7 +237,7 @@ namespace BookCave.Controllers
                     ImageLink = newBook.ImageLink
                 };
                 _accountService.AddNewBook(book);
-                return View("Staff");
+                return View("BookAdded");
             }
             return View();
         }
