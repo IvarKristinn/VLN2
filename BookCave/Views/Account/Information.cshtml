@@ -43,12 +43,13 @@
         <div class="col-sm-5 col-md-4 col-lg-3" id="account-info2">
             @if(@Model.FavBook != null)
             {
+                <h5 class="account-info-btext">Your Favorite book</h5>
                 <div>
                     <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.FavBook.Id">
                         <div class="container">
-                            <img id="acc-info-img2" src="@Model.FavBook.ImageLink" class="img-thumbnail" alt="book-thumbnail">
-                            <p>@Model.FavBook.Title</p>
-                            <p>@Model.FavBook.Author</p>
+                            <img id="acc-info-img2" src="@Model.FavBook.ImageLink" alt="book-thumbnail">
+                            <p>Title: @Model.FavBook.Title</p>
+                            <p>Author: @Model.FavBook.Author</p>
                         </div>
                     </a>
                 </div>
@@ -58,11 +59,11 @@
             }
             else
             {
-                <h2>You have no book chosen as favorite</h2>
+                <h5 class="account-info-btext">You have no book chosen as favorite</h5>
             }
         </div>
         <div class="col-sm-5 col-md-4 col-lg-3" id="account-info3">
-                <br>
+            <h5 class="account-info-btext">Your Profile Picture</h5>
                 @if(@Model.ProfilePicLink == null)
                 {
                     <img src="~/images/noprofile.png" alt="Profile Picture" width="150" height="150">
