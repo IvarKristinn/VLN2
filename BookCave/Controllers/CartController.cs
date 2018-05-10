@@ -78,7 +78,6 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var addresses = _cartService.GetTempAddressesById(userId);
-
             return View(addresses);
         }
         public IActionResult Error()
