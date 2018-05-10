@@ -83,7 +83,7 @@ namespace BookCave.Repositories
                             Price = b.Price,
                             ImageLink = b.ImageLink,
                             UserRatingAvg = b.UserRatingAvg
-                         }).Take(10).ToList();
+                         }).Take(12).ToList();
             return books;
         }
 
