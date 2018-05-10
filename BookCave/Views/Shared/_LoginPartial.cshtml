@@ -5,7 +5,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
+    var name = User.Identity.Name;
 }
 
 @if(SignInManager.IsSignedIn(User))
@@ -22,7 +22,7 @@
         <form asp-action="Information" asp-controller="Account" method="GET">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <button class="btn btn-link navbar-btn navbar-link">@claim</button>
+                    <button class="btn btn-link navbar-btn navbar-link">@name</button>
                 </li>
             </ul>
         </form>
