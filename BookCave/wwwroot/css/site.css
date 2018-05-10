@@ -14,7 +14,12 @@ body {
     margin-top: 4px;
 }
 
-.navbar-right a:hover {
+#navlinks a:hover, #cartlink:hover {
+    color: #E2222A;
+}
+
+#logged-in-links button:hover {
+    text-decoration: none;
     color: #E2222A;
 }
 
