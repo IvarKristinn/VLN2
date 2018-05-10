@@ -14,6 +14,7 @@ body {
     margin-top: 4px;
 }
 
+
 #navlinks a:hover, #cartlink:hover {
     color: #E2222A;
 }
@@ -265,4 +266,16 @@ body {
 
 #account-info3 {
     width: 350px;
+}
+
+/* Book details*/
+#row1 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#book-description {
+    padding-top: 20px;
+    width: 600px;
+    font-size: 16px;
 }
