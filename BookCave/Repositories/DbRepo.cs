@@ -218,8 +218,9 @@ namespace BookCave.Repositories
 
         public void AddBookToCart(int bookId, string userId, int quantity)
         {
-            var groupingId = (from c in _db.ShoppingCartItems
+            var groupingId = (from c in _db.OldCartItems
                               where c.CartId == userId
+                              orderby c.GroupingId descending
                               select c.GroupingId).FirstOrDefault();
             
             if(groupingId == 0)
@@ -242,10 +243,11 @@ namespace BookCave.Repositories
 
         public int GetCartItemGroupingId(string  userId)
         {
-            var cartItemGroupingId = (from c in _db.ShoppingCartItems
+            var cartItemGroupingId = (from c in _db.OldCartItems
                                       where c.CartId == userId
                                       orderby c.GroupingId descending
                                       select c.GroupingId).FirstOrDefault();
+            cartItemGroupingId++;
             return cartItemGroupingId;
         }
 
@@ -260,7 +262,7 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
-        public void RemoveAllCartItems(string userId)
+        public void RemoveAllCurrentCartItems(string userId)
         {
             var allUserCartItems = (from c in _db.ShoppingCartItems
                                     where c.CartId == userId
@@ -269,6 +271,15 @@ namespace BookCave.Repositories
             foreach(var item in allUserCartItems)
             {
                 _db.ShoppingCartItems.Remove(item);
+            }
+            _db.SaveChanges();
+        }
+
+        public void SaveOldCartItems(List<OldCartItem> oldCartItems)
+        {
+            foreach(var item in oldCartItems)
+            {
+                _db.OldCartItems.Add(item);
             }
             _db.SaveChanges();
         }
@@ -442,7 +453,7 @@ namespace BookCave.Repositories
                           orderby o.Id descending
                           select new OrderViewModel
                           {
-                              OrderItems = (from c in _db.ShoppingCartItems
+                              OrderItems = (from c in _db.OldCartItems
                                             join b in _db.Books on c.BookId equals b.Id
                                             where c.GroupingId == o.ItemGroupingId
                                             select new CartItemsViewModel

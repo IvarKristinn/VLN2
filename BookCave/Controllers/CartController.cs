@@ -25,7 +25,6 @@ namespace BookCave.Controllers
             _accountService = new AccountService();
         }
 
-
         public IActionResult CartView()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -119,7 +118,12 @@ namespace BookCave.Controllers
                         };
             
             _cartService.AddOrderToHistories(order);
-            //_cartService.RemoveAllCartItems(userId);
+            
+            var currCartItems = _cartService.GetCartItemsRaw(userId);
+
+            _cartService.SaveOldCartItems(currCartItems);
+
+            _cartService.RemoveAllCurrentCartItems(userId);
 
             return View(addresses);
         }
