@@ -23,16 +23,17 @@ namespace BookCave.Repositories
         public List<BookThumbnailViewModel> GetBooksByTitle()
         {
             var books = (from b in _db.Books
-                        orderby b.Title
+                         orderby b.Title
                          select new BookThumbnailViewModel
-                        {
+                         {
                             Id = b.Id,
                             Title = b.Title,
                             Author = b.Author,
                             Price = b.Price,
                             ImageLink = b.ImageLink,
                             UserRatingAvg = b.UserRatingAvg
-                        }).ToList();
+                         }).ToList();
+
             return books;
         }
 
@@ -55,6 +56,7 @@ namespace BookCave.Repositories
                                         where r.BookId == id
                                         select r.UserReview).ToList()
                         }).SingleOrDefault();
+
             return book;
         }
 
@@ -71,7 +73,7 @@ namespace BookCave.Repositories
                             ImageLink = b.ImageLink,
                             UserRatingAvg = b.UserRatingAvg
                         }).FirstOrDefault();
-                        
+
             return book;
         }
 
@@ -88,6 +90,7 @@ namespace BookCave.Repositories
                             ImageLink = b.ImageLink,
                             UserRatingAvg = b.UserRatingAvg
                          }).Take(12).ToList();
+
             return books;
         }
 
@@ -104,55 +107,59 @@ namespace BookCave.Repositories
                                 ImageLink = b.ImageLink,
                                 UserRatingAvg = b.UserRatingAvg
                             }).Take(25).ToList();
-                            return topBooks;
+
+            return topBooks;
         }
         public List<BookThumbnailViewModel> GetTopTwelveBooks()
         {
             var topTwelveBooks = (from b in _db.Books
-                            orderby b.UserRatingAvg descending
-                            select new BookThumbnailViewModel
-                            {
-                                Id = b.Id,
-                                Title = b.Title,
-                                Author = b.Author,
-                                Price = b.Price,
-                                ImageLink = b.ImageLink,
-                                UserRatingAvg = b.UserRatingAvg
-                            }).Take(12).ToList();
-                            return topTwelveBooks;
+                                  orderby b.UserRatingAvg descending
+                                  select new BookThumbnailViewModel
+                                  {
+                                      Id = b.Id,
+                                      Title = b.Title,
+                                      Author = b.Author,
+                                      Price = b.Price,
+                                      ImageLink = b.ImageLink,
+                                      UserRatingAvg = b.UserRatingAvg
+                                  }).Take(12).ToList();
+
+            return topTwelveBooks;
         }
 
         public List<BookThumbnailViewModel> GetByGenre(string genre)
         {
             var bookByGenre = (from b in _db.Books
-                                    where b.Genre == genre
-                                    select new BookThumbnailViewModel
-                                    {
-                                       Id = b.Id,
-                                        Title = b.Title,
-                                        Author = b.Author,
-                                        ImageLink = b.ImageLink,
-                                        Price = b.Price,
-                                        UserRatingAvg = b.UserRatingAvg
-                                    }).ToList();    
-             return bookByGenre;                          
+                               where b.Genre == genre
+                               select new BookThumbnailViewModel
+                               {
+                                    Id = b.Id,
+                                    Title = b.Title,
+                                    Author = b.Author,
+                                    ImageLink = b.ImageLink,
+                                    Price = b.Price,
+                                    UserRatingAvg = b.UserRatingAvg
+                               }).ToList();
+
+             return bookByGenre;
         }
 
         public List<BookThumbnailViewModel> GetSearchString(string search)
         {
                 var searchBooks = (from b in _db.Books
                                   where (b.Title.ToLower().Contains(search.ToLower())
-                                        || b.Author.ToLower().Contains(search.ToLower())
-                                        || b.Genre.ToLower().Contains(search.ToLower()))
+                                      || b.Author.ToLower().Contains(search.ToLower())
+                                      || b.Genre.ToLower().Contains(search.ToLower()))
                                   select new BookThumbnailViewModel
-                                    {
-                                        Id = b.Id,
-                                        Title = b.Title,
-                                        Author = b.Author,
-                                        ImageLink = b.ImageLink,
-                                        Price = b.Price,
-                                        UserRatingAvg = b.UserRatingAvg
-                            }).ToList();
+                                  {
+                                    Id = b.Id,
+                                    Title = b.Title,
+                                    Author = b.Author,
+                                    ImageLink = b.ImageLink,
+                                    Price = b.Price,
+                                    UserRatingAvg = b.UserRatingAvg
+                                  }).ToList();
+
             return searchBooks;
         }
 
@@ -163,31 +170,32 @@ namespace BookCave.Repositories
                                         || b.Author.ToLower().Contains(search.ToLower())
                                         || b.Genre.ToLower().Contains(search.ToLower()))
                                   select new BookDetailsViewModel
-                                    {
-                                        Id = b.Id,
-                                        Title = b.Title,
-                                        Author = b.Author,
-                                        ImageLink = b.ImageLink,
-                                        Price = b.Price,
-                                        UserRatingAvg = b.UserRatingAvg
-                            }).ToList();
+                                  {
+                                    Id = b.Id,
+                                    Title = b.Title,
+                                    Author = b.Author,
+                                    ImageLink = b.ImageLink,
+                                    Price = b.Price,
+                                    UserRatingAvg = b.UserRatingAvg
+                                  }).ToList();
+
             return searchBooks;
         }
 
         public List<BookThumbnailViewModel> GetAffordableBooks()
         {
             var affordableBooks  = (from b in _db.Books
-                            orderby b.Price ascending
-                            select new BookThumbnailViewModel
-                            {
-                            Id = b.Id,
-                            Title = b.Title,
-                            Author = b.Author,
-                            Price = b.Price,
-                            ImageLink = b.ImageLink,
-                            UserRatingAvg = b.UserRatingAvg
+                                    orderby b.Price ascending
+                                    select new BookThumbnailViewModel
+                                    {
+                                        Id = b.Id,
+                                        Title = b.Title,
+                                        Author = b.Author,
+                                        Price = b.Price,
+                                        ImageLink = b.ImageLink,
+                                        UserRatingAvg = b.UserRatingAvg
+                                    }).Take(10).ToList();
 
-                            }).Take(10).ToList();
                      return affordableBooks;
         }
 
@@ -197,21 +205,26 @@ namespace BookCave.Repositories
                         where b.Id == bookId
                         select b).SingleOrDefault();
 
-            if(book.NumberOfUserRating != 0)
+            if(book != null)
             {
-                book.UserRatingAvg = ((book.UserRatingAvg * book.NumberOfUserRating) + rating) / (book.NumberOfUserRating + 1);
-                book.NumberOfUserRating = book.NumberOfUserRating + 1;
-            }
-            else
-            {
-                book.UserRatingAvg = rating;
-                book.NumberOfUserRating++;
+                if(book.NumberOfUserRating != 0)
+                {
+                    book.UserRatingAvg = ((book.UserRatingAvg * book.NumberOfUserRating) + rating) / (book.NumberOfUserRating + 1);
+                    book.NumberOfUserRating = book.NumberOfUserRating + 1;
+                }
+                else
+                {
+                    book.UserRatingAvg = rating;
+                    book.NumberOfUserRating++;
+                }
+
+                _db.Books.Update(book);
+                _db.SaveChanges();
+
+                return true;
             }
 
-            _db.Books.Update(book);
-            _db.SaveChanges();
-
-            return true;
+            return false;
         }
 
         public bool AddReview(string userId, int bookId, string review)
@@ -224,7 +237,6 @@ namespace BookCave.Repositories
             };
 
             _db.Comments.Add(comment);
-
             _db.SaveChanges();
 
             return true;
@@ -256,12 +268,12 @@ namespace BookCave.Repositories
                              where c.CartId == userId
                              select new CartItemsViewModel
                              {
-                                 Id = b.Id,
-                                 Title = b.Title,
-                                 Author = b.Author,
-                                 ImageLink = b.ImageLink,
-                                 Price = b.Price,
-                                 Quantity = c.Quantity
+                                Id = b.Id,
+                                Title = b.Title,
+                                Author = b.Author,
+                                ImageLink = b.ImageLink,
+                                Price = b.Price,
+                                Quantity = c.Quantity
                              }).ToList();
 
             return cartItems;
@@ -283,7 +295,8 @@ namespace BookCave.Repositories
                               where c.CartId == userId
                               orderby c.GroupingId descending
                               select c.GroupingId).FirstOrDefault();
-            
+
+            //I just wanted grouping Ids to be 1 to begin with
             if(groupingId == 0)
             {
                 groupingId = 1;
@@ -298,7 +311,6 @@ namespace BookCave.Repositories
             };
 
             _db.ShoppingCartItems.Add(cartItemAdd);
-
             _db.SaveChanges();
         }
 
@@ -308,16 +320,18 @@ namespace BookCave.Repositories
                                       where c.CartId == userId
                                       orderby c.GroupingId descending
                                       select c.GroupingId).FirstOrDefault();
+
             cartItemGroupingId++;
+
             return cartItemGroupingId;
         }
 
         public void RemoveBookFromCart(int bookId, string userId)
         {
             var cartItemRem = (from c in _db.ShoppingCartItems
-                                where c.CartId == userId
-                                && c.BookId == bookId
-                                select c).FirstOrDefault();
+                               where c.CartId == userId
+                               && c.BookId == bookId
+                               select c).FirstOrDefault();
 
             _db.ShoppingCartItems.Remove(cartItemRem);
             _db.SaveChanges();
@@ -352,14 +366,14 @@ namespace BookCave.Repositories
         public void AddNewAddress(AddressInputModel newAddress, string userId)
         {
             var addressEntityModel = new Address()
-                                        {
-                                            UserId = userId,
-                                            Street = newAddress.Street,
-                                            HouseNum = newAddress.HouseNum,
-                                            City = newAddress.City,
-                                            Country = newAddress.Country,
-                                            ZipCode = newAddress.ZipCode
-                                        };
+                                     {
+                                        UserId = userId,
+                                        Street = newAddress.Street,
+                                        HouseNum = newAddress.HouseNum,
+                                        City = newAddress.City,
+                                        Country = newAddress.Country,
+                                        ZipCode = newAddress.ZipCode
+                                     };
 
             _db.Addresses.Add(addressEntityModel);
             _db.SaveChanges();
@@ -381,14 +395,14 @@ namespace BookCave.Repositories
                              where a.UserId == userId
                              select new AddressViewModel
                              {
-                                 Id = a.Id,
-                                 Street = a.Street,
-                                 HouseNum = a.HouseNum,
-                                 City = a.City,
-                                 Country = a.Country,
-                                 ZipCode = a.ZipCode
+                                Id = a.Id,
+                                Street = a.Street,
+                                HouseNum = a.HouseNum,
+                                City = a.City,
+                                Country = a.Country,
+                                ZipCode = a.ZipCode
                              }).ToList();
-            
+
             return addresses;
         }
 
@@ -403,6 +417,7 @@ namespace BookCave.Repositories
                                     Country = newAddresses.BillingAddress.Country,
                                     ZipCode = newAddresses.BillingAddress.ZipCode
                                 };
+
             var shippingAddess = new TempAddress 
                                 {
                                     UserId = userId,
@@ -424,28 +439,29 @@ namespace BookCave.Repositories
                              where t.UserId == userId
                              orderby t.Id descending
                              select t).ToList();
-            
+
             if(addresses.Count() == 2)
             {
                 var viewModel = new BillingAndShippingViewModel 
                                 {
                                     BillingAddress = new AddressViewModel 
-                                                    {
+                                                     {
                                                         Street = addresses[1].Street,
                                                         HouseNum = addresses[1].HouseNum,
                                                         City = addresses[1].City,
                                                         Country  = addresses[1].Country,
                                                         ZipCode = addresses[1].ZipCode
-                                                    },
+                                                     },
                                     ShippingAddress = new AddressViewModel 
-                                                    {
+                                                      {
                                                         Street = addresses[0].Street,
                                                         HouseNum = addresses[0].HouseNum,
                                                         City = addresses[0].City,
                                                         Country  = addresses[0].Country,
                                                         ZipCode = addresses[0].ZipCode
-                                                    }
+                                                      }
                                 };
+
                 return viewModel;
             }
             else
@@ -457,9 +473,9 @@ namespace BookCave.Repositories
         public void RemoveAddressesFromTemp(string userId)
         {
             var addresses = (from t in _db.TempAddresses
-                    where t.UserId == userId
-                    orderby t.Id descending
-                    select t).ToList();
+                             where t.UserId == userId
+                             orderby t.Id descending
+                             select t).ToList();
 
             _db.TempAddresses.Remove(addresses[0]);
             _db.TempAddresses.Remove(addresses[1]);
@@ -489,14 +505,15 @@ namespace BookCave.Repositories
                                             && c.CartId == o.UserId
                                             select new CartItemsViewModel
                                                        {
-                                                           Id = c.BookId,
-                                                           Title = b.Title,
-                                                           Author = b.Author,
-                                                           ImageLink = b.ImageLink,
-                                                           Price = b.Price,
-                                                           Quantity = c.Quantity
+                                                            Id = c.BookId,
+                                                            Title = b.Title,
+                                                            Author = b.Author,
+                                                            ImageLink = b.ImageLink,
+                                                            Price = b.Price,
+                                                            Quantity = c.Quantity
                                                        }).ToList()
                           }).ToList();
+
             return orders;
         }
     }
