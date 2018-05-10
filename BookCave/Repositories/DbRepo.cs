@@ -16,6 +16,10 @@ namespace BookCave.Repositories
             _db = new DataContext();
         }
 
+        /************************BOOK FUNCTIONS*************************************\
+        |***************************************************************************|
+        \***************************************************************************/
+
         public List<BookThumbnailViewModel> GetBooksByTitle()
         {
             var books = (from b in _db.Books
@@ -34,24 +38,24 @@ namespace BookCave.Repositories
 
         public BookDetailsViewModel GetBookDetailsById(int id)
         {
-        var book = (from b in _db.Books
-                    where b.Id == id
-                    select new BookDetailsViewModel
-                    {
-                        Id = b.Id,
-                        Title = b.Title,
-                        Author = b.Author,
-                        Description = b.Description,
-                        ImageLink = b.ImageLink,
-                        Genre = b.Genre,
-                        UserRatingAvg = b.UserRatingAvg,
-                        NumberOfUserRatings = b.NumberOfUserRating,
-                        Price = b.Price,
-                        Reviews = (from r in _db.Comments
-                                    where r.BookId == id
-                                    select r.UserReview).ToList()
-                    }).SingleOrDefault();
-        return book;
+            var book = (from b in _db.Books
+                        where b.Id == id
+                        select new BookDetailsViewModel
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Author = b.Author,
+                            Description = b.Description,
+                            ImageLink = b.ImageLink,
+                            Genre = b.Genre,
+                            UserRatingAvg = b.UserRatingAvg,
+                            NumberOfUserRatings = b.NumberOfUserRating,
+                            Price = b.Price,
+                            Reviews = (from r in _db.Comments
+                                        where r.BookId == id
+                                        select r.UserReview).ToList()
+                        }).SingleOrDefault();
+            return book;
         }
 
         public BookThumbnailViewModel GetUserFavBook(int favBookId)
@@ -170,7 +174,7 @@ namespace BookCave.Repositories
             return searchBooks;
         }
 
-         public List<BookThumbnailViewModel> GetAffordableBooks()
+        public List<BookThumbnailViewModel> GetAffordableBooks()
         {
             var affordableBooks  = (from b in _db.Books
                             orderby b.Price ascending
@@ -186,6 +190,64 @@ namespace BookCave.Repositories
                             }).Take(10).ToList();
                      return affordableBooks;
         }
+
+        public bool UpdateBookRating(int bookId, int rating)
+        {
+            var book = (from b in _db.Books
+                        where b.Id == bookId
+                        select b).SingleOrDefault();
+
+            if(book.NumberOfUserRating != 0)
+            {
+                book.UserRatingAvg = ((book.UserRatingAvg * book.NumberOfUserRating) + rating) / (book.NumberOfUserRating + 1);
+                book.NumberOfUserRating = book.NumberOfUserRating + 1;
+            }
+            else
+            {
+                book.UserRatingAvg = rating;
+                book.NumberOfUserRating++;
+            }
+
+            _db.Books.Update(book);
+            _db.SaveChanges();
+
+            return true;
+        }
+
+        public bool AddReview(string userId, int bookId, string review)
+        {
+            var comment = new Comment 
+            {
+                UserId = userId,
+                BookId = bookId,
+                UserReview = review
+            };
+
+            _db.Comments.Add(comment);
+
+            _db.SaveChanges();
+
+            return true;
+        }
+
+        public void AddNewBook(Book book)
+        {
+            _db.Books.Add(book);
+            _db.SaveChanges();
+        }
+        public void RemoveBookFromDB(int id)
+        {
+            var book = (from b in _db.Books
+                        where b.Id == id
+                        select b).SingleOrDefault();
+
+            _db.Books.Remove(book);
+            _db.SaveChanges();
+        }
+
+        /********************************CART FUNCTIONS*****************************\
+        |***************************************************************************|
+        \***************************************************************************/
 
         public List<CartItemsViewModel> GetCartItems(string userId)
         {
@@ -207,7 +269,6 @@ namespace BookCave.Repositories
 
         public List<CartItem> GetCartItemsRaw(string userId)
         {
-            //broken
             var cartItemRaw = (from c in _db.ShoppingCartItems
                                join b in _db.Books on c.BookId equals b.Id
                                where c.CartId == userId
@@ -284,44 +345,9 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
-        public bool UpdateBookRating(int bookId, int rating)
-        {
-            var book = (from b in _db.Books
-                        where b.Id == bookId
-                        select b).SingleOrDefault();
-
-            if(book.NumberOfUserRating != 0)
-            {
-                book.UserRatingAvg = ((book.UserRatingAvg * book.NumberOfUserRating) + rating) / (book.NumberOfUserRating + 1);
-                book.NumberOfUserRating = book.NumberOfUserRating + 1;
-            }
-            else
-            {
-                book.UserRatingAvg = rating;
-                book.NumberOfUserRating++;
-            }
-
-            _db.Books.Update(book);
-            _db.SaveChanges();
-
-            return true;
-        }
-
-        public bool AddReview(string userId, int bookId, string review)
-        {
-            var comment = new Comment 
-            {
-                UserId = userId,
-                BookId = bookId,
-                UserReview = review
-            };
-
-            _db.Comments.Add(comment);
-
-            _db.SaveChanges();
-
-            return true;
-        }
+        /****************************ADDRESS FUNCTIONS******************************\
+        |***************************************************************************|
+        \***************************************************************************/
 
         public void AddNewAddress(AddressInputModel newAddress, string userId)
         {
@@ -440,6 +466,10 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        /************************ORDER HISTORY FUNCTIONS****************************\
+        |***************************************************************************|
+        \***************************************************************************/
+
         public void AddOrderToHistories(Order order)
         {
             _db.Orders.Add(order);
@@ -468,20 +498,6 @@ namespace BookCave.Repositories
                                                        }).ToList()
                           }).ToList();
             return orders;
-        }
-
-        public void AddNewBook(Book book)
-        {
-            _db.Books.Add(book);
-            _db.SaveChanges();
-        }
-        public void RemoveBookFromDB(int id)
-        {
-            var book = (from b in _db.Books
-                        where b.Id == id
-                        select b).SingleOrDefault();
-            _db.Books.Remove(book);
-            _db.SaveChanges();
         }
     }
 }
