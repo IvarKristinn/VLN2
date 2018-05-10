@@ -6,7 +6,24 @@
     <legend>Order</legend>
     @foreach (var book in order.OrderItems)
     {
-        <span>@book.Title, by @book.Author, Copies: @book.Quantity.</span>
+        <div id="history-item-view">
+        <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="title-column">Title</th>
+                <th scope="col" class="title-column">Author</th>
+                <th scope="col" class="title-column">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Quantity</td>
+            </tr>
+        </tbody>
+        </table>
+        </div>
     }
     </fieldset>
 }

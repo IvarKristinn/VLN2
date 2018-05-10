@@ -24,24 +24,8 @@ namespace BookCave.Controllers
         {
             var books = new FrontPageViewModel();
             books.NewestBooks = _bookService.GetBooksById();
-            //prufa
             books.TopTwelve = _bookService.GetTopTwelveBooks();
             return View(books);
-        }
-    
-        [Authorize]
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
         }
 
         public IActionResult Error()

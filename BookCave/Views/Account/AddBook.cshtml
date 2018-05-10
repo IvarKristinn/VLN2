@@ -5,13 +5,16 @@
         <legend>Insert a book</legend>
 
         <label asp-for="Title">Title</label><br>
-        <input type="text" asp-for="Title" placeholder="Title"> <br>
+        <input type="text" asp-for="Title" placeholder="Title">
+        <span asp-validation-for="Title"></span> <br>
 
         <label asp-for="Author">Author</label><br>
-        <input type="text" asp-for="Author" placeholder="Author"><br>
+        <input type="text" asp-for="Author" placeholder="Author">
+        <span asp-validation-for="Author"></span><br>
 
         <label for="Description">Description</label><br>
-        <textarea name="Description" id="Description" cols="70" rows="10" placeholder="Write a description" maxlength="360"></textarea> <br>
+        <textarea name="Description" id="Description" cols="70" rows="10" placeholder="Write a description" maxlength="360"></textarea>
+        <span asp-validation-for="Description"></span> <br>
         
         <!--- þarf að bootstrappa þetta -->
         <label asp-for="Genre">Genre</label><br>
@@ -22,13 +25,16 @@
             <option value="Heroic Fantasy">Heroic Fantasy</option>
             <option value="High Fantasy">High Fantasy</option>
             <option value="Urban Fantasy">Urban Fantasy</option>
-        </select><br>
+        </select>
+        <span asp-validation-for="Genre"></span><br>
 
         <label asp-for="Price">Price</label><br>
-        <input type="text" asp-for="Price" placeholder="Price"><br>
+        <input type="text" asp-for="Price" placeholder="Price">
+        <span asp-validation-for="Price"></span><br>
 
         <label asp-for="ImageLink">ImageLink</label><br>
-        <input type="text" asp-for="ImageLink" placeholder="ImageLink"> <br>
+        <input type="text" asp-for="ImageLink" placeholder="ImageLink">
+        <span asp-validation-for="ImageLink"></span> <br>
 
         <a asp-controller="Account" asp-action="Staff" class="btn btn-primary">Prev</a>
 

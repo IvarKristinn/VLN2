@@ -62,18 +62,22 @@ namespace BookCave.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult BillingAndShipping(BillingAndShippingInputModel newAddresses)
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            _cartService.AddTempAddresses(newAddresses, userId);
-            return RedirectToAction("BillingAndShippingConfirmation");
+            if(ModelState.IsValid)
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                _cartService.AddTempAddresses(newAddresses, userId);
+                return RedirectToAction("BillingAndShippingConfirmation");
+            }
+            return View();
         }
 
         public IActionResult BillingAndShippingConfirmation()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var addresses = _cartService.GetTempAddressesById(userId);
-
             return View(addresses);
         }
         public IActionResult Error()
@@ -93,6 +97,11 @@ namespace BookCave.Controllers
 
             _cartService.RemoveAddressesFromTemp(userId);
 
+            /* 
+             * Probably should send this down to the service layer,
+             * but I just dont think its worth it for such a small 
+             * entity model creation
+             */
             var order = new Order 
                         {
                             UserId = userId,

@@ -261,9 +261,10 @@ body {
 }
 
 /* Account Info Page*/
+
 #acc-info-img2 {
-    height: 300px;
-    width: 170px;
+    max-height: 300px;
+    max-width: 180px;
 }
 
 #account-info1 {
@@ -277,6 +278,10 @@ body {
 
 #account-info3 {
     width: 350px;
+}
+
+.account-info-btext {
+    font-weight: bold;
 }
 
 /* Book details*/
@@ -300,4 +305,58 @@ body {
 #carosel-gugga
 {
     width: 1440px;
+}
+#detail-img {
+    max-height: 420px;
+    max-width: 420px;
+}
+
+#detail-buttons {
+    margin-bottom: 10px;
+}
+
+.comments {
+    border-style: solid;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: white;
+    background-color: #676767;
+    margin-bottom: 5px;
+}
+
+/* Billing and shipping input page */
+#all-addresses {
+    display: none;
+}
+
+/* Cart Page*/
+#form-cart-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+#cart-item-view {
+    background-color: #b2b3b3;
+    color: white;
+}
+
+#form-cart-size a:hover {
+    text-decoration: none;
+}
+
+#sub-total-float {
+    float: right;
+}
+.cart-title-column {
+    width: 150px;
+}
+
+/* Order History*/
+#history-item-view {
+    background-color: #b2b3b3;
+    color: white;
+}
+
+.title-column {
+    width: 200px;
 }
