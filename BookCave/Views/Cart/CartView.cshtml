@@ -4,27 +4,45 @@
     ViewData["Title"] = "Cart";
 }
 
-<h1>Cart:</h1>
-@if(Model != null)
-{
-    double subTotal = 0;
-    @foreach(var book in @Model)
+<div id="form-cart-size">
+    <h1>Cart:</h1>
+    @if(Model != null)
     {
-        subTotal += @book.Price * @book.Quantity;
-        <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
-            <div class="container">
-                <span>@book.Title </span>
-                <span>@book.Author</span>
-                <span>@book.Price</span>
-                <span>@book.Quantity</span>
-            </div>
-        </a>
-        <a class="btn btn-default" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-bookId="@book.Id">Remove Item</a>
+        double subTotal = 0;
+        @foreach(var book in @Model)
+        {
+            subTotal += @book.Price * @book.Quantity;
+            <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">
+                <div class="container" id="cart-item-view">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Remove Item</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@book.Title</td>
+                                <td>@book.Author</td>
+                                <td>@book.Price</td>
+                                <td>@book.Quantity</td>
+                                <td><a class="btn btn-danger" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-bookId="@book.Id">X</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </a>
+        }
+        <br>
+        <h3 id="sub-total-float">Subtotal: @subTotal $</h3>
+        <a class="btn btn-default" asp-controller="Cart" asp-action="BillingAndShipping">Proceed to checkout</a>
     }
-    <h1>Subtotal: @subTotal $</h1>
-    <a asp-controller="Cart" asp-action="BillingAndShipping">Proceed to checkout</a>
-}
-else
-{
-    <h2>Cart is empty</h2>
-}
+    else
+    {
+        <h2>Cart is empty</h2>
+    }
+</div>

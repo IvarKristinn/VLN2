@@ -303,3 +303,22 @@ body {
 #all-addresses {
     display: none;
 }
+
+/* Cart Page*/
+#form-cart-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+#cart-item-view {
+    background-color: #b2b3b3;
+    color: white;
+}
+
+#form-cart-size a:hover {
+    text-decoration: none;
+}
+
+#sub-total-float {
+    float: right;
+}
