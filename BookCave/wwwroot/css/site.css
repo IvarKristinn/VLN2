@@ -299,6 +299,24 @@ body {
     font-size: 16px;
 }
 
+#detail-img {
+    max-height: 420px;
+    max-width: 420px;
+}
+
+#detail-buttons {
+    margin-bottom: 10px;
+}
+
+.comments {
+    border-style: solid;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: white;
+    background-color: #676767;
+    margin-bottom: 5px;
+}
+
 /* Billing and shipping input page */
 #all-addresses {
     display: none;
