@@ -275,7 +275,6 @@ body {
 
 #account-info2 {
     height: 420px;
-}
     width: 350px;
 }
 
@@ -293,4 +292,9 @@ body {
     padding-top: 20px;
     width: 600px;
     font-size: 16px;
+}
+
+/* Billing and shipping input page */
+#all-addresses {
+    display: none;
 }
