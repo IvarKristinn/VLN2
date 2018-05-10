@@ -335,11 +335,8 @@ namespace BookCave.Repositories
                                             ZipCode = newAddress.ZipCode
                                         };
 
-            if(!_db.Addresses.Contains(addressEntityModel))
-            {
-                _db.Addresses.Add(addressEntityModel);
-                _db.SaveChanges();
-            }
+            _db.Addresses.Add(addressEntityModel);
+            _db.SaveChanges();
         }
 
         public void RemoveUserAddress(int addressId, string userId)
@@ -459,6 +456,7 @@ namespace BookCave.Repositories
                               OrderItems = (from c in _db.OldCartItems
                                             join b in _db.Books on c.BookId equals b.Id
                                             where c.GroupingId == o.ItemGroupingId
+                                            && c.CartId == o.UserId
                                             select new CartItemsViewModel
                                                        {
                                                            Id = c.BookId,
