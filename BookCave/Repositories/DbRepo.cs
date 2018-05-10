@@ -465,5 +465,13 @@ namespace BookCave.Repositories
             _db.Books.Add(book);
             _db.SaveChanges();
         }
+        public void RemoveBookFromDB(int id)
+        {
+            var book = (from b in _db.Books
+                        where b.Id == id
+                        select b).SingleOrDefault();
+            _db.Books.Remove(book);
+            _db.SaveChanges();
+        }
     }
 }

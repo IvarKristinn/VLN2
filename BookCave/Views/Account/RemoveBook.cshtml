@@ -10,18 +10,17 @@
             <th>Price</th>
             <th></th>
         </tr>
-    @foreach(var book in @Model)
-    {
-        
+        @foreach(var book in @Model)
+        {
+            
             <tr>
             
                 <td>@book.Id</td>
                 <td><a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">@book.Title</a></td> 
                 <td>@book.Author</td>
                 <td>@book.Price</td>
-                <td><a class="btn btn-default" asp-controller="Account" asp-action="RemoveFromDB" asp-route-bookId="@book.Id">Remove Book</a></td>
-        </tr>
-        
-    }
+                <td><a class="btn btn-default" asp-controller="Account" asp-action="RemoveFromDB" asp-route-id="@book.Id">Remove Book</a></td>
+            </tr>
+        }
     </table>
 }
