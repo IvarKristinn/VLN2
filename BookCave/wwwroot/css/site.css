@@ -266,8 +266,8 @@ body {
 /* Account Info Page*/
 
 #acc-info-img2 {
-    height: 300px;
-    width: 170px;
+    max-height: 300px;
+    max-width: 180px;
 }
 
 #account-info1 {

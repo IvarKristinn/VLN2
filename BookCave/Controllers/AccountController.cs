@@ -61,7 +61,7 @@ namespace BookCave.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if(result.Succeeded)
-            {
+            { 
                 //await _userManager.AddToRoleAsync(user, "Staff");
                 await _userManager.AddClaimAsync(user, new Claim("Name", model.Name));
                 await _signInManager.SignInAsync(user, false);
@@ -97,7 +97,7 @@ namespace BookCave.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
-            
+
             return View();
         }
 
@@ -133,14 +133,13 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
-            
             //Name claim change
             user.Name = model.Name;
 
-            //Profile pic change, if user sends in empty or null
+            //Profile pic change, if user sends in empty or null we give them a default pic
             user.ProfilePicLink = model.ProfilePicLink;
 
-            //Removing fav book
+            //Removing fav book if checkbox is ticked
             if(removeBook == true)
             {
                 user.FavBookId = 0;
@@ -181,9 +180,14 @@ namespace BookCave.Controllers
         [Authorize]
         public IActionResult Address(AddressInputModel newAddress)
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            _accountService.AddNewAddress(newAddress, userId);
-            return RedirectToAction("Information");
+            if(ModelState.IsValid)
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                _accountService.AddNewAddress(newAddress, userId);
+                return RedirectToAction("Information");
+            }
+
+            return View();
         }
 
         [Authorize]
@@ -205,8 +209,8 @@ namespace BookCave.Controllers
         [Authorize(Roles = "Staff")]
         public IActionResult Staff()
         {
-            ///account/addbook
-            ///account/removebook
+            ///Account/AddBook button is on this page
+            ///Account/RemoveBook button is on this page
             return View();
         }
 
@@ -232,8 +236,9 @@ namespace BookCave.Controllers
                     Price = newBook.Price,
                     ImageLink = newBook.ImageLink
                 };
+
                 _accountService.AddNewBook(book);
-                return View("Staff");
+                return View("BookAdded");
             }
             return View();
         }
@@ -250,7 +255,7 @@ namespace BookCave.Controllers
         {
             if(search != null)
             {
-                return RedirectToAction("RemoveBook", new{search = search});
+                return RedirectToAction("RemoveBook", new { search = search });
             }
             return View("NotFound");
         }
@@ -264,11 +269,13 @@ namespace BookCave.Controllers
                 return View(searchBooks);
             }
             ViewBag.SearchString = search;
+
             return View("BooksNotFound");
         }
         public IActionResult RemoveFromDB(int id)
         {
             _accountService.RemoveBookFromDB(id);
+
             return View("DeletionConfirmation");
         }
         public IActionResult AccessDenied()

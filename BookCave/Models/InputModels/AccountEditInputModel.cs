@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using BookCave.Models.ViewModels;
 
 namespace BookCave.Models.InputModels
@@ -7,6 +8,5 @@ namespace BookCave.Models.InputModels
         public string Name { get; set; }
         public string ProfilePicLink { get; set; }
         public BookThumbnailViewModel FavBook { get; set; }
-        public AddressInputModel NewAddress { get; set; }
     }
 }
