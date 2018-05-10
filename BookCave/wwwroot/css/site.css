@@ -340,3 +340,16 @@ body {
 #sub-total-float {
     float: right;
 }
+.cart-title-column {
+    width: 150px;
+}
+
+/* Order History*/
+#history-item-view {
+    background-color: #b2b3b3;
+    color: white;
+}
+
+.title-column {
+    width: 200px;
+}
