@@ -233,6 +233,7 @@ namespace BookCave.Controllers
                     ImageLink = newBook.ImageLink
                 };
                 _accountService.AddNewBook(book);
+                return View("Staff");
             }
             return View();
         }
@@ -258,11 +259,17 @@ namespace BookCave.Controllers
         public IActionResult RemoveBook(string search)
         {
             var searchBooks = _accountService.GetSearchString(search);
-            if(searchBooks != null)
+            if(searchBooks.Count != 0)
             {
                 return View(searchBooks);
             }
-            return View("NotFound");
+            ViewBag.SearchString = search;
+            return View("BooksNotFound");
+        }
+        public IActionResult RemoveFromDB(int id)
+        {
+            _accountService.RemoveBookFromDB(id);
+            return View("DeletionConfirmation");
         }
         public IActionResult AccessDenied()
         {

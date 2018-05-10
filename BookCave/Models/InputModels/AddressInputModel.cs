@@ -4,7 +4,6 @@ namespace BookCave.Models.InputModels
 {
     public class AddressInputModel
     {
-        //public int Id { get; set; }
         public string Street { get; set; }
         public int HouseNum { get; set; }
         public string City { get; set; }

@@ -51,5 +51,9 @@ namespace BookCave.Services
             var books = _dbRepo.GetSearchStringDetails(search);
             return books;
         }
+        public void RemoveBookFromDB(int id)
+        {
+            _dbRepo.RemoveBookFromDB(id);
+        }
     }
 }
