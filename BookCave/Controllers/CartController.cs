@@ -62,11 +62,16 @@ namespace BookCave.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult BillingAndShipping(BillingAndShippingInputModel newAddresses)
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            _cartService.AddTempAddresses(newAddresses, userId);
-            return RedirectToAction("BillingAndShippingConfirmation");
+            if(ModelState.IsValid)
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                _cartService.AddTempAddresses(newAddresses, userId);
+                return RedirectToAction("BillingAndShippingConfirmation");
+            }
+            return View();
         }
 
         public IActionResult BillingAndShippingConfirmation()

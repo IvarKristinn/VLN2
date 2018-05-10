@@ -133,7 +133,6 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
-            
             //Name claim change
             user.Name = model.Name;
 
@@ -181,9 +180,13 @@ namespace BookCave.Controllers
         [Authorize]
         public IActionResult Address(AddressInputModel newAddress)
         {
+            if(ModelState.IsValid)
+            {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             _accountService.AddNewAddress(newAddress, userId);
             return RedirectToAction("Information");
+        }
+            return View();
         }
 
         [Authorize]
@@ -219,6 +222,7 @@ namespace BookCave.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Staff")]
+        [Authorize]
         public IActionResult AddBook(BookInputModel newBook)
         {
             if(ModelState.IsValid)
