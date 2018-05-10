@@ -2,8 +2,11 @@
 
 @foreach (var order in @Model)
 {
+    <fieldset>
+    <legend>Order</legend>
     @foreach (var book in order.OrderItems)
     {
-        <h3>@book.Title</h3>
+        <span>@book.Title, by @book.Author, Copies: @book.Quantity.</span>
     }
+    </fieldset>
 }
