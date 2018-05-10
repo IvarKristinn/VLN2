@@ -62,11 +62,6 @@ body {
     font-size: 20px;
     line-height: 1.4;
 }
-#front-page-carousel
-{
-   width: 1440px;
-   margin-bottom: 15px;
-}
 
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
@@ -74,7 +69,7 @@ body {
 }
 
 .multi-item-carousel .carousel-inner .item {
-    transition: 500ms ease-in-out left;
+    transition: 200ms ease-in-out left;
 }
 
 .carousel-inner .active .left {
@@ -210,10 +205,10 @@ body {
 {
     height: 300px;
     width: 192px;
+    margin-right: 10px;
     padding-left: 10px;
     padding-top: 10px;
     background-color: #555657; 
-    padding-bottom: 5px;
 }
 
 .thumbnail a
@@ -242,6 +237,8 @@ body {
 {
     max-height: 180px;
     max-width: 180px;
+    /*margin: 24px;*/
+    
 }
 
 .thumb-title
@@ -321,6 +318,16 @@ body {
     font-size: 16px;
 }
 
+.img-thumb
+{
+    height: 480px;
+    width: 350px;
+}
+
+#carosel-gugga
+{
+    width: 1440px;
+}
 #detail-img {
     max-height: 420px;
     max-width: 420px;
@@ -361,4 +368,17 @@ body {
 
 #sub-total-float {
     float: right;
+}
+.cart-title-column {
+    width: 150px;
+}
+
+/* Order History*/
+#history-item-view {
+    background-color: #b2b3b3;
+    color: white;
+}
+
+.title-column {
+    width: 200px;
 }
