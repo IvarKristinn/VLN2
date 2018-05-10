@@ -238,7 +238,7 @@ namespace BookCave.Controllers
                 };
 
                 _accountService.AddNewBook(book);
-                return View("Staff");
+                return View("BookAdded");
             }
             return View();
         }
