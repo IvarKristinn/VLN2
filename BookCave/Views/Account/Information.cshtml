@@ -14,28 +14,31 @@
     var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
 }
 <div class="container" id="account-info-size">
-    <h5>Account Information</h5>
+    <h3 class="account-info-btext">Account Information</h3>
     <div class="row">
         <div class="col-sm-5 col-md-4 col-lg-3" id="account-info1">
-            <a class="btn btn-default" asp-controller="Account" asp-action="History">View History</a>
+            <a class="btn btn-default" asp-controller="Account" asp-action="History">Order History</a>
             <br><br>
             <form asp-controller="Account" asp-action="Information" method="POST">
-                <label>Edit name: </label>
-                <input type="text" asp-for="Name" value="@Model.Name" />
+                <label>Edit name</label> <br>
+                <input type="text" asp-for="Name" value="@Model.Name" class="form-control"/>
                 <br>
-
-                <label>Link to a picture to set it as your profile picture! </label>
-                <input type="text" asp-for="ProfilePicLink" value="@Model.ProfilePicLink" />
-                <br>
-
-                @if(@Model.ProfilePicLink == null)
+                <h5 class="account-info-btext">Your Address/es</h5>
+            @if(@Model.UserAddresses.Count() != 0)
+            {
+                @foreach(var a in @Model.UserAddresses)
                 {
-                    <img src="~/images/noprofile.png" alt="Profile Picture" width="150" height="150">
+                    <span>@a.Street, @a.HouseNum, @a.City, @a.ZipCode, @a.Country</span>
+                    <a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">X</a>
+                    <br>
                 }
-                else
-                {
-                    <img src="@Model.ProfilePicLink" alt="Profile Picture" width="150" height="150">
-                }
+            }
+            else
+            {
+                <span>No addresses on record.</span>
+            }
+            <br>
+            <a class="btn btn-default" asp-controller="Account" asp-action="Address">Add an address</a>
         </div>
         <div class="col-sm-5 col-md-4 col-lg-3" id="account-info2">
             @if(@Model.FavBook != null)
@@ -46,8 +49,6 @@
                             <img id="acc-info-img2" src="@Model.FavBook.ImageLink" class="img-thumbnail" alt="book-thumbnail">
                             <p>@Model.FavBook.Title</p>
                             <p>@Model.FavBook.Author</p>
-                            <p>@Model.FavBook.Price</p>
-                            <p>@Model.FavBook.UserRatingAvg</p>
                         </div>
                     </a>
                 </div>
@@ -61,25 +62,20 @@
             }
         </div>
         <div class="col-sm-5 col-md-4 col-lg-3" id="account-info3">
-            @if(@Model.UserAddresses.Count() != 0)
-            {
-                @foreach(var a in @Model.UserAddresses)
+                <br>
+                @if(@Model.ProfilePicLink == null)
                 {
-                    <span>@a.Street, @a.HouseNum, @a.City, @a.ZipCode, @a.Country</span>
-                    <a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">Remove address</a>
-                    <br>
+                    <img src="~/images/noprofile.png" alt="Profile Picture" width="150" height="150">
                 }
-            }
-            else
-            {
-                <span>No addresses on record.</span>
-            }
-            <br>
-
-            <a class="btn btn-default" asp-controller="Account" asp-action="Address">Add a new address</a>
-            <br><br>
-
-            <button type="submit" class="btn btn-danger">Apply changes</button>
+                else
+                {
+                    <img src="@Model.ProfilePicLink" alt="Profile Picture" width="150" height="150">
+                }
+                <br><br>
+                <label>Link to a picture to set it as your profile picture</label>
+                <input type="text" asp-for="ProfilePicLink" value="@Model.ProfilePicLink" class="form-control" />
+                <br><br>
+            <button type="submit" class="btn btn-danger">Accept Changes</button>
         </form>
         </div>
     </div>

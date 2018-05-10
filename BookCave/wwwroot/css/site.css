@@ -250,6 +250,7 @@ body {
 }
 
 /* Account Info Page*/
+
 #acc-info-img2 {
     height: 300px;
     width: 170px;
@@ -266,6 +267,10 @@ body {
 
 #account-info3 {
     width: 350px;
+}
+
+.account-info-btext {
+    font-weight: bold;
 }
 
 /* Book details*/
