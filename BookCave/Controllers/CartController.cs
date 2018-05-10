@@ -98,6 +98,11 @@ namespace BookCave.Controllers
 
             _cartService.RemoveAddressesFromTemp(userId);
 
+            /* 
+             * Probably should send this down to the service layer,
+             * but I just dont think its worth it for such a small 
+             * entity model creation
+             */
             var order = new Order 
                         {
                             UserId = userId,
