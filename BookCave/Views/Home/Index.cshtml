@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home Page";
 }
 
- <div class="container" id="FrontPageCarousel">
+ <div class="container" id="front-page-carousel">
      <div class="row">
          <div class="col-md-10">
             <div id="myCarousel" class="carousel slide multi-item-carousel">
@@ -22,17 +22,17 @@
                 <div class="item active">
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[0].Id">
-                            <img src="@Model.TopTwelve[0].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[0].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[1].Id">
-                            <img src="@Model.TopTwelve[1].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[1].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[2].Id">
-                            <img src="@Model.TopTwelve[2].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[2].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                 </div>
@@ -40,17 +40,17 @@
                 <div class="item">
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[3].Id">
-                            <img src="@Model.TopTwelve[3].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[3].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[4].Id">
-                            <img src="@Model.TopTwelve[4].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[4].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[5].Id">
-                            <img src="@Model.TopTwelve[5].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[5].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                 </div>
@@ -58,17 +58,17 @@
                 <div class="item">
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[6].Id">
-                            <img src="@Model.TopTwelve[6].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[6].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[7].Id">
-                            <img src="@Model.TopTwelve[7].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[7].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[8].Id">
-                            <img src="@Model.TopTwelve[8].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[8].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                 </div>
@@ -76,17 +76,17 @@
                 <div class="item">
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[9].Id">
-                            <img src="@Model.TopTwelve[9].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[9].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[10].Id">
-                            <img src="@Model.TopTwelve[10].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[10].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                     <div class="col-xs-4">
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.TopTwelve[11].Id">
-                            <img src="@Model.TopTwelve[11].ImageLink" class="img-thumbnail" height="300" width="300" alt="book-thumbnail">
+                            <img src="@Model.TopTwelve[11].ImageLink" class="img-thumb" height="420" width="300" alt="book-thumbnail">
                         </a>
                     </div>
                 </div>
@@ -108,30 +108,29 @@
 <div class="wrapper container">
         <div class="first">
             <div class="book-list">
-                <h2 id="OurBooks">Our books</h2>
+                <h2 id="our-books">Our books</h2><br>
                     <div class="FrontPageBookList">
                         <a asp-controller="Book" asp-action="AllBooks">All books</a>
                     </div><br>
                     <div class="FrontPageBookList">
                         <a asp-controller="Book" asp-action="AffordableBooks">Affordable books</a>
                     </div><br>
-                    <p id="Genre">Genre</p>
+                    <p id="genre">Genre</p>
                     <div class="FrontPageBookListGenre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="Dark Fantasy">Dark Fantasy</a>
-                    </div>
+                    </div><br>
                     <div class="FrontPageBookListGenre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="Epic Fantasy">Epic Fantasy</a>
-                    </div>
+                    </div><br>
                     <div class="FrontPageBookListGenre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="Heroic Fantasy">Heroic Fantasy</a>
-                    </div>
+                    </div><br>
                     <div class="FrontPageBookListGenre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="High Fantasy">High Fantasy</a>
-                    </div>
+                    </div><br>
                     <div class="FrontPageBookListGenre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="Urban Fantasy">Urban Fantasy</a>
                     </div><br>
-                    
                     <div class="FrontPageBookList">
                         <a asp-controller="Book" asp-action="TopRated">Highest rated books</a>
                     </div><br>
@@ -139,21 +138,23 @@
     </div>
     <div class="second">
         <h1>New releases of 2018</h1>
-        <div class="background-two">
+        <div class="book-list-two">
             <div class="row">
                 @foreach(var book in @Model.NewestBooks)
                 {
-                        <div class="col-sm-5 col-md-4 col-lg-3">
-                            <div class="thumbnail">
-                                <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id"> 
-                                    <p id="thumb-title">@book.Title </p>
-                                    <img id="img" src="@book.ImageLink" class="img-thumb" alt="book-thumbnail">
-                                        <p>Author: @book.Author</p>
-                                        <p>$: @book.Price</p>
-                                        <p>Rating: @book.UserRatingAvg</p>
-                                </a>
-                            </div>
+                    <div class="col-sm-5 col-md-4 col-lg-3">
+                        <div class="thumbnail">
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id"> 
+                                <p class="thumb-title">@book.Title</p>
+                                <div class="prufa">
+                                <img src="@book.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+                                <p>Author: @book.Author</p>
+                                <p>$: @book.Price</p>
+                                <p>Rating: @book.UserRatingAvg</p>
+                                </div>
+                            </a>
                         </div>
+                    </div>
                 }
             </div>
         </div>

@@ -43,13 +43,12 @@ namespace BookCave.Controllers
             var bookByGenre = _bookService.GetByGenre(genre);
             if(bookByGenre != null)
             {
+                ViewBag.Genre=genre;
                 return View(bookByGenre);
             }
             return View("NotFound");
         }
 
-
-        ////what the hell 
         public IActionResult Search(string search)
         {
             var searchBooks = _bookService.GetSearchString(search);
@@ -85,8 +84,8 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             bool ReviewSuccess = true;
-            //debug to see what value of review is when you leave it empty
-            if(review != "")
+
+            if(review != null)
             {
                 ReviewSuccess = _bookService.AddReview(userId, bookId,  review);
             }
