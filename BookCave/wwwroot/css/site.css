@@ -251,9 +251,18 @@ body {
 /* Account Info Page*/
 #acc-info-img2 {
     height: 300px;
-    width: 200px;
+    width: 170px;
+}
+
+#account-info1 {
+    width: 350px;
 }
 
 #account-info2 {
     height: 420px;
+    width: 350px;
+}
+
+#account-info3 {
+    width: 350px;
 }

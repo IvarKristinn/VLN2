@@ -16,7 +16,7 @@
 <div class="container" id="account-info-size">
     <h5>Account Information</h5>
     <div class="row">
-        <div class="col-md-4" id="account-info1">
+        <div class="col-sm-5 col-md-4 col-lg-3" id="account-info1">
             <a class="btn btn-default" asp-controller="Account" asp-action="History">View History</a>
             <br><br>
             <form asp-controller="Account" asp-action="Information" method="POST">
@@ -37,7 +37,7 @@
                     <img src="@Model.ProfilePicLink" alt="Profile Picture" width="150" height="150">
                 }
         </div>
-        <div class="col-md-4" id="account-info2">
+        <div class="col-sm-5 col-md-4 col-lg-3" id="account-info2">
             @if(@Model.FavBook != null)
             {
                 <div>
@@ -60,7 +60,7 @@
                 <h2>You have no book chosen as favorite</h2>
             }
         </div>
-        <div class="col-md-4" id="account-info3">
+        <div class="col-sm-5 col-md-4 col-lg-3" id="account-info3">
             @if(@Model.UserAddresses.Count() != 0)
             {
                 @foreach(var a in @Model.UserAddresses)
