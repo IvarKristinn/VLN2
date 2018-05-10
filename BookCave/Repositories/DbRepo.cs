@@ -371,20 +371,20 @@ namespace BookCave.Repositories
             var billingAddess = new TempAddress 
                                 {
                                     UserId = userId,
-                                    Street = newAddresses.BillingAddress.Street,
-                                    HouseNum = newAddresses.BillingAddress.HouseNum,
-                                    City = newAddresses.BillingAddress.City,
-                                    Country = newAddresses.BillingAddress.Country,
-                                    ZipCode = newAddresses.BillingAddress.ZipCode
+                                    Street = newAddresses.BillingStreet,
+                                    HouseNum = newAddresses.BillingHouseNum,
+                                    City = newAddresses.BillingCity,
+                                    Country = newAddresses.BillingCountry,
+                                    ZipCode = newAddresses.BillingZipCode
                                 };
             var shippingAddess = new TempAddress 
                                 {
                                     UserId = userId,
-                                    Street = newAddresses.ShippingAddress.Street,
-                                    HouseNum = newAddresses.ShippingAddress.HouseNum,
-                                    City = newAddresses.ShippingAddress.City,
-                                    Country = newAddresses.ShippingAddress.Country,
-                                    ZipCode = newAddresses.ShippingAddress.ZipCode
+                                    Street = newAddresses.ShippingStreet,
+                                    HouseNum = newAddresses.ShippingHouseNum,
+                                    City = newAddresses.ShippingCity,
+                                    Country = newAddresses.ShippingCountry,
+                                    ZipCode = newAddresses.ShippingZipCode
                                 };
 
             _db.TempAddresses.Add(billingAddess);
