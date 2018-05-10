@@ -27,7 +27,7 @@
             <option value="" disabled selected>Select an address</option>
             @for(var i = 0; i < addressCount; i++)
             {
-                <option value="@i">@addresses[i].Street</option>
+                <option value="@i">@addresses[i].Street, @addresses[i].HouseNum</option>
             }
         </select>
 
@@ -36,7 +36,7 @@
         <br><br>
 
         <label asp-for="BillingAddress.Street">Street</label><br>
-        <input type="text" asp-for="BillingAddress.Street" name="billingstreet" id="billStreet" value="">
+        <input type="text" asp-for="BillingAddress.Street" id="billStreet" value="">
         <br/>
 
         <label asp-for="BillingAddress.HouseNum">House number</label><br>
@@ -55,17 +55,12 @@
         <select asp-for="BillingAddress.Country" id="billCountrySelect">
             <option value="" disabled selected>Select a country</option>
             <option value="Iceland">Iceland</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="United States">United states</option>
-            <option id="fuck" value="Wakanda">Wakanda</option>
+            <option value="United-Kingdom">United Kingdom</option>
+            <option value="United-States">United states</option>
+            <option value="Wakanda">Wakanda</option>
         </select>
         <br/><br>
     </fieldset>
-
-
-    <label for="billingChk">Use the same address for shipping address</label>
-    <button type="button" id="billingChk" class="btn btn-default">Yes!</button>
-
 
     <fieldset>
         <legend>Shipping Address</legend>
@@ -73,34 +68,38 @@
         <label for="SavedShippingAddresses">Saved Addresses</label><br>
         <select id="SavedShippingAddresses">
             <option value="" disabled selected>Select an address</option>
-            @for(var i = 0; i < addressCount; i++)
+            @for(var k = 0; k < addressCount; k++)
             {
-                <option>@addresses[i].Street</option>
+                <option value="@k">@addresses[k].Street</option>
             }
-        </select> <br>
+        </select>
+
+        <br>
+        <button type="button" id="savedShippingGet" class="btn btn-danger">Use address</button>
+        <br><br>
 
         <label asp-for="ShippingAddress.Street">Street</label><br>
-        <input type="text" asp-for="ShippingAddress.Street" name="shippingstreet" value="">
+        <input type="text" asp-for="ShippingAddress.Street" id="shippStreet" value="">
         <br/>
 
         <label asp-for="ShippingAddress.HouseNum">House number</label><br>
-        <input type="text" asp-for="ShippingAddress.HouseNum" value="">
+        <input type="text" asp-for="ShippingAddress.HouseNum" id="shippHouseNum" value="">
         <br/>
 
         <label asp-for="ShippingAddress.City">City</label><br>
-        <input type="text" asp-for="ShippingAddress.City" value="">
+        <input type="text" asp-for="ShippingAddress.City" id="shippCity" value="">
         <br/>
 
         <label asp-for="ShippingAddress.ZipCode">Zip code</label><br>
-        <input type="text" asp-for="ShippingAddress.ZipCode" value="">
+        <input type="text" asp-for="ShippingAddress.ZipCode" id="shippZipCode" value="">
         <br/>
 
         <label asp-for="ShippingAddress.Country">Country</label><br>
-        <select asp-for="ShippingAddress.Country" id="ShippCountrySelect">
+        <select asp-for="ShippingAddress.Country" id="shippCountrySelect">
             <option value="" disabled selected>Select a country</option>
             <option value="Iceland">Iceland</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="United States">United states</option>
+            <option value="United-Kingdom">United Kingdom</option>
+            <option value="United-States">United states</option>
             <option value="Wakanda">Wakanda</option>
         </select>
         <br/><br>

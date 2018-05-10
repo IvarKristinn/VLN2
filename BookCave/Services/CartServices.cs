@@ -42,9 +42,28 @@ namespace BookCave.Services
             return cartItemGroupingId;
         }
 
-        public void RemoveAllCartItems(string userId)
+        public void RemoveAllCurrentCartItems(string userId)
         {
-            _dbRepo.RemoveAllCartItems(userId);
+            _dbRepo.RemoveAllCurrentCartItems(userId);
+        }
+
+        public void SaveOldCartItems(List<CartItem> cartItems)
+        {
+            List<OldCartItem> oldCartItems = new List<OldCartItem>();
+
+            foreach(var ci in cartItems)
+            {
+                var old = new OldCartItem
+                {
+                    CartId = ci.CartId,
+                    GroupingId = _dbRepo.GetCartItemGroupingId(ci.CartId),
+                    Quantity = ci.Quantity,
+                    BookId = ci.BookId
+                };
+                oldCartItems.Add(old);
+            }
+
+            _dbRepo.SaveOldCartItems(oldCartItems);
         }
 
         public BookDetailsViewModel GetBookDetailsById(int id)

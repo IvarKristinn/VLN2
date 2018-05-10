@@ -14,6 +14,16 @@ body {
     margin-top: 4px;
 }
 
+
+#navlinks a:hover, #cartlink:hover {
+    color: #E2222A;
+}
+
+#logged-in-links button:hover {
+    text-decoration: none;
+    color: #E2222A;
+}
+
 #search {
     margin-right: 0px;
     width: 400px;
@@ -21,7 +31,6 @@ body {
 
 #searchbar {
     margin-top: 12px;
-    padding-left: 185px;;
 }
 
 #logo-link {
@@ -257,9 +266,31 @@ body {
 /* Account Info Page*/
 #acc-info-img2 {
     height: 300px;
-    width: 200px;
+    width: 170px;
+}
+
+#account-info1 {
+    width: 350px;
 }
 
 #account-info2 {
     height: 420px;
+}
+    width: 350px;
+}
+
+#account-info3 {
+    width: 350px;
+}
+
+/* Book details*/
+#row1 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#book-description {
+    padding-top: 20px;
+    width: 600px;
+    font-size: 16px;
 }

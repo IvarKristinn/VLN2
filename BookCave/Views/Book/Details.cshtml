@@ -4,9 +4,9 @@
 @using BookCave.Models
 
 @inject SignInManager<ApplicationUser> SignInManager
-
-<div class="BookList">
-    <h2 id="OurBooks">Our books</h2>
+<div class="row" id="row1">
+     <!--<div class="book-list col-sm-5 col-md-4 col-lg-3">
+        <h2 id="OurBooks">Our books</h2>
         <div class="FrontPageBookList">
             <a asp-controller="Book" asp-action="AllBooks">All books</a>
         </div><br>
@@ -29,84 +29,86 @@
         <div class="FrontPageBookListGenre">
             <a asp-controller="Book" asp-action="Genre" asp-route-genre="Urban Fantasy">Urban Fantasy</a>
         </div><br>
-        
         <div class="FrontPageBookList">
             <a asp-controller="Book" asp-action="TopRated">Highest rated books</a>
         </div><br>
-</div>
+    </div>-->
 
-<div class="thumb">
-    <img src="@Model.ImageLink" class="img-thumbnail" alt="book-thumbnail">
-    <h1>@Model.Title</h1> 
-    <h2>Author: @Model.Author</h2>
-    <p>Price: @Model.Price $</br>
-    <p>Genre: @Model.Genre</p>
-
-    <h2>Description:</h2>
-    <p>@Model.Description</p>
-
-    <h3>@Model.Id</h3>
-
-    <!--<a class="btn btn-default" asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">Add to Cart</a>-->
-
-    <form asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">
-        <label>Quantity: </label>
-        <select name="quantity">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-        <br>
-        <input class="btn btn-default" type="submit" value="Add To Cart">
-    </form>
-
-    @if(SignInManager.IsSignedIn(User))
-    {
-        <a class="btn btn-default" asp-controller="Account" asp-action="FavoriteThisBook" asp-route-bookId="@Model.Id">Favorite this book!</a>
-    }
+    <div class="thumb col-sm-5 col-md-4 col-lg-3">
+        <img src="@Model.ImageLink" class="img-thumbnail" alt="book-thumbnail">
+    </div>
+    <div class="thumb col-sm-5 col-md-4 col-lg-3">
+        <h1>@Model.Title</h1> 
+        <h2>Author: @Model.Author</h2>
+        <p>Price: @Model.Price $</br>
+        <p>Genre: @Model.Genre</p>
 
 
-    <div>
+        <!--<a class="btn btn-default" asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">Add to Cart</a>-->
+
+        <form asp-controller="Cart" asp-action="AddToCart" asp-route-bookId="@Model.Id">
+            <label>Quantity: </label>
+            <select name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+            <input class="btn btn-default" type="submit" value="Add To Cart">
+        </form>
+
         @if(SignInManager.IsSignedIn(User))
         {
-            <div>
-                <fieldset>
-                    <Legend>Review</Legend>
-                    <form asp-controller="Book" asp-action="Review" asp-route-bookId="@Model.Id">
-                        <textarea name="review" id="review" cols="70" rows="10" placeholder="Write a review" maxlength="360"></textarea>
-                        <br><br>
-                        <label>Rating: </label>
-                        <select name="rating">
-                            <option value="5">5</option>
-                            <option value="4">4</option>
-                            <option value="3">3</option>
-                            <option value="2">2</option>
-                            <option value="1">1</option>
-                        </select>
-                        <br><br>
-                        <input type="submit">
-                    </form>
-                </fieldset>
-            </div>
-        }
-        else
-        {
-            <p><a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary">Sign in to leave a review</a></p>
+            <a class="btn btn-default" asp-controller="Account" asp-action="FavoriteThisBook" asp-route-bookId="@Model.Id">Favorite this book!</a>
         }
     </div>
-
-    @foreach(var comment in @Model.Reviews)
-    {
-        <p>@comment</p>
-    }
-
+    <div class="col-sm-5 col-md-4 col-lg-3">
+        <h2>Description:</h2>
+        <p  id="book-description">@Model.Description</p>
+    </div>
 </div>
+
+        <div class="row">
+            @if(SignInManager.IsSignedIn(User))
+            {
+                <div>
+                    <fieldset>
+                        <Legend>Review</Legend>
+                        <form asp-controller="Book" asp-action="Review" asp-route-bookId="@Model.Id">
+                            <textarea name="review" id="review" cols="70" rows="10" placeholder="Write a review" maxlength="360"></textarea>
+                            <br><br>
+                            <label>Rating: </label>
+                            <select name="rating">
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1</option>
+                            </select>
+                            <br><br>
+                            <input type="submit">
+                        </form>
+                    </fieldset>
+                </div>
+            }
+            else
+            {
+                <p><a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary">Sign in to leave a review</a></p>
+            }
+        </div>
+        @foreach(var comment in @Model.Reviews)
+        {
+            <div class="row">
+            <p>@comment</p>
+            </div>
+        }
+
 
 

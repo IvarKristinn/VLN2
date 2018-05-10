@@ -25,7 +25,6 @@ namespace BookCave.Controllers
             _accountService = new AccountService();
         }
 
-
         public IActionResult CartView()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -98,28 +97,15 @@ namespace BookCave.Controllers
                         {
                             UserId = userId,
                             ItemGroupingId = _cartService.GetCartItemGroupingId(userId),
-                            Billing = new Address
-                            {
-                                UserId = userId,
-                                Street = addresses.BillingAddress.Street,
-                                HouseNum = addresses.BillingAddress.HouseNum,
-                                City = addresses.BillingAddress.City,
-                                Country = addresses.BillingAddress.Country,
-                                ZipCode = addresses.BillingAddress.ZipCode
-                            },
-                            Shipping = new Address
-                            {
-                                UserId = userId,
-                                Street = addresses.ShippingAddress.Street,
-                                HouseNum = addresses.ShippingAddress.HouseNum,
-                                City = addresses.ShippingAddress.City,
-                                Country = addresses.ShippingAddress.Country,
-                                ZipCode = addresses.ShippingAddress.ZipCode
-                            }
                         };
             
             _cartService.AddOrderToHistories(order);
-            //_cartService.RemoveAllCartItems(userId);
+            
+            var currCartItems = _cartService.GetCartItemsRaw(userId);
+
+            _cartService.SaveOldCartItems(currCartItems);
+
+            _cartService.RemoveAllCurrentCartItems(userId);
 
             return View(addresses);
         }
