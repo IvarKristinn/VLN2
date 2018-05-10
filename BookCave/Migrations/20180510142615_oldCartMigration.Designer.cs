@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180510142615_oldCartMigration")]
+    partial class oldCartMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,11 +126,19 @@ namespace BookCave.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("BillingId");
+
                     b.Property<int>("ItemGroupingId");
+
+                    b.Property<int?>("ShippingId");
 
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BillingId");
+
+                    b.HasIndex("ShippingId");
 
                     b.ToTable("Orders");
                 });
@@ -154,6 +163,17 @@ namespace BookCave.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TempAddresses");
+                });
+
+            modelBuilder.Entity("BookCave.Data.EntityModels.Order", b =>
+                {
+                    b.HasOne("BookCave.Data.EntityModels.Address", "Billing")
+                        .WithMany()
+                        .HasForeignKey("BillingId");
+
+                    b.HasOne("BookCave.Data.EntityModels.Address", "Shipping")
+                        .WithMany()
+                        .HasForeignKey("ShippingId");
                 });
 #pragma warning restore 612, 618
         }
