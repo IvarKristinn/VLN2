@@ -8,7 +8,5 @@ namespace BookCave.Data.EntityModels
         public int Id { get; set; }
         public string UserId { get; set; }
         public int ItemGroupingId { get; set; }
-        public Address Billing { get; set; }
-        public Address Shipping { get; set; }
     }
 }

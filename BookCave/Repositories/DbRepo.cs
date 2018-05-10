@@ -335,8 +335,11 @@ namespace BookCave.Repositories
                                             ZipCode = newAddress.ZipCode
                                         };
 
-            _db.Addresses.Add(addressEntityModel);
-            _db.SaveChanges();
+            if(!_db.Addresses.Contains(addressEntityModel))
+            {
+                _db.Addresses.Add(addressEntityModel);
+                _db.SaveChanges();
+            }
         }
 
         public void RemoveUserAddress(int addressId, string userId)
@@ -464,9 +467,7 @@ namespace BookCave.Repositories
                                                            ImageLink = b.ImageLink,
                                                            Price = b.Price,
                                                            Quantity = c.Quantity
-                                                       }).ToList(),
-                              Billing = o.Billing,
-                              Shipping = o.Shipping
+                                                       }).ToList()
                           }).ToList();
             return orders;
         }

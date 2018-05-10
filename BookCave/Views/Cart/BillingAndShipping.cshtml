@@ -27,7 +27,7 @@
             <option value="" disabled selected>Select an address</option>
             @for(var i = 0; i < addressCount; i++)
             {
-                <option value="@i">@addresses[i].Street</option>
+                <option value="@i">@addresses[i].Street, @addresses[i].HouseNum</option>
             }
         </select>
 
