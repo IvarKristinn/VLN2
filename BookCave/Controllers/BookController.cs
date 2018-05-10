@@ -85,7 +85,7 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             bool ReviewSuccess = true;
-            //debug to see what value of review is when you leave it empty
+
             if(review != null)
             {
                 ReviewSuccess = _bookService.AddReview(userId, bookId,  review);
