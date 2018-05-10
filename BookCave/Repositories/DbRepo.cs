@@ -125,7 +125,7 @@ namespace BookCave.Repositories
                                     select new BookThumbnailViewModel
                                     {
                                        Id = b.Id,
-                                        Title = b.Genre,
+                                        Title = b.Title,
                                         Author = b.Author,
                                         ImageLink = b.ImageLink,
                                         Price = b.Price,
