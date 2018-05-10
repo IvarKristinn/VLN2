@@ -19,3 +19,30 @@ $('.multi-item-carousel').carousel({
         $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
     }
   });
+
+$("#savedBillingGet").click(function(){
+  var i = $("select#SavedBillingAddresses").val();
+
+  var streetId = "#Street-" + i;
+  var selectedStreet = $(streetId).text();
+
+  var HouseNumId = "#HouseNum-" + i;
+  var selectedHouseNum = $(HouseNumId).text();
+
+  var CityId = "#City-" + i;
+  var selectedCity = $(CityId).text();
+
+  var ZipCodeId = "#ZipCode-" + i;
+  var selectedZipCode = $(ZipCodeId).text();
+
+  var CountryId = "#Country-" + i;
+  var selectedCountry = $(CountryId).text();
+
+  $("#billStreet").val(selectedStreet);
+  $("#billHouseNum").val(selectedHouseNum);
+  $("#billCity").val(selectedCity);
+  $("#billZipCode").val(selectedZipCode);
+
+  //$("#billCountrySelect option[value="selectedCountry"]").innerHTML.append("selected");
+
+});

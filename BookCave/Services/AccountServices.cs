@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BookCave.Data.EntityModels;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
@@ -40,6 +41,15 @@ namespace BookCave.Services
         {
             var orders = _dbRepo.GetOrderHistory(userId);
             return orders;
+        }
+        public void AddNewBook(Book book)
+        {
+            _dbRepo.AddNewBook(book);
+        }
+        public List<BookDetailsViewModel> GetSearchString(string search)
+        {
+            var books = _dbRepo.GetSearchStringDetails(search);
+            return books;
         }
     }
 }

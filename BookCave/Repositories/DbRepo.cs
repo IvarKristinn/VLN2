@@ -152,6 +152,24 @@ namespace BookCave.Repositories
             return searchBooks;
         }
 
+        public List<BookDetailsViewModel> GetSearchStringDetails(string search)
+        {
+                var searchBooks = (from b in _db.Books
+                                  where (b.Title.ToLower().Contains(search.ToLower())
+                                        || b.Author.ToLower().Contains(search.ToLower())
+                                        || b.Genre.ToLower().Contains(search.ToLower()))
+                                  select new BookDetailsViewModel
+                                    {
+                                        Id = b.Id,
+                                        Title = b.Title,
+                                        Author = b.Author,
+                                        ImageLink = b.ImageLink,
+                                        Price = b.Price,
+                                        UserRatingAvg = b.UserRatingAvg
+                            }).ToList();
+            return searchBooks;
+        }
+
          public List<BookThumbnailViewModel> GetAffordableBooks()
         {
             var affordableBooks  = (from b in _db.Books
@@ -440,6 +458,12 @@ namespace BookCave.Repositories
                               Shipping = o.Shipping
                           }).ToList();
             return orders;
+        }
+
+        public void AddNewBook(Book book)
+        {
+            _db.Books.Add(book);
+            _db.SaveChanges();
         }
     }
 }

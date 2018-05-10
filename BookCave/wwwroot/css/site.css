@@ -228,3 +228,24 @@ body {
     font-size: 16px;
     font: bold;
 }
+/* Login Page*/
+#form-login-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+/* Register Page*/
+#form-register-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+/* Account Info Page*/
+#acc-info-img2 {
+    height: 300px;
+    width: 200px;
+}
+
+#account-info2 {
+    height: 420px;
+}

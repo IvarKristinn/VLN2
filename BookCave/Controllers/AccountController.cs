@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BookCave.Data.EntityModels;
 using BookCave.Models;
 using BookCave.Models.InputModels;
 using BookCave.Models.ViewModels;
@@ -18,13 +19,13 @@ namespace BookCave.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
 
         private AccountService _accountService;
-
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
             _accountService = new AccountService();
+            
         }
 
         public IActionResult Register()
@@ -204,9 +205,65 @@ namespace BookCave.Controllers
         [Authorize(Roles = "Staff")]
         public IActionResult Staff()
         {
+            ///account/addbook
+            ///account/removebook
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public IActionResult AddBook()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Staff")]
+        public IActionResult AddBook(BookInputModel newBook)
+        {
+            if(ModelState.IsValid)
+            {
+                var book = new Book
+                {
+                    Title = newBook.Title,
+                    Author = newBook.Author,
+                    Description = newBook.Description,
+                    Genre = newBook.Genre,
+                    Price = newBook.Price,
+                    ImageLink = newBook.ImageLink
+                };
+                _accountService.AddNewBook(book);
+            }
+            return View();
+        }
+        
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public IActionResult SearchForBook()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize(Roles = "Staff")]
+        public IActionResult SearchForBook(string search)
+        {
+            if(search != null)
+            {
+                return RedirectToAction("RemoveBook", new{search = search});
+            }
+            return View("NotFound");
+        }
+
+        [Authorize(Roles = "Staff")]
+        public IActionResult RemoveBook(string search)
+        {
+            var searchBooks = _accountService.GetSearchString(search);
+            if(searchBooks != null)
+            {
+                return View(searchBooks);
+            }
+            return View("NotFound");
+        }
         public IActionResult AccessDenied()
         {
             return View();
