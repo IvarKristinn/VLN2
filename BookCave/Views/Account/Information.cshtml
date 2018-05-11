@@ -22,32 +22,33 @@
             <form asp-controller="Account" asp-action="Information" method="POST">
                 <label>Edit name</label> <br>
                 <input type="text" asp-for="Name" value="@Model.Name" class="form-control"/>
+                <span asp-validation-for="Name"></span>
                 <br>
                     <h5 class="account-info-btext">Your Address/es</h5>
                     <div class="container" id="acc-info-add-table">
                         @if(@Model.UserAddresses.Count() != 0)
                         {
+                            <table id="testtableacc">
                             @foreach(var a in @Model.UserAddresses)
                             {
-                                <table id="testtableacc">
                                         <tr>
-                                            <th scope="row" class="AccTable">Street</th>
-                                            <th scope="row" class="AccTable th-right">Nr</th>
-                                            <th scope="row" class="AccTable th-right">City</th>
-                                            <th scope="row" class="AccTable th-right">Zip</th>
-                                            <th scope="row" class="AccTable th-right">Country</th>
-                                            <th scope="row" class="AccTable th-right">Remove</th>
+                                            <td scope="row" class="AccTable"><b>Street</b></td>
+                                            <td scope="row" class="AccTable"><b>Nr</b></td>
+                                            <td scope="row" class="AccTable"><b>City</b></td>
+                                            <td scope="row" class="AccTable"><b>Zip</b></td>
+                                            <td scope="row" class="AccTable"><b>Country</b></td>
+                                            <td scope="row" class="AccTable"><b>Remove</b></td>
                                         </tr>
                                         <tr>
                                             <td class="AccData">@a.Street</td>
-                                            <td class="AccData th-right">@a.HouseNum</td>
-                                            <td class="AccData th-right">@a.City</td>
-                                            <td class="AccData th-right">@a.ZipCode</td>
-                                            <td class="AccData th-right">@a.Country</td>
-                                            <td class="AccData th-right"><a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">X</a></td>
+                                            <td class="AccData">@a.HouseNum</td>
+                                            <td class="AccData">@a.City</td>
+                                            <td class="AccData">@a.ZipCode</td>
+                                            <td class="AccData">@a.Country</td>
+                                            <td class="AccData"><a class="btn btn-danger" asp-controller="Account" asp-action="RemoveAddress" asp-route-addressId="@a.Id">X</a></td>
                                         </tr>
-                                </table>
                             }
+                            </table>
                         }
                         else
                         {
