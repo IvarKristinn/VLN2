@@ -1,4 +1,4 @@
-@model BookCave.Models.ViewModels.LoginViewModel
+@model BookCave.Models.InputModels.LoginInputModel
 
 @{
     ViewData["Title"] = "Login";
@@ -9,10 +9,16 @@
     <form asp-action="Login" asp-controller="Account" class="form-horizontal">
         <div class="form-group">
             <input type="email" asp-for="Email" class="form-control" placeholder="Enter email address..." />
+            <span class="color-red" asp-validation-for="Email"></span>
         </div>
         <div class="form-group">
             <input type="password" asp-for="Password" class="form-control" placeholder="Password..." />
+            <span class="color-red" asp-validation-for="Password"></span>
         </div>
+        @if(ViewBag.noMatchingLogin != null)
+        {
+            <span class="color-red">@ViewBag.noMatchingLogin</span>
+        }
         <div class="checkbox">
             <label>
                 <input type="checkbox" asp-for="RememberMe" /> Remember me
