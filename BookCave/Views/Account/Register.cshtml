@@ -1,4 +1,4 @@
-@model BookCave.Models.ViewModels.RegisterViewModel
+@model BookCave.Models.InputModels.RegisterInputModel
 
 @{
     ViewData["Title"] = "Register";
@@ -9,12 +9,15 @@
     <form asp-action="Register" asp-controller="Account" class="form-horizontal">
         <div class="form-group">
             <input type="email" asp-for="Email" class="form-control" placeholder="Enter your email address..." />
+            <span class="color-red" asp-validation-for="Email"></span>
         </div>
         <div class="form-group">
             <input type="text" asp-for="Name" class="form-control" placeholder="Enter your full name..." />
+            <span class="color-red" asp-validation-for="Name"></span>
         </div>
         <div class="form-group">
             <input type="password" asp-for="Password" class="form-control" placeholder="Choose a password..." />
+            <span class="color-red" asp-validation-for="Password"></span>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Register</button>

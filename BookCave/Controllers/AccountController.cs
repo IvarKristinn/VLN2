@@ -35,7 +35,7 @@ namespace BookCave.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterInputModel model)
         {
             if(!ModelState.IsValid)
             {
