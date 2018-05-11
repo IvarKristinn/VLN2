@@ -392,3 +392,23 @@ body {
 .staff-acc-text {
     font-weight: bold;
 }
+
+#staff-book-search {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+#staff-book-remove {
+    margin-bottom:230px;
+    height: 240px;
+    background-color: #b2b3b3;
+    color: white;
+}
+
+#staff-book-remove a {
+    color: white;    
+}
+
+#staff-book-remove a:hover {
+    text-decoration: none;   
+}
