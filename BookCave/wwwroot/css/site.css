@@ -420,3 +420,20 @@ body {
     margin-bottom:230px;
     height: 240px;
 }
+
+/*Error Message */
+
+.color-red
+{
+    color: #E2222A;
+}
+.btn-danger, .btn-primary
+{
+    background-color: #E2222A;
+    border-color: #E2222A;
+}
+
+#history-size {
+    margin-bottom:230px;
+    height: 240px;
+}

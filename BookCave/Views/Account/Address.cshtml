@@ -4,25 +4,25 @@
     <label>Street:</label>
     <br>
     <input class="form-control b-S-input-width" type="text" asp-for="Street" placeholder="Street">
-    <span asp-validation-for="Street"></span>
+    <span class="color-red" asp-validation-for="Street"></span>
     <br>
     
     <label>House number:</label>
     <br>
     <input class="form-control b-S-input-width" type="text" asp-for="HouseNum" placeholder="House number">
-    <span asp-validation-for="HouseNum"></span>
+    <span class="color-red" asp-validation-for="HouseNum"></span>
     <br>
 
     <label>City:</label>
     <br>
     <input class="form-control b-S-input-width" type="text" asp-for="City" placeholder="City">
-    <span asp-validation-for="City"></span>
+    <span class="color-red" asp-validation-for="City"></span>
     <br>
 
     <label>Zip code:</label>
     <br>
     <input class="form-control b-S-input-width" type="text" asp-for="ZipCode" placeholder="Zip code">
-    <span asp-validation-for="ZipCode"></span>
+    <span class="color-red" asp-validation-for="ZipCode"></span>
     <br>
 
     <label>Country:</label>
@@ -34,7 +34,7 @@
         <option value="United-States">United States</option>
         <option value="Wakanda">Wakanda</option>
     </select>
-    <span asp-validation-for="Country"></span>
+    <span class="color-red" asp-validation-for="Country"></span>
     <br>
 
     <input class="btn btn-default" type="submit" value="Submit">

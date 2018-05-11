@@ -38,22 +38,22 @@
 
         <label asp-for="BillingStreet">Street</label><br>
         <input class="form-control b-S-input-width" type="text" asp-for="BillingStreet" id="billStreet" value="">
-        <span asp-validation-for="BillingStreet"></span>
+        <span class="color-red" asp-validation-for="BillingStreet"></span>
         <br/>
 
         <label asp-for="BillingHouseNum">House number</label><br>
         <input class="form-control b-S-input-width" type="text" asp-for="BillingHouseNum" id="billHouseNum" value="">
-        <span asp-validation-for="BillingHouseNum"></span>
+        <span class="color-red" asp-validation-for="BillingHouseNum"></span>
         <br/>
 
         <label asp-for="BillingCity">City</label><br>
         <input class="form-control b-S-input-width" type="text" asp-for="BillingCity" id="billCity" value="">
-        <span asp-validation-for="BillingCity"></span>
+        <span class="color-red" asp-validation-for="BillingCity"></span>
         <br/>
 
         <label asp-for="BillingZipCode">Zip code</label><br>
         <input class="form-control b-S-input-width" type="text" asp-for="BillingZipCode" id="billZipCode" value="">
-        <span asp-validation-for="BillingZipCode"></span>
+        <span class="color-red" asp-validation-for="BillingZipCode"></span>
         <br/>
 
         <label asp-for="BillingCountry">Country</label><br>
@@ -64,7 +64,7 @@
             <option value="United-States">United states</option>
             <option value="Wakanda">Wakanda</option>
         </select>
-        <span asp-validation-for="BillingCountry"></span>
+        <span class="color-red" asp-validation-for="BillingCountry"></span>
         
         <br/><br>
     </fieldset>
@@ -87,23 +87,23 @@
 
         <label asp-for="ShippingStreet">Street</label><br>
         <input class="form-control b-S-input-width" type="text" asp-for="ShippingStreet" id="shippStreet" value="">
-        <span asp-validation-for="ShippingStreet"></span>
+        <span class="color-red" asp-validation-for="ShippingStreet"></span>
         
         <br/>
 
         <label asp-for="ShippingHouseNum">House number</label><br>
         <input class="form-control b-S-input-width" type="text" asp-for="ShippingHouseNum" id="shippHouseNum" value="">
-        <span asp-validation-for="ShippingHouseNum"></span>
+        <span class="color-red" asp-validation-for="ShippingHouseNum"></span>
         <br/>
 
         <label asp-for="ShippingCity">City</label><br>
         <input class="form-control b-S-input-width" type="text" asp-for="ShippingCity" id="shippCity" value="">
-        <span asp-validation-for="ShippingCity"></span>
+        <span class="color-red" asp-validation-for="ShippingCity"></span>
         <br/>
 
         <label asp-for="ShippingZipCode">Zip code</label><br>
         <input class="form-control b-S-input-width" type="text" asp-for="ShippingZipCode" id="shippZipCode" value="">
-        <span asp-validation-for="ShippingZipCode"></span>
+        <span class="color-red" asp-validation-for="ShippingZipCode"></span>
         <br/>
 
         <label asp-for="ShippingCountry">Country</label><br>
@@ -114,7 +114,7 @@
             <option value="United-States">United states</option>
             <option value="Wakanda">Wakanda</option>
         </select>
-        <span asp-validation-for="ShippingCountry"></span>
+        <span class="color-red" asp-validation-for="ShippingCountry"></span>
         <br/><br>
     </fieldset>
     <a asp-controller="Cart" asp-action="CartView" class="btn btn-primary">Prev</a>
