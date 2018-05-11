@@ -284,6 +284,28 @@ body {
     font-weight: bold;
 }
 
+#acc-info-add-table {
+    width: 330px;
+    float: left;
+}
+
+#testtableacc {
+    width: 100%;
+}
+
+.single-bold {
+    font-weight: bold;
+}
+
+.AccTable {
+    font-size: 16px;
+}
+
+.AccData {
+    font-size: 16px;
+
+}
+
 /* Book details*/
 #row1 {
     padding-top: 50px;
@@ -359,4 +381,14 @@ body {
 
 .title-column {
     width: 200px;
+}
+
+/* Staff Acc */
+#staff-func-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+.staff-acc-text {
+    font-weight: bold;
 }

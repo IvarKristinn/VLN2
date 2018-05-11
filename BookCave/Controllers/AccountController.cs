@@ -90,11 +90,6 @@ namespace BookCave.Controllers
 
             if(result.Succeeded)
             {
-                if(User.IsInRole("Staff"))
-                {
-                    return RedirectToAction("Staff");
-                }
-
                 return RedirectToAction("Index", "Home");
             }
 
@@ -133,21 +128,32 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
+            
             //Name claim change
-            user.Name = model.Name;
-
-            //Profile pic change, if user sends in empty or null we give them a default pic
-            user.ProfilePicLink = model.ProfilePicLink;
-
-            //Removing fav book if checkbox is ticked
-            if(removeBook == true)
+            if(ModelState.IsValid)
             {
-                user.FavBookId = 0;
+                user.Name = model.Name;
+
+                //Profile pic change, if user sends in empty or null we give them a default pic
+                user.ProfilePicLink = model.ProfilePicLink;
+
+                //Removing fav book if checkbox is ticked
+                if(removeBook == true)
+                {
+                    user.FavBookId = 0;
+                }
+
+                await _userManager.UpdateAsync(user);
+
+                return RedirectToAction("Index", "Home");
             }
-
-            await _userManager.UpdateAsync(user);
-
-            return RedirectToAction("Information");
+                
+            return View(new AccountEditViewModel {
+                Name = user.Name,
+                ProfilePicLink = user.ProfilePicLink,
+                FavBook = _accountService.GetUserFavBook(user.FavBookId),
+                UserAddresses = _accountService.GetUserAddresses(userId)
+            });
         }
 
         [Authorize]
