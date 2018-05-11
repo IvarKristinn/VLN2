@@ -423,3 +423,17 @@ body {
     margin-bottom:230px;
     height: 240px;
 }
+
+/*Order Confirm*/
+
+#order-confim-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+/*Purchase Error*/
+
+#purc-error-size {
+    margin-bottom:230px;
+    height: 240px;
+}
