@@ -1,29 +1,39 @@
 @model List<BookCave.Models.ViewModels.OrderViewModel>
+<div class="container" id="history-size">
 
-@foreach (var order in @Model)
-{
-    <fieldset>
-    <legend>Order</legend>
-    @foreach (var book in order.OrderItems)
-    {
-        <div id="history-item-view">
-        <table class="table">
-        <thead>
-            <tr>
-                <th scope="col" class="title-column">Title</th>
-                <th scope="col" class="title-column">Author</th>
-                <th scope="col" class="title-column">Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@book.Title</td>
-                <td>@book.Author</td>
-                <td>@book.Quantity</td>
-            </tr>
-        </tbody>
-        </table>
-        </div>
-    }
-    </fieldset>
+@{
+    var drasl = @ViewBag.NoHistory;
 }
+@if(drasl == true)
+{
+    <h1>No orders in history.</h1>
+}
+    @foreach (var order in @Model)
+    {
+        <fieldset>
+        <legend>Order</legend>
+        @foreach (var book in order.OrderItems)
+        {
+            <div id="history-item-view">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="title-column">Title</th>
+                    <th scope="col" class="title-column">Author</th>
+                    <th scope="col" class="title-column">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Quantity</td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+        }
+        </fieldset>
+        <a asp-controller="Account" asp-action="Information" class="btn btn-danger">Back to profile</a>
+    }
+</div>
