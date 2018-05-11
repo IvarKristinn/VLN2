@@ -482,6 +482,19 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public void RemoveAllTempAddressesFromThisUser(string userId)
+        {
+            var addresses = (from t in _db.TempAddresses
+                             where t.UserId == userId
+                             select t).ToList();
+
+            foreach(var a in addresses)
+            {
+                _db.TempAddresses.Remove(a);
+            }
+            _db.SaveChanges();
+        }
+
         /************************ORDER HISTORY FUNCTIONS****************************\
         |***************************************************************************|
         \***************************************************************************/

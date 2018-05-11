@@ -3,11 +3,6 @@
 @using BookCave.Models
 
 @inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
-@{
-    var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
-}
 
 @if(SignInManager.IsSignedIn(User))
 {
@@ -23,7 +18,7 @@
         <form asp-action="Information" asp-controller="Account" method="GET">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <button class="btn btn-link navbar-btn navbar-link">@claim</button>
+                    <button class="btn btn-link navbar-btn navbar-link">Profile</button>
                 </li>
             </ul>
         </form>

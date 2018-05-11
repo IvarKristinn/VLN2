@@ -80,10 +80,18 @@ namespace BookCave.Controllers
             var addresses = _cartService.GetTempAddressesById(userId);
             if(addresses == null)
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("PurchaseError");
             }
             return View(addresses);
         }
+
+        public IActionResult PurchaseError()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _cartService.RemoveAllTempAddressesFromThisUser(userId);
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
