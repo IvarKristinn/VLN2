@@ -293,16 +293,16 @@ body {
     width: 100%;
 }
 
-.th-right {
-    text-align: right;
+.single-bold {
+    font-weight: bold;
 }
 
 .AccTable {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .AccData {
-    font-size: 10px;
+    font-size: 16px;
 
 }
 
