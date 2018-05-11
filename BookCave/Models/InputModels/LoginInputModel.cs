@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookCave.Models.ViewModels
 {
-    public class LoginViewModel
+    public class LoginInputModel
     {
         [Required]
         [EmailAddress]
