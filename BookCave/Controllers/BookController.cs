@@ -52,11 +52,13 @@ namespace BookCave.Controllers
         public IActionResult Search(string search)
         {
             var searchBooks = _bookService.GetSearchString(search);
-            if(searchBooks != null)
+            if(searchBooks.Count() != 0)
             {
                 return View(searchBooks);
             }
-            return View("NotFound");
+
+            ViewBag.SearchString = search;
+            return View(searchBooks);
         }
 
         public IActionResult TopRated()

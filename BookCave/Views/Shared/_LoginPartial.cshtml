@@ -22,7 +22,7 @@
                 </li>
             </ul>
         </form>
-        @if(User.IsInRole("Staff")) 
+        @if(User.IsInRole("Staff"))
         {
             <form asp-action="Staff" asp-controller="Account" method="GET">
                 <ul class="nav navbar-nav navbar-right">
