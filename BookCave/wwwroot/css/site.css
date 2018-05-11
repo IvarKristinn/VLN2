@@ -412,3 +412,14 @@ body {
 #staff-book-remove a:hover {
     text-decoration: none;   
 }
+
+/* BillingAndShipping */
+
+.b-S-input-width {
+    width: 200px;
+}
+
+#b-s-confirm {
+    margin-bottom:230px;
+    height: 240px;
+}

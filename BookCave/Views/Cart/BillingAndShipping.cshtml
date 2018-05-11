@@ -3,6 +3,7 @@
 @{
     var addresses = @ViewBag.SavedAddresses;
     var addressCount = @ViewBag.AddressCount;
+    ViewData["Title"] = "Billing and Shipping";
 }
 
 <div id="all-addresses">
@@ -23,7 +24,7 @@
         <legend>Billing Address</legend>
 
         <label for="SavedBillingAddresses">Saved Addresses</label><br>
-        <select id="SavedBillingAddresses">
+        <select class="form-control b-S-input-width" id="SavedBillingAddresses">
             <option value="" disabled selected>Select an address</option>
             @for(var i = 0; i < addressCount; i++)
             {
@@ -36,27 +37,27 @@
         <br><br>
 
         <label asp-for="BillingStreet">Street</label><br>
-        <input type="text" asp-for="BillingStreet" id="billStreet" value="">
+        <input class="form-control b-S-input-width" type="text" asp-for="BillingStreet" id="billStreet" value="">
         <span asp-validation-for="BillingStreet"></span>
         <br/>
 
         <label asp-for="BillingHouseNum">House number</label><br>
-        <input type="text" asp-for="BillingHouseNum" id="billHouseNum" value="">
+        <input class="form-control b-S-input-width" type="text" asp-for="BillingHouseNum" id="billHouseNum" value="">
         <span asp-validation-for="BillingHouseNum"></span>
         <br/>
 
         <label asp-for="BillingCity">City</label><br>
-        <input type="text" asp-for="BillingCity" id="billCity" value="">
+        <input class="form-control b-S-input-width" type="text" asp-for="BillingCity" id="billCity" value="">
         <span asp-validation-for="BillingCity"></span>
         <br/>
 
         <label asp-for="BillingZipCode">Zip code</label><br>
-        <input type="text" asp-for="BillingZipCode" id="billZipCode" value="">
+        <input class="form-control b-S-input-width" type="text" asp-for="BillingZipCode" id="billZipCode" value="">
         <span asp-validation-for="BillingZipCode"></span>
         <br/>
 
         <label asp-for="BillingCountry">Country</label><br>
-        <select asp-for="BillingCountry" id="billCountrySelect">
+        <select class="form-control b-S-input-width" asp-for="BillingCountry" id="billCountrySelect">
             <option value="" disabled selected>Select a country</option>
             <option value="Iceland">Iceland</option>
             <option value="United-Kingdom">United Kingdom</option>
@@ -72,7 +73,7 @@
         <legend>Shipping Address</legend>
 
         <label for="SavedShippingAddresses">Saved Addresses</label><br>
-        <select id="SavedShippingAddresses">
+        <select class="form-control b-S-input-width" id="SavedShippingAddresses">
             <option value="" disabled selected>Select an address</option>
             @for(var k = 0; k < addressCount; k++)
             {
@@ -85,28 +86,28 @@
         <br><br>
 
         <label asp-for="ShippingStreet">Street</label><br>
-        <input type="text" asp-for="ShippingStreet" id="shippStreet" value="">
+        <input class="form-control b-S-input-width" type="text" asp-for="ShippingStreet" id="shippStreet" value="">
         <span asp-validation-for="ShippingStreet"></span>
         
         <br/>
 
         <label asp-for="ShippingHouseNum">House number</label><br>
-        <input type="text" asp-for="ShippingHouseNum" id="shippHouseNum" value="">
+        <input class="form-control b-S-input-width" type="text" asp-for="ShippingHouseNum" id="shippHouseNum" value="">
         <span asp-validation-for="ShippingHouseNum"></span>
         <br/>
 
         <label asp-for="ShippingCity">City</label><br>
-        <input type="text" asp-for="ShippingCity" id="shippCity" value="">
+        <input class="form-control b-S-input-width" type="text" asp-for="ShippingCity" id="shippCity" value="">
         <span asp-validation-for="ShippingCity"></span>
         <br/>
 
         <label asp-for="ShippingZipCode">Zip code</label><br>
-        <input type="text" asp-for="ShippingZipCode" id="shippZipCode" value="">
+        <input class="form-control b-S-input-width" type="text" asp-for="ShippingZipCode" id="shippZipCode" value="">
         <span asp-validation-for="ShippingZipCode"></span>
         <br/>
 
         <label asp-for="ShippingCountry">Country</label><br>
-        <select asp-for="ShippingCountry" id="shippCountrySelect">
+        <select class="form-control b-S-input-width" asp-for="ShippingCountry" id="shippCountrySelect">
             <option value="" disabled selected>Select a country</option>
             <option value="Iceland">Iceland</option>
             <option value="United-Kingdom">United Kingdom</option>
