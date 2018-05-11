@@ -22,7 +22,7 @@
             <form asp-controller="Account" asp-action="Information" method="POST">
                 <label>Edit name</label> <br>
                 <input type="text" asp-for="Name" value="@Model.Name" class="form-control"/>
-                <span asp-validation-for="Name"></span>
+                <span class="color-red" asp-validation-for="Name"></span>
                 <br>
                     <h5 class="account-info-btext">Your Address/es</h5>
                     <div class="container" id="acc-info-add-table">

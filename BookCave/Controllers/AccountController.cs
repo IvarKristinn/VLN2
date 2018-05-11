@@ -209,6 +209,11 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var orders = _accountService.GetOrderHistory(userId);
+            if(orders.Count != 0)
+            {
+                return View(orders);
+            }
+            ViewBag.NoHistory = true;
             return View(orders);
         }
 

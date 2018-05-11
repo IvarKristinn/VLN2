@@ -4,7 +4,7 @@ body {
     padding-bottom: 5px;
     background: #CBCCCC;  
 }
-
+/* Navbar */
 .navbar {
     background-color: #676767;
     padding-top: 3px;
@@ -37,7 +37,7 @@ body {
     padding-left: 30px;
     
 }
-
+/* Footer */
 #footer {
     background-color: #333433;
     padding-top: 10px;
@@ -417,6 +417,23 @@ body {
 /*Purchase Error*/
 
 #purc-error-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+/*Error Message */
+
+.color-red
+{
+    color: #E2222A;
+}
+.btn-danger, .btn-primary
+{
+    background-color: #E2222A;
+    border-color: #E2222A;
+}
+
+#history-size {
     margin-bottom:230px;
     height: 240px;
 }
