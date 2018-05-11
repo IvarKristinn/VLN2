@@ -37,6 +37,91 @@ namespace BookCave.Repositories
             return books;
         }
 
+        public List<BookThumbnailViewModel> GetBooksById()
+        {
+            var books = (from b in _db.Books
+                         orderby b.Id descending
+                         select new BookThumbnailViewModel
+                         {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Author = b.Author,
+                            Price = b.Price,
+                            ImageLink = b.ImageLink,
+                            UserRatingAvg = b.UserRatingAvg
+                         }).Take(12).ToList();
+
+            return books;
+        }
+
+        public List<BookThumbnailViewModel> GetTopTwelveBooks()
+        {
+            var topTwelveBooks = (from b in _db.Books
+                                  orderby b.UserRatingAvg descending
+                                  select new BookThumbnailViewModel
+                                  {
+                                      Id = b.Id,
+                                      Title = b.Title,
+                                      Author = b.Author,
+                                      Price = b.Price,
+                                      ImageLink = b.ImageLink,
+                                      UserRatingAvg = b.UserRatingAvg
+                                  }).Take(12).ToList();
+
+            return topTwelveBooks;
+        }
+
+        public List<BookThumbnailViewModel> GetAffordableBooks()
+        {
+            var affordableBooks  = (from b in _db.Books
+                                    orderby b.Price ascending
+                                    select new BookThumbnailViewModel
+                                    {
+                                        Id = b.Id,
+                                        Title = b.Title,
+                                        Author = b.Author,
+                                        Price = b.Price,
+                                        ImageLink = b.ImageLink,
+                                        UserRatingAvg = b.UserRatingAvg
+                                    }).Take(10).ToList();
+
+                     return affordableBooks;
+        }
+
+         public List<BookThumbnailViewModel> GetByGenre(string genre)
+        {
+            var bookByGenre = (from b in _db.Books
+                               where b.Genre == genre
+                               select new BookThumbnailViewModel
+                               {
+                                    Id = b.Id,
+                                    Title = b.Title,
+                                    Author = b.Author,
+                                    ImageLink = b.ImageLink,
+                                    Price = b.Price,
+                                    UserRatingAvg = b.UserRatingAvg
+                               }).ToList();
+
+             return bookByGenre;
+        }
+
+         public List<BookThumbnailViewModel> GetTopRatedBooks()
+        {
+            var topBooks = (from b in _db.Books
+                            orderby b.UserRatingAvg descending
+                            select new BookThumbnailViewModel
+                            {
+                                Id = b.Id,
+                                Title = b.Title,
+                                Author = b.Author,
+                                Price = b.Price,
+                                ImageLink = b.ImageLink,
+                                UserRatingAvg = b.UserRatingAvg
+                            }).Take(25).ToList();
+
+            return topBooks;
+        }
+
         public BookDetailsViewModel GetBookDetailsById(int id)
         {
             var book = (from b in _db.Books
@@ -77,73 +162,6 @@ namespace BookCave.Repositories
             return book;
         }
 
-        public List<BookThumbnailViewModel> GetBooksById()
-        {
-            var books = (from b in _db.Books
-                         orderby b.Id descending
-                         select new BookThumbnailViewModel
-                         {
-                            Id = b.Id,
-                            Title = b.Title,
-                            Author = b.Author,
-                            Price = b.Price,
-                            ImageLink = b.ImageLink,
-                            UserRatingAvg = b.UserRatingAvg
-                         }).Take(12).ToList();
-
-            return books;
-        }
-
-        public List<BookThumbnailViewModel> GetTopRatedBooks()
-        {
-            var topBooks = (from b in _db.Books
-                            orderby b.UserRatingAvg descending
-                            select new BookThumbnailViewModel
-                            {
-                                Id = b.Id,
-                                Title = b.Title,
-                                Author = b.Author,
-                                Price = b.Price,
-                                ImageLink = b.ImageLink,
-                                UserRatingAvg = b.UserRatingAvg
-                            }).Take(25).ToList();
-
-            return topBooks;
-        }
-        public List<BookThumbnailViewModel> GetTopTwelveBooks()
-        {
-            var topTwelveBooks = (from b in _db.Books
-                                  orderby b.UserRatingAvg descending
-                                  select new BookThumbnailViewModel
-                                  {
-                                      Id = b.Id,
-                                      Title = b.Title,
-                                      Author = b.Author,
-                                      Price = b.Price,
-                                      ImageLink = b.ImageLink,
-                                      UserRatingAvg = b.UserRatingAvg
-                                  }).Take(12).ToList();
-
-            return topTwelveBooks;
-        }
-
-        public List<BookThumbnailViewModel> GetByGenre(string genre)
-        {
-            var bookByGenre = (from b in _db.Books
-                               where b.Genre == genre
-                               select new BookThumbnailViewModel
-                               {
-                                    Id = b.Id,
-                                    Title = b.Title,
-                                    Author = b.Author,
-                                    ImageLink = b.ImageLink,
-                                    Price = b.Price,
-                                    UserRatingAvg = b.UserRatingAvg
-                               }).ToList();
-
-             return bookByGenre;
-        }
-
         public List<BookThumbnailViewModel> GetSearchString(string search)
         {
                 var searchBooks = (from b in _db.Books
@@ -181,24 +199,7 @@ namespace BookCave.Repositories
 
             return searchBooks;
         }
-
-        public List<BookThumbnailViewModel> GetAffordableBooks()
-        {
-            var affordableBooks  = (from b in _db.Books
-                                    orderby b.Price ascending
-                                    select new BookThumbnailViewModel
-                                    {
-                                        Id = b.Id,
-                                        Title = b.Title,
-                                        Author = b.Author,
-                                        Price = b.Price,
-                                        ImageLink = b.ImageLink,
-                                        UserRatingAvg = b.UserRatingAvg
-                                    }).Take(10).ToList();
-
-                     return affordableBooks;
-        }
-
+        
         public bool UpdateBookRating(int bookId, int rating)
         {
             var book = (from b in _db.Books
