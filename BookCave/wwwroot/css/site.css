@@ -14,7 +14,6 @@ body {
     margin-top: 4px;
 }
 
-
 #navlinks a:hover, #cartlink:hover {
     color: #E2222A;
 }
@@ -45,6 +44,7 @@ body {
     color: aliceblue;
     padding-bottom: 20px;
 }
+
 #pagebreak {
     margin-bottom: 8px;
     background-color: #CBCCCC;
@@ -96,6 +96,15 @@ body {
     background-image: none;
 }
 
+#carosel-gugga {
+    width: 1440px;
+}
+
+.top-twelve {
+    color: #676767;
+    text-align: center;
+    font-size: 16px;
+}
 
 /* QR code generator */
 #qrCode {
@@ -110,57 +119,49 @@ body {
     }
 }
 
-/* Front page look */
-.wrapper
-{
+/* Front page */
+.wrapper {
     background-color: #676767;
-    height: 1100px;
+    height: 1090px;
     overflow: hidden;
     margin-left: 15px;
 }
 
-.first
-{
+.first {
     padding-top: 5px; /*gmg*/
     padding-left: 22px;
     float: left;
 }
 
-.second
-{
+.second {
     padding-left: 25px;
     padding-right: 1px; /*gmg*/
     float: left;
 }
 
-.second h1
-{
+.second h1 {
     color: white;
 }
 
-.book-list
-{
+.book-list {
     background-color: #333433;
     max-width: 230px;
     height: 450px;
     padding-left: 5px;
 }
 
-.book-list a 
-{
+.book-list a {
    color: white;
    text-decoration: none;
    font-size: 18px;
    margin: 20px;
 }
 
-.FrontPageBookList a:hover
-{
+.front-page-book-lists a:hover {
    color: #E2222A;
 }
 
-.FrontPageBookListGenre a 
-{
+.front-page-book-lists-genre a {
    color: white;
    text-decoration: none;
    font-size: 16px;
@@ -168,28 +169,23 @@ body {
    padding-left: 30px;
 }
 
-.FrontPageBookListGenre a:hover
-{
+.front-page-book-lists-genre a:hover {
    color: #E2222A;
 }
 
-#our-books
-{
+#our-books {
     color: #CBCCCC;
     text-align: center; 
     padding-top: 15px;
 }
 
-#genre
-{
+#genre {
     color: white;
     font-size: 18px;
     padding-left: 20px;
 }
 
-/* Thumbnail*/
-.book-list-two
-{
+.book-list-two {
     background-color: #CBCCCC;
     padding-left: 15px; 
     padding-right: 30px; 
@@ -201,8 +197,7 @@ body {
     min-height:100%;
 }
 
-.thumbnail 
-{
+.thumbnail {
     height: 300px;
     width: 192px;
     margin-right: 10px;
@@ -211,41 +206,38 @@ body {
     background-color: #555657; 
 }
 
-.thumbnail a
-{
+.thumbnail a {
     text-decoration: none;
     color: white;
     font-size: 12px;
     padding-top: 20px;
 }
 
-.text-tumb
-{
+.thumb-title {
+    text-align: center;
+    font-size: 14px;
+    font: bolder;
+}
+.img-thumb {
+    height: 480px;
+    width: 350px;
+}
+
+.text-tumb {
     padding-top: 50px;
     text-decoration: none;
     color: white;
     font-size: 12px;
 }
 
-.thumbnail a:hover, thumb-title:hover
-{
+.thumbnail a:hover, thumb-title:hover {
     text-decoration: none;
     color: #E2222A;
 }
 
-.img-thumbnail
-{
+.img-thumbnail {
     max-height: 180px;
-    max-width: 180px;
-    /*margin: 24px;*/
-    
-}
-
-.thumb-title
-{
-    text-align: center;
-    font-size: 16px;
-    font: bold;
+    max-width: 180px;  
 }
 
 /* Login Page*/
@@ -296,16 +288,6 @@ body {
     font-size: 16px;
 }
 
-.img-thumb
-{
-    height: 480px;
-    width: 350px;
-}
-
-#carosel-gugga
-{
-    width: 1440px;
-}
 #detail-img {
     max-height: 420px;
     max-width: 420px;
@@ -347,6 +329,7 @@ body {
 #sub-total-float {
     float: right;
 }
+
 .cart-title-column {
     width: 150px;
 }

@@ -3,35 +3,35 @@
      var genre=@ViewBag.Genre;
  }
 <div class="wrapper container">
-        <div class="first">
-            <div class="book-list">
-                <h2 id="our-books">Our books</h2><br>
-                    <div class="FrontPageBookList">
-                        <a asp-controller="Book" asp-action="AllBooks">All books</a>
-                    </div><br>
-                    <div class="FrontPageBookList">
-                        <a asp-controller="Book" asp-action="AffordableBooks">Affordable books</a>
-                    </div><br>
-                    <p id="genre">Genre</p>
-                    <div class="FrontPageBookListGenre">
+    <div class="first">
+        <div class="book-list">
+            <h2 id="our-books">Our books</h2><br>
+                <div class="front-page-book-lists">
+                    <a asp-controller="Book" asp-action="AllBooks">All books</a>
+                </div><br>
+                <div class="front-page-book-lists">
+                    <a asp-controller="Book" asp-action="AffordableBooks">Affordable books</a>
+                </div><br>
+                <p id="genre">Genre</p>
+                    <div class="front-page-book-lists-genre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="Dark Fantasy">Dark Fantasy</a>
                     </div><br>
-                    <div class="FrontPageBookListGenre">
+                    <div class="front-page-book-lists-genre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="Epic Fantasy">Epic Fantasy</a>
                     </div><br>
-                    <div class="FrontPageBookListGenre">
+                    <div class="front-page-book-lists-genre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="Heroic Fantasy">Heroic Fantasy</a>
                     </div><br>
-                    <div class="FrontPageBookListGenre">
+                    <div class="front-page-book-lists-genre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="High Fantasy">High Fantasy</a>
                     </div><br>
-                    <div class="FrontPageBookListGenre">
+                    <div class="front-page-book-lists-genre">
                         <a asp-controller="Book" asp-action="Genre" asp-route-genre="Urban Fantasy">Urban Fantasy</a>
                     </div><br>
-                    <div class="FrontPageBookList">
-                        <a asp-controller="Book" asp-action="TopRated">Highest rated books</a>
-                    </div><br>
-            </div>
+                <div class="front-page-book-lists">
+                    <a asp-controller="Book" asp-action="TopRated">All top rated books</a>
+                </div><br>
+        </div>
     </div>
     <div class="second">
         <h1>@genre</h1>
