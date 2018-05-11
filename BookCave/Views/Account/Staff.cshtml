@@ -1,3 +1,13 @@
-<h1>Staff Functions</h1>
-<a asp-controller="Account" asp-action="AddBook" class="btn btn-primary">Add a book</a>
-<a asp-controller="Account" asp-action="SearchForBook" class="btn btn-primary">Remove a book</a>
+@{
+    ViewData["Title"] = "Staff Functions";
+}
+
+<div class="container" id="staff-func-size">
+    <h1>Staff Functions</h1>
+    <div class="container">
+        <h5 class="staff-acc-text">Add an book to system</h5>
+        <a asp-controller="Account" asp-action="AddBook" class="btn btn-primary">Add a book</a><br><br>
+        <h5 class="staff-acc-text">Delete an book from system</h5>
+        <a asp-controller="Account" asp-action="SearchForBook" class="btn btn-primary">Remove a book</a>
+    </div>
+</div>

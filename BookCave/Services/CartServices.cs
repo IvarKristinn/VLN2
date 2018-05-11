@@ -88,6 +88,11 @@ namespace BookCave.Services
             _dbRepo.RemoveAddressesFromTemp(userId);
         }
 
+        public void RemoveAllTempAddressesFromThisUser(string userId)
+        {
+            _dbRepo.RemoveAllTempAddressesFromThisUser(userId);
+        }
+
         public void AddOrderToHistories(Order order)
         {
             _dbRepo.AddOrderToHistories(order);

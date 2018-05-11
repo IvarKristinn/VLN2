@@ -1,12 +1,18 @@
 @model BookCave.Models.ViewModels.BillingAndShippingViewModel
 
-<h1>Thank you for your order!</h1>
-<h2>Your order is on its way to the following address:</h2>
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
 
-<h1>Shipping Address</h1>
-<p>
-    Streetname: @Model.ShippingAddress.Street<br>
-    House number: @Model.ShippingAddress.HouseNum
-</p>
+<div class="container" id="order-confim-size">
+    <h1>Thank you for your order!</h1>
+    <h2>Your order is on its way to the following address:</h2>
 
-<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to front page</a>
+    <h1>Shipping Address</h1>
+    <p>
+        Streetname: @Model.ShippingAddress.Street<br>
+        House number: @Model.ShippingAddress.HouseNum
+    </p>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to front page</a>
+</div>

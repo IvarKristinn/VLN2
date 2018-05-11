@@ -276,6 +276,28 @@ body {
     font-weight: bold;
 }
 
+#acc-info-add-table {
+    width: 330px;
+    float: left;
+}
+
+#testtableacc {
+    width: 100%;
+}
+
+.single-bold {
+    font-weight: bold;
+}
+
+.AccTable {
+    font-size: 16px;
+}
+
+.AccData {
+    font-size: 16px;
+
+}
+
 /* Book details*/
 #row1 {
     padding-top: 50px;
@@ -342,4 +364,59 @@ body {
 
 .title-column {
     width: 200px;
+}
+
+/* Staff Acc */
+#staff-func-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+.staff-acc-text {
+    font-weight: bold;
+}
+
+#staff-book-search {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+#staff-book-remove {
+    margin-bottom:230px;
+    height: 240px;
+    background-color: #b2b3b3;
+    color: white;
+}
+
+#staff-book-remove a {
+    color: white;    
+}
+
+#staff-book-remove a:hover {
+    text-decoration: none;   
+}
+
+/* BillingAndShipping */
+
+.b-S-input-width {
+    width: 200px;
+}
+
+#b-s-confirm {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+/*Order Confirm*/
+
+#order-confim-size {
+    margin-bottom:230px;
+    height: 240px;
+}
+
+/*Purchase Error*/
+
+#purc-error-size {
+    margin-bottom:230px;
+    height: 240px;
 }

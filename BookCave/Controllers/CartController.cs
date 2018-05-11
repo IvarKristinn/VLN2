@@ -78,8 +78,20 @@ namespace BookCave.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var addresses = _cartService.GetTempAddressesById(userId);
+            if(addresses == null)
+            {
+                return RedirectToAction("PurchaseError");
+            }
             return View(addresses);
         }
+
+        public IActionResult PurchaseError()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _cartService.RemoveAllTempAddressesFromThisUser(userId);
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

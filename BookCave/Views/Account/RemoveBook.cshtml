@@ -1,15 +1,17 @@
 @model List<BookCave.Models.ViewModels.BookDetailsViewModel>
-
+<div id="staff-book-remove">
 @if(Model != null)
 {
-    <table>
+    <table class="table">
+    <thead>
         <tr>
-            <th>ID</th>
-            <th>Title</th> 
-            <th>Author</th>
-            <th>Price</th>
-            <th></th>
+            <th scope="col" class="title-column">ID</th>
+            <th scope="col" class="title-column">Title</th> 
+            <th scope="col" class="title-column">Author</th>
+            <th scope="col" class="title-column">Price</th>
+            <th scope="col" class="title-column"></th>
         </tr>
+    </thead>
         @foreach(var book in @Model)
         {
             
@@ -19,8 +21,9 @@
                 <td><a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">@book.Title</a></td> 
                 <td>@book.Author</td>
                 <td>@book.Price</td>
-                <td><a class="btn btn-default" asp-controller="Account" asp-action="RemoveFromDB" asp-route-id="@book.Id">Remove Book</a></td>
+                <td><a class="btn btn-danger" asp-controller="Account" asp-action="RemoveFromDB" asp-route-id="@book.Id">Remove Book</a></td>
             </tr>
         }
     </table>
 }
+</div>

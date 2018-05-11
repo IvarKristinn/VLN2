@@ -1,25 +1,30 @@
 @model BookCave.Models.ViewModels.BillingAndShippingViewModel
 
-<fieldset>
-    <legend>Billing Address</legend>
+@{
+    ViewData["Title"] = "Confirmation";
+}
+<div class="container" id="b-s-confirm">
+    <fieldset>
+        <legend>Billing Address</legend>
 
-    <p>Street: @Model.BillingAddress.Street</p>
-    <p>House number: @Model.BillingAddress.HouseNum</p>
-    <p>City:  @Model.BillingAddress.City</p>
-    <p>Country: @Model.BillingAddress.Country</p>
-    <p>Zip Code: @Model.BillingAddress.ZipCode</p>
+        <p>Street: @Model.BillingAddress.Street</p>
+        <p>House number: @Model.BillingAddress.HouseNum</p>
+        <p>City:  @Model.BillingAddress.City</p>
+        <p>Country: @Model.BillingAddress.Country</p>
+        <p>Zip Code: @Model.BillingAddress.ZipCode</p>
 
-</fieldset>
+    </fieldset>
 
-<fieldset>
-    <legend>Shipping Address</legend>
+    <fieldset>
+        <legend>Shipping Address</legend>
 
-    <p>Street: @Model.ShippingAddress.Street</p>
-    <p>House number: @Model.ShippingAddress.HouseNum</p>
-    <p>City:  @Model.ShippingAddress.City</p>
-    <p>Country: @Model.ShippingAddress.Country</p>
-    <p>Zip Code: @Model.ShippingAddress.ZipCode</p>
+        <p>Street: @Model.ShippingAddress.Street</p>
+        <p>House number: @Model.ShippingAddress.HouseNum</p>
+        <p>City:  @Model.ShippingAddress.City</p>
+        <p>Country: @Model.ShippingAddress.Country</p>
+        <p>Zip Code: @Model.ShippingAddress.ZipCode</p>
 
-</fieldset>
-<a asp-controller="Cart" asp-action="BillingAndShipping" class="btn btn-primary">Prev</a>
-<a asp-controller="Cart" asp-action="OrderConfirmation" class="btn btn-primary">Confirm</a>
+    </fieldset>
+    <a asp-controller="Cart" asp-action="BillingAndShipping" class="btn btn-primary">Prev</a>
+    <a asp-controller="Cart" asp-action="OrderConfirmation" class="btn btn-primary">Confirm</a>
+</div>
