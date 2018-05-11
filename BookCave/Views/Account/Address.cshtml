@@ -3,31 +3,31 @@
 <form asp-controller="Account" asp-action="Address" method="POST">
     <label>Street:</label>
     <br>
-    <input type="text" asp-for="Street" placeholder="Street">
+    <input class="form-control b-S-input-width" type="text" asp-for="Street" placeholder="Street">
     <span asp-validation-for="Street"></span>
     <br>
     
     <label>House number:</label>
     <br>
-    <input type="text" asp-for="HouseNum" placeholder="House number">
+    <input class="form-control b-S-input-width" type="text" asp-for="HouseNum" placeholder="House number">
     <span asp-validation-for="HouseNum"></span>
     <br>
 
     <label>City:</label>
     <br>
-    <input type="text" asp-for="City" placeholder="City">
+    <input class="form-control b-S-input-width" type="text" asp-for="City" placeholder="City">
     <span asp-validation-for="City"></span>
     <br>
 
     <label>Zip code:</label>
     <br>
-    <input type="text" asp-for="ZipCode" placeholder="Zip code">
+    <input class="form-control b-S-input-width" type="text" asp-for="ZipCode" placeholder="Zip code">
     <span asp-validation-for="ZipCode"></span>
     <br>
 
     <label>Country:</label>
     <br>
-    <select asp-for="Country">
+    <select asp-for="Country" class="form-control b-S-input-width">
         <option value="" disabled selected >Select a country</option>
         <option value="Iceland">Iceland</option>
         <option value="United-Kingdom">United Kingdom</option>
@@ -35,7 +35,7 @@
         <option value="Wakanda">Wakanda</option>
     </select>
     <span asp-validation-for="Country"></span>
-    <br><br>
+    <br>
 
-    <input type="submit" value="Submit">
+    <input class="btn btn-default" type="submit" value="Submit">
 </form> 
