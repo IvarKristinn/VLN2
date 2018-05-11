@@ -62,7 +62,7 @@ namespace BookCave.Controllers
 
             if(result.Succeeded)
             { 
-                //await _userManager.AddToRoleAsync(user, "Staff");
+                //await _userManager.AddToRoleAsync(user, "Staff");  -  only for creating a staff account
                 await _userManager.AddClaimAsync(user, new Claim("Name", model.Name));
                 await _signInManager.SignInAsync(user, false);
 
