@@ -1,5 +1,9 @@
 @model List<BookCave.Models.ViewModels.BookThumbnailViewModel>
 
+@{
+    ViewData["Title"] = "Search";
+}
+
 <div class="wrapper container">
     <div class="first">
         <div class="book-list">
@@ -34,6 +38,8 @@
     <div class="second">
         <h1>Search results..</h1>
         <div class="book-list-two">
+            @if(@Model.Count() != 0)
+            {
             <div class="row">
                 @foreach(var searchBook in @Model)
                 {
@@ -50,6 +56,11 @@
                     </div>
                 }
             </div>
+            }
+            else
+            {
+                <h3>No search results for "@ViewBag.SearchString"</h3>
+            }
         </div>
     </div>
 </div>

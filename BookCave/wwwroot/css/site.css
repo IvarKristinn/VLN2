@@ -427,3 +427,8 @@ body {
 {
     color: #E2222A;
 }
+
+#history-size {
+    margin-bottom:230px;
+    height: 240px;
+}
