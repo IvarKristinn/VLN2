@@ -90,11 +90,6 @@ namespace BookCave.Controllers
 
             if(result.Succeeded)
             {
-                if(User.IsInRole("Staff"))
-                {
-                    return RedirectToAction("Staff");
-                }
-
                 return RedirectToAction("Index", "Home");
             }
 
