@@ -427,6 +427,11 @@ body {
 {
     color: #E2222A;
 }
+.btn-danger, .btn-primary
+{
+    background-color: #E2222A;
+    border-color: #E2222A;
+}
 
 #history-size {
     margin-bottom:230px;
