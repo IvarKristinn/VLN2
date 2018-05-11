@@ -22,6 +22,16 @@
                 </li>
             </ul>
         </form>
+        @if(User.IsInRole("Staff")) 
+        {
+            <form asp-action="Staff" asp-controller="Account" method="GET">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <button class="btn btn-link navbar-btn navbar-link">Staff</button>
+                    </li>
+                </ul>
+            </form>
+        }
     </div>
 }
 else
