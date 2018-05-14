@@ -5,9 +5,9 @@
 }
 
 <div id="form-cart-size">
-    <h1>Cart:</h1>
-    @if(Model != null)
+    @if(Model.Count() != 0)
     {
+        <h1>Cart:</h1>
         double subTotal = 0;
         @foreach(var book in @Model)
         {
