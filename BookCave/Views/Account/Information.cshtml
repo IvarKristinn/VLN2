@@ -63,7 +63,7 @@
             {
                 <h5 class="account-info-btext">Your Favorite book</h5>
                 <div>
-                    <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.FavBook.Id">
+                    <a id="fav-book" asp-controller="Book" asp-action="Details" asp-route-id="@Model.FavBook.Id">
                         <div class="container">
                             <img id="acc-info-img2" src="@Model.FavBook.ImageLink" alt="book-thumbnail">
                             <p>Title: @Model.FavBook.Title</p>
