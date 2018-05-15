@@ -51,6 +51,11 @@ namespace BookCave.Controllers
 
         public IActionResult Search(string search)
         {
+            if(search == null || search == "")
+            {
+                return RedirectToAction("AllBooks");
+            }
+
             var searchBooks = _bookService.GetSearchString(search);
             if(searchBooks.Count() != 0)
             {
